@@ -26,9 +26,10 @@ class PropertyFactory extends Factory
     public function definition()
     {
         $title = $this->faker->sentence;
+        $categories = Category::all();
 
         return [
-            'category_id' => Category::factory(),
+            'category_id' => $categories->random()->id,
             'user_id' => User::factory(),
             'type_id' => PropertyType::factory(),
             'title' => $title,

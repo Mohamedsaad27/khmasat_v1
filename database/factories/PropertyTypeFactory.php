@@ -21,8 +21,10 @@ class PropertyTypeFactory extends Factory
      */
     public function definition()
     {
+        $types = ['بيع', 'ايجار'];
+        $type = $this->faker->randomElement($types);
         return [
-            'type' => $this->faker->word,  // Generate a random word for the property type
+            'type' => $this->faker->word,
         ];
     }
 }

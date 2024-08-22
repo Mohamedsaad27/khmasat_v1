@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 interface CrudInterface
 {
@@ -10,7 +10,7 @@ interface CrudInterface
     public function create();
     public function store(Request $request);
     public function edit($id);
-    public function update();
+    public function update(Request $request ,$id);
     public function destroy($id);
 
 }
