@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Property extends Model
 {
@@ -35,14 +36,15 @@ class Property extends Model
         'price' => 'decimal:2',
         'furnished' => 'boolean',
     ];
-
-    /**
-     * Get the category that owns the property.
-     */
-    public function category()
+    public static function boot()
     {
-        return $this->belongsTo(Category::class);
+        parent::boot();
+
+        static::creating(function ($property) {
+            $property->slug = Str::slug($property->title);
+        });
     }
+
 
     /**
      * Get the user that owns the property.
@@ -51,7 +53,13 @@ class Property extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+    /**
+     * Get the category that owns the property.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
     /**
      * Get the property type that owns the property.
      */
@@ -59,4 +67,18 @@ class Property extends Model
     {
         return $this->belongsTo(PropertyType::class, 'type_id');
     }
+    /**
+     * Get the property Images that owns the property.
+     */
+    public function propertyImages(){
+        return $this->hasMany(PropertyImage::class);
+    }
+    /**
+     * Get the property Attributes that owns the property.
+     */
+    public function attributes(){
+        return $this->hasMany(Attribute::class);
+    }
+
+
 }

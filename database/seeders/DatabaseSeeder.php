@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             ChatSeeder::class,
             ChatMessageSeeder::class,
+//            PropertyAttributeSeeder::class,
+            UserImageSeeder::class,
             // Add other seeders here
         ]);
     }

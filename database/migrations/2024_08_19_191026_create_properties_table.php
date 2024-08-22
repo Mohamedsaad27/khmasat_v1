@@ -20,6 +20,10 @@ class CreatePropertiesTable extends Migration
             $table->enum('status', ['available', 'sold', 'rented'])->default('available');
             $table->boolean('furnished')->default(false);
             $table->timestamps();
+            $table->index('id');
+            $table->index('title');
+            $table->index('slug');
+            $table->index('status');
         });
     }
 
