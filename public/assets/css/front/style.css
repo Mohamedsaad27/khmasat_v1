@@ -1,0 +1,170 @@
+:root {
+    --main-color: #36b6ff;
+    --hover-main-color: #36b5ff56;
+    --main-transition: .2s;
+    --dark-color: #282828;
+    --hover-dark-color: #171717;
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+html::-webkit-scrollbar {
+    width: .5rem;
+    height: .5rem;
+}
+
+html::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+}
+
+body {
+    font-family: "Tajawal", sans-serif;
+    font-size: 0.875rem;
+    opacity: 1;
+    overflow-y: scroll;
+    margin: 0;
+    font-size: 18px;
+    color: var(--dark-color);
+}
+
+/* start header */
+
+header .links a,
+header .login {
+    transition: var(--main-transition);
+    color: var(--dark-color);
+}
+
+header .user-icon {
+    background: var(--hover-main-color);
+    border-radius: 100%;
+}
+
+header .links a:hover {
+    color: var(--main-color);
+}
+
+header .links a.active {
+    color: var(--main-color);
+}
+
+header .login:hover {
+    color: var(--main-color);
+}
+
+/* end header */
+
+/* start sidebar */
+
+.sidebar .links a {
+    transition: .2s;
+}
+
+.sidebar .links a:hover {
+    background-color: var(--hover-main-color);
+}
+
+.sidebar .links a.active {
+    background-color: var(--hover-main-color);
+}
+
+/* end sidebar */
+
+/* start search section */
+
+section.search {
+    color: var(--dark-color);
+}
+
+section.search .background-front {
+    background-image: url("../../imgs/front/background-home.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: calc(100vh - 78px);
+    /* border-radius: 20px; */
+}
+
+section.search .home-search .category {
+    background-color: #7f7f7f;
+    border-radius: 11px 11px 0 0;
+    width: fit-content;
+}
+
+section.search .home-search .category input {
+    display: none;
+}
+
+section.search .home-search .category label {
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    padding: 8px 20px;
+    font-weight: bold;
+    transition: .2s;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+section.search .home-search .category label:hover {
+    /* color: black; */
+    background: #676767;
+}
+
+section.search .home-search .category input:checked+label {
+    color: black;
+    background: white;
+}
+
+section.search .home-search .main-search {
+    border-radius: 10px 0 10px 10px;
+}
+
+section.search .home-search .main-search .submit-search {
+    transition: .2s;
+    background-color: var(--dark-color);
+}
+
+section.search .home-search .main-search .submit-search:hover {
+    background-color: var(--hover-dark-color);
+}
+
+
+/* end search section */
+
+/* start features section */
+
+.feature .item:hover img {
+    filter:brightness(1);
+}
+
+.feature .item img{
+    filter:brightness(.9);
+}
+
+.feature .love:hover i {
+    color: red;
+}
+
+.feature .details .cart {
+    background: var(--dark-color);
+}
+
+.feature .details .cart .location {
+    background: var(--main-color);
+    transition: .2s;
+}
+
+.feature .details .cart .location:hover {
+    background: var(--hover-main-color);
+}
+
+/* end features section */

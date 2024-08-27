@@ -1,0 +1,8 @@
+/* handle width container in xl screen */
+@layer components {
+    @media (min-width: 1280px) {
+        .container {
+            max-width: 1450px !important;
+        }
+    }
+}
