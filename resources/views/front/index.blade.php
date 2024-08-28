@@ -143,20 +143,27 @@
                                 data-carousel-item>
                                 <div class="flex flex-wrap w-full h-full">
                                     {{-- item --}}
-                                    <div class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                    <div
+                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
 
                                     {{-- item --}}
                                     <div
                                         class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] md:pt-0 pt pb-[10px] lg:pb-0 md:pr-[10px] md:pr-0 lg:px-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
 
                                     </div>
                                     {{-- item --}}
                                     <div
                                         class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] lg:pt-0 lg:pr-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
                                 </div>
                             </div>
@@ -165,20 +172,27 @@
                                 data-carousel-item>
                                 <div class="flex flex-wrap w-full h-full">
                                     {{-- item --}}
-                                    <div class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                    <div
+                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
 
                                     {{-- item --}}
                                     <div
                                         class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] md:pt-0 pt pb-[10px] lg:pb-0 md:pr-[10px] md:pr-0 lg:px-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
 
                                     </div>
                                     {{-- item --}}
                                     <div
                                         class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] lg:pt-0 lg:pr-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
                                 </div>
                             </div>
@@ -187,20 +201,27 @@
                                 data-carousel-item>
                                 <div class="flex flex-wrap w-full h-full">
                                     {{-- item --}}
-                                    <div class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                    <div
+                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
 
                                     {{-- item --}}
                                     <div
                                         class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] md:pt-0 pt pb-[10px] lg:pb-0 md:pr-[10px] md:pr-0 lg:px-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
 
                                     </div>
                                     {{-- item --}}
                                     <div
                                         class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] lg:pt-0 lg:pr-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
                                 </div>
                             </div>
@@ -208,12 +229,13 @@
 
                         <div class="flex absolute bottom-0 left-1/2 z-30 -translate-x-1/2">
                             <button type="button"
-                                class="btn-slider w-20 h-1 rounded-full ml-3 transition duration-200"
+                                class="btn-slider w-20 h-1 rounded-full ml-3 transition duration-200 bg-sky-500 dark:bg-sky-500 hover:bg-sky-500 dark:hover:bg-sky-500"
                                 aria-current="false" aria-label="Slide 1" data-carousel-slide-to="0"></button>
                             <button type="button"
-                                class="btn-slider w-20 h-1 rounded-full ml-3 transition duration-200"
+                                class="btn-slider w-20 h-1 rounded-full ml-3 transition duration-200 bg-sky-500 dark:bg-sky-500 hover:bg-sky-500 dark:hover:bg-sky-500"
                                 aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                            <button type="button" class="btn-slider w-20 h-1 rounded-full transition duration-200"
+                            <button type="button"
+                                class="btn-slider w-20 h-1 rounded-full transition duration-200 bg-sky-500 dark:bg-sky-500 hover:bg-sky-500 dark:hover:bg-sky-500"
                                 aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
                         </div>
 
@@ -235,20 +257,27 @@
                                 data-carousel-item>
                                 <div class="flex flex-wrap w-full h-full">
                                     {{-- item --}}
-                                    <div class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                    <div
+                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
 
                                     {{-- item --}}
                                     <div
                                         class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] md:pt-0 pt pb-[10px] lg:pb-0 md:pr-[10px] md:pr-0 lg:px-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
 
                                     </div>
                                     {{-- item --}}
                                     <div
                                         class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] lg:pt-0 lg:pr-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
                                 </div>
                             </div>
@@ -257,20 +286,27 @@
                                 data-carousel-item>
                                 <div class="flex flex-wrap w-full h-full">
                                     {{-- item --}}
-                                    <div class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                    <div
+                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
 
                                     {{-- item --}}
                                     <div
                                         class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] md:pt-0 pt pb-[10px] lg:pb-0 md:pr-[10px] md:pr-0 lg:px-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
 
                                     </div>
                                     {{-- item --}}
                                     <div
                                         class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] lg:pt-0 lg:pr-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
                                 </div>
                             </div>
@@ -279,20 +315,27 @@
                                 data-carousel-item>
                                 <div class="flex flex-wrap w-full h-full">
                                     {{-- item --}}
-                                    <div class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                    <div
+                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
 
                                     {{-- item --}}
                                     <div
                                         class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] md:pt-0 pt pb-[10px] lg:pb-0 md:pr-[10px] md:pr-0 lg:px-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
 
                                     </div>
                                     {{-- item --}}
                                     <div
                                         class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] lg:pt-0 lg:pr-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد" country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000" type="فيلا" area="2.120" bedroom="5" bathroom="2" />
+                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
+                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
+                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
                                 </div>
                             </div>
