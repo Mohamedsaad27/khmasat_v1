@@ -143,11 +143,11 @@ section.search .home-search .main-search .submit-search:hover {
 /* start features section */
 
 .feature .item:hover img {
-    filter:brightness(1);
+    filter: brightness(1);
 }
 
-.feature .item img{
-    filter:brightness(.9);
+.feature .item img {
+    filter: brightness(.9);
 }
 
 .feature .love:hover i {
@@ -168,3 +168,17 @@ section.search .home-search .main-search .submit-search:hover {
 }
 
 /* end features section */
+
+/* start latest properties section */
+
+.latest .btn-slider {
+    background: rgba(135, 135, 135, 0.5) !important;
+}
+
+/* active */
+.latest .btn-slider.bg-white,
+.latest .btn-slider:hover {
+    background: var(--main-color) !important;
+}
+
+/* end latest properties section */
