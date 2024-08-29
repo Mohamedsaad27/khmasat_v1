@@ -229,13 +229,12 @@
 
                         <div class="flex absolute bottom-0 left-1/2 z-30 -translate-x-1/2">
                             <button type="button"
-                                class="btn-slider w-20 h-1 rounded-full ml-3 transition duration-200 bg-sky-500 dark:bg-sky-500 hover:bg-sky-500 dark:hover:bg-sky-500"
+                                class="btn-slider w-20 h-1 rounded-full ml-3 transition duration-200"
                                 aria-current="false" aria-label="Slide 1" data-carousel-slide-to="0"></button>
                             <button type="button"
-                                class="btn-slider w-20 h-1 rounded-full ml-3 transition duration-200 bg-sky-500 dark:bg-sky-500 hover:bg-sky-500 dark:hover:bg-sky-500"
+                                class="btn-slider w-20 h-1 rounded-full ml-3 transition duration-200"
                                 aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                            <button type="button"
-                                class="btn-slider w-20 h-1 rounded-full transition duration-200 bg-sky-500 dark:bg-sky-500 hover:bg-sky-500 dark:hover:bg-sky-500"
+                            <button type="button" class="btn-slider w-20 h-1 rounded-full transition duration-200"
                                 aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
                         </div>
 
@@ -363,5 +362,20 @@
 
     @push('scripts')
         <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Select all button elements with the 'btn-slider' class
+                var carouselButtons = document.querySelectorAll(".btn-slider");
+
+                // Iterate over each button and apply conditional logic
+                carouselButtons.forEach(function(button) {
+                    if (button.classList.contains("bg-white")) {
+                        button.classList.add("active");
+                    }
+                    button.classList.remove("bg-white", "dark:bg-gray-800", "bg-white/50",
+                        "dark:bg-gray-800/50", "hover:bg-white", "dark:hover:bg-gray-800");
+                });
+            });
+        </script>
     @endpush
 </x-front-layout>

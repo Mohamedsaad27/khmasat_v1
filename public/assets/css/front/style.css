@@ -176,7 +176,7 @@ section.search .home-search .main-search .submit-search:hover {
 }
 
 /* active */
-.latest .btn-slider.bg-white,
+.latest .btn-slider.active  ,
 .latest .btn-slider:hover {
     background: var(--main-color) !important;
 }
