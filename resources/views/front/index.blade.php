@@ -372,6 +372,14 @@
                     if (button.classList.contains("bg-white")) {
                         button.classList.add("active");
                     }
+                    button.classList.remove(
+                        "bg-white",
+                        "dark:bg-gray-800",
+                        "bg-white/50",
+                        "dark:bg-gray-800/50",
+                        "hover:bg-white",
+                        "dark:hover:bg-gray-800"
+                    );
                     button.addEventListener('click', function() {
                         // Iterate over each button and apply conditional logic
                         carouselButtons.forEach(function(btn) {
