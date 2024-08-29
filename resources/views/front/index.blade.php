@@ -367,13 +367,29 @@
                 // Select all button elements with the 'btn-slider' class
                 var carouselButtons = document.querySelectorAll(".btn-slider");
 
-                // Iterate over each button and apply conditional logic
+                // Iterate over each button and add a click event listener
                 carouselButtons.forEach(function(button) {
                     if (button.classList.contains("bg-white")) {
                         button.classList.add("active");
                     }
-                    button.classList.remove("bg-white", "dark:bg-gray-800", "bg-white/50",
-                        "dark:bg-gray-800/50", "hover:bg-white", "dark:hover:bg-gray-800");
+                    button.addEventListener('click', function() {
+                        // Iterate over each button and apply conditional logic
+                        carouselButtons.forEach(function(btn) {
+                            if (btn.classList.contains("bg-white")) {
+                                btn.classList.add("active");
+                            } else {
+                                btn.classList.remove("active");
+                            }
+                            btn.classList.remove(
+                                "bg-white",
+                                "dark:bg-gray-800",
+                                "bg-white/50",
+                                "dark:bg-gray-800/50",
+                                "hover:bg-white",
+                                "dark:hover:bg-gray-800"
+                            );
+                        });
+                    });
                 });
             });
         </script>
