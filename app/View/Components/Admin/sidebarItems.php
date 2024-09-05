@@ -1,19 +1,20 @@
 <?php
 
-namespace App\View\Components\front\home;
+namespace App\View\Components\Admin;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class latest-item extends Component
+class sidebarItems extends Component
 {
+    public $items;
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        //
+        $this->items = config('admin.sidebarItems');
     }
 
     /**
@@ -21,6 +22,6 @@ class latest-item extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.front.home.latest-item');
+        return view('components.admin.sidebar-items');
     }
 }

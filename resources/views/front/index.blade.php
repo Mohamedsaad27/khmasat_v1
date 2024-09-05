@@ -363,6 +363,7 @@
     @push('scripts')
         <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
         <script>
+            // handle style buttons carousel
             document.addEventListener('DOMContentLoaded', function() {
                 // Select all button elements with the 'btn-slider' class
                 var carouselButtons = document.querySelectorAll(".btn-slider");

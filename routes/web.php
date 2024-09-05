@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('front.index');
 })->name('welcome');
 
+Route::get('/admin', function () {
+    return view('layouts.admin.admin-layout');
+})->name('admin');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

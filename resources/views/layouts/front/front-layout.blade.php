@@ -146,6 +146,65 @@
 
     {{ $slot }}
 
+    <footer class="bg-gray-900 py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap">
+                <div class="w-full lg:w-1/4 md:w-1/2 mb-8">
+                    <div class="text-white">
+                        <div class="mb-8">
+                            <a href="#"><img src="../../assets/img/footer-logo.png" alt="Footer Logo"></a>
+                        </div>
+                        <p class="text-gray-400 mb-8">The customer is at the heart of our unique business model, which includes design.</p>
+                        <a href="#"><img src="../../assets/img/payment.png" alt="Payment Methods"></a>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/5 md:w-1/2 lg:ml-4 mb-8">
+                    <div class="text-white">
+                        <h6 class="text-lg font-bold uppercase mb-5">Shopping</h6>
+                        <ul>
+                            <li class="mb-3"><a href="#" class="text-gray-400 text-sm">Clothing Store</a></li>
+                            <li class="mb-3"><a href="#" class="text-gray-400 text-sm">Trending Shoes</a></li>
+                            <li class="mb-3"><a href="#" class="text-gray-400 text-sm">Accessories</a></li>
+                            <li class="mb-3"><a href="#" class="text-gray-400 text-sm">Sale</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/5 md:w-1/2 lg:ml-4 mb-8">
+                    <div class="text-white">
+                        <h6 class="text-lg font-bold uppercase mb-5">Shopping</h6>
+                        <ul>
+                            <li class="mb-3"><a href="#" class="text-gray-400 text-sm">Contact Us</a></li>
+                            <li class="mb-3"><a href="#" class="text-gray-400 text-sm">Payment Methods</a></li>
+                            <li class="mb-3"><a href="#" class="text-gray-400 text-sm">Delivery</a></li>
+                            <li class="mb-3"><a href="#" class="text-gray-400 text-sm">Return & Exchanges</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/4 md:w-1/2 lg:ml-4 mb-8">
+                    <div class="text-white">
+                        <h6 class="text-lg font-bold uppercase mb-5">Newsletter</h6>
+                        <div>
+                            <p class="text-gray-400 mb-6">Be the first to know about new arrivals, look books, sales & promos!</p>
+                            <form action="#" class="relative">
+                                <input type="text" placeholder="Your email" class="w-full text-gray-800 bg-transparent border-b-2 border-white py-3 px-0 placeholder-gray-800 text-sm focus:outline-none">
+                                <button type="submit" class="absolute right-0 top-0 h-full bg-transparent border-none text-gray-400 text-lg focus:outline-none"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10 pt-6 border-t border-gray-700">
+                <p class="text-gray-400 mb-0">Copyright ©
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>2024
+                    All rights reserved | This template is made with <i class="fa fa-heart-o text-red-500" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-blue-500">Colorlib</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+
     <!-- Include Alpine.js -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
     @stack('scripts')

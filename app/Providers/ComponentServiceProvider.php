@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Components\Admin\sidebarItems;
 use App\View\Components\Front\FrontLayout;
 use Blade;
 use Illuminate\Support\ServiceProvider;
@@ -22,5 +23,6 @@ class ComponentServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Blade::component('front-layout', FrontLayout::class);
+        Blade::component('sidebar-items', sidebarItems::class);
     }
 }
