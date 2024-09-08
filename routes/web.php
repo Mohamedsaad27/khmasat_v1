@@ -4,9 +4,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('front.index');
-})->name('welcome');
+
+require __DIR__ . '/auth.php';
+
+
 
 Route::get('/admin', function () {
     return view('layouts.admin.admin-layout');
@@ -22,7 +23,27 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+/*
+ * FRONT ROUTES
+*/
+Route::group([
+    'middleware',
+], function () {
+
+    //--------------------------------/* HOME ROUTE */--------------------------------
+    Route::get('/', function () {
+        return view('front.index');
+    })->name('welcome');
+
+    //--------------------------------/* PROPERTIES ROUTE */--------------------------------
+    Route::get('/properties', function () {
+        return view('front.properties');
+    })->name('properties');
+
+});
+
+
 Route::resource('category', CategoryController::class);
+
 
 

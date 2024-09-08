@@ -1,5 +1,5 @@
 :root {
-    --main-color: #36b6ff;
+    --main-color: #0ea5e9;
     --hover-main-color: #36b5ff56;
     --main-transition: .2s;
     --dark-color: #282828;
@@ -77,6 +77,10 @@ header .login:hover {
 }
 
 /* end sidebar */
+
+/*
+**  HOME PAGE
+*/
 
 /* start search section */
 
@@ -176,9 +180,22 @@ section.search .home-search .main-search .submit-search:hover {
 }
 
 /* active */
-.latest .btn-slider.active ,
+.latest .btn-slider.active,
 .latest .btn-slider:hover {
     background: var(--main-color) !important;
 }
 
 /* end latest properties section */
+
+/* 
+**  PROPERTIES PAGE 
+*/
+
+/* start search filter section */
+
+.active-option{
+    background-color: #36b5ff2b;
+    color: var(--main-color);
+    font-weight: bold;
+}
+/* end search filter section */
