@@ -120,7 +120,7 @@
                 </div>
 
                 {{-- type properties --}}
-                <div class="relative w-[40%] sm:w-auto mt-2 lg:mt-0 inline-block text-left lg:mr-2.5 md:mr-0 ml-2.5 md:ml-0"
+                <div class="relative w-1/2 sm:w-auto mt-2 lg:mt-0 inline-block text-left lg:mr-2.5 md:mr-0 ml-2.5 md:ml-0"
                     id="dropdownWrapperType">
                     <!-- Hidden checkbox to control the dropdown toggle -->
                     <input type="checkbox" id="toggleDropdownType" class="peer hidden">
@@ -190,7 +190,7 @@
                     </label>
 
                     <!-- Dropdown Menu -->
-                    <div class="dropdown-room z-[250] before:absolute before:bottom-full before:left-[1.6rem] before:w-0 before:h-0 before:border-t-0 before:border-b-[.75rem] before:border-b-white
+                    <div class="dropdown-room z-[250] before:absolute before:bottom-full before:w-0 before:h-0 before:border-t-0 before:border-b-[.75rem] before:border-b-white
                                 before:border-transparent before:border-l-[.75rem] before:border-r-[.75rem] before:border-transparent before:content-[''] 
                                 before:[filter:drop-shadow(0_-0.0625rem_0.0625rem_rgba(0,_0,_0,_0.1))] hidden peer-checked:block
                                 absolute lg:left-0 right-0 lg:right-auto mt-[16px] w-[250px] rounded-md shadow-xl bg-white border border-gray-200"
