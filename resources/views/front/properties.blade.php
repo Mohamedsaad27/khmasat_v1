@@ -92,7 +92,7 @@
                         <i class="absolute right-0 top-[15px] mr-2 fa-solid fa-location-dot"></i>
                     </div>
                     <div id="dropdown"
-                        class="w-full h-60 border border-gray-300 rounded-md bg-white absolute overflow-y-auto hidden">
+                        class="w-full h-60 border border-gray-300 rounded-md bg-white absolute overflow-y-auto hidden z-[251]">
                     </div>
                 </div>
 
@@ -172,7 +172,7 @@
                 </div>
 
                 {{-- Number of [ Bedroom , Pathroom --}}
-                <div class="relative min-w-[50%] sm:w-auto mt-2 lg:mt-0 inline-block text-left md:mr-2.5 ml-2.5 md:ml-0"
+                <div class="relative min-w-[50%] sm:min-w-fit mt-2 lg:mt-0 inline-block text-left md:mr-2.5 ml-2.5 md:ml-0"
                     id="dropdownWrapperRooms">
                     <!-- Hidden checkbox to control the dropdown toggle -->
                     <input type="checkbox" id="toggleDropdownRooms" class="peer hidden">
