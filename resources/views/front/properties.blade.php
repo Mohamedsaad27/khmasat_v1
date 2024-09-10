@@ -172,14 +172,14 @@
                 </div>
 
                 {{-- Number of [ Bedroom , Pathroom --}}
-                <div class="relative mt-2 lg:mt-0 inline-block text-left md:mr-2.5 ml-2.5 md:ml-0"
+                <div class="relative w-1/2 sm:w-auto mt-2 lg:mt-0 inline-block text-left md:mr-2.5 ml-2.5 md:ml-0"
                     id="dropdownWrapperRooms">
                     <!-- Hidden checkbox to control the dropdown toggle -->
                     <input type="checkbox" id="toggleDropdownRooms" class="peer hidden">
 
                     <!-- Button with SVG arrow -->
                     <label id="dropdownButtonRooms" for="toggleDropdownRooms"
-                        class="ring-1 ring-blue-300 focus:outline-none font-medium rounded-lg text-sm px-5 py-3 text-center inline-flex items-center cursor-pointer">
+                        class="ring-1 ring-blue-300 w-full focus:outline-none font-medium rounded-lg text-sm px-5 py-3 text-center inline-flex justify-between items-center cursor-pointer">
                         <span id="buttonTextRooms">عدد الغرف / عدد الحمامات</span>
                         <!-- Default text will be set by JavaScript -->
                         <svg id="dropdownArrowRooms" class="w-2.5 h-2.5 ms-3 transition-transform duration-200"
