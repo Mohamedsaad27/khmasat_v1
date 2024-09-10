@@ -193,9 +193,19 @@ section.search .home-search .main-search .submit-search:hover {
 
 /* start search filter section */
 
-.active-option{
+.active-option {
     background-color: #36b5ff2b;
     color: var(--main-color);
     font-weight: bold;
 }
+
 /* end search filter section */
+
+/* start properties section */
+
+.properties .item .link:hover~.group .controls-carousel #prev-button,
+.properties .item .link:hover~.group .controls-carousel #next-button {
+    opacity: 1 !important;
+}
+
+/* end properties section */

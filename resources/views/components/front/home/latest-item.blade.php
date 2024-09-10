@@ -22,8 +22,10 @@
                 </svg>
                 <p class="text-[15px] mr-1">
                     <span>{{ $country }}</span>
-                    | <span>{{ $governate }}</span>
-                    | <span>{{ $city }}</span>
+                    |
+                    <span>{{ $governate }}</span>
+                    |
+                    <span>{{ $city }}</span>
                 </p>
             </div>
             <div>
