@@ -1,4 +1,4 @@
-<x-front-layout>
+<x-front-layout class="p-6">
 
     {{-- Start Breadcrumb --}}
     <div class="flex text-gray-700 my-4" aria-label="Breadcrumb">

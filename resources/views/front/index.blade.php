@@ -1,7 +1,7 @@
-<x-front-layout>
+<x-front-layout class="px-6">
 
     {{-- start search section --}}
-    <section class="search px-6 md:px-0">
+    <section class="search md:px-0">
         <div class="container mx-auto background-front rounded-2xl filter brightness-90 flex flex-col items-center">
             <p class="title mt-[130px] lg:mt-[180px] lg:text-white text-[30px] md:text-[50px] font-bold">إبحث عن
                 اي بيت هنا</p>
@@ -57,7 +57,7 @@
     {{-- end search section --}}
 
     {{-- start features section --}}
-    <section class="feature py-[60px] px-6 md:px-0">
+    <section class="feature py-[60px] md:px-0">
         <div class="container mx-auto">
 
             <p class="title font-bold text-[30px]">العقارات المميزة</p>

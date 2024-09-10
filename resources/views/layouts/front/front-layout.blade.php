@@ -146,7 +146,7 @@
         {{-- end sidebar --}}
     </div>
 
-    <div class="p-6">
+    <div {{ $attributes }}>
         {{ $slot }}
     </div>
 
