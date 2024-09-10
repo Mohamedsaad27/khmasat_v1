@@ -5,19 +5,20 @@
             max-width: 1450px !important;
         }
     }
+}
 
-    @media (min-width: 1024px) {
-        .dropdown-type::before {
-            left: 12.6rem !important;
-        }
-        .dropdown-room::before{
-            left: 1.6rem !important;
-        }
+@media (min-width: 1024px) {
+    .dropdown-type::before {
+        left: 12.6rem !important;
     }
 
-    @media (max-width: 1024px){
-        .dropdown-room::before{
-            left: 12.6rem !important;
-        }
+    .dropdown-room::before {
+        left: 1.6rem !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .dropdown-room::before {
+        left: 12.6rem !important;
     }
 }
