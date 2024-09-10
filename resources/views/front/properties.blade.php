@@ -52,7 +52,7 @@
                     </label>
 
                     <!-- Dropdown Menu -->
-                    <div class="before:absolute before:bottom-full before:left-[10.6rem] before:w-0 before:h-0 before:border-t-0 before:border-b-[.75rem] before:border-b-white before:border-transparent before:border-l-[.75rem] before:border-r-[.75rem] before:border-transparent before:content-[''] before:[filter:drop-shadow(0_-0.0625rem_0.0625rem_rgba(0,_0,_0,_0.1))]  hidden peer-checked:block absolute mt-[16px] w-[250px] rounded-md shadow-xl bg-white border border-gray-200"
+                    <div class="before:absolute before:bottom-full before:left-[10.6rem] before:w-0 before:h-0 before:border-t-0 before:border-b-[.75rem] before:border-b-white before:border-transparent before:border-l-[.75rem] before:border-r-[.75rem] before:border-transparent before:content-[''] before:[filter:drop-shadow(0_-0.0625rem_0.0625rem_rgba(0,_0,_0,_0.1))]  hidden peer-checked:block absolute mt-[16px] w-[250px] rounded-md shadow-xl bg-white border border-gray-200 z-[50]"
                         id="dropdownMenuCategory">
                         <div class="p-3">
                             <p class="text-[#4c4a4a] text-[15px] font-[600] w-fit mb-3">نوع العرض</p>
@@ -137,7 +137,7 @@
                     </label>
 
                     <!-- Dropdown Menu -->
-                    <div class="before:absolute before:bottom-full before:left-[1.6rem] before:w-0 before:h-0 before:border-t-0 before:border-b-[.75rem] before:border-b-white
+                    <div class="z-[50] before:absolute before:bottom-full before:left-[1.6rem] before:w-0 before:h-0 before:border-t-0 before:border-b-[.75rem] before:border-b-white
                     before:border-transparent before:border-l-[.75rem] before:border-r-[.75rem] before:border-transparent before:content-[''] 
                     before:[filter:drop-shadow(0_-0.0625rem_0.0625rem_rgba(0,_0,_0,_0.1))] hidden peer-checked:block
                     absolute left-0 mt-[16px] w-[250px] rounded-md shadow-xl bg-white border border-gray-200"
@@ -190,7 +190,7 @@
                     </label>
 
                     <!-- Dropdown Menu -->
-                    <div class="before:absolute before:bottom-full before:left-[1.6rem] before:w-0 before:h-0 before:border-t-0 before:border-b-[.75rem] before:border-b-white
+                    <div class="z-[50] before:absolute before:bottom-full before:left-[1.6rem] before:w-0 before:h-0 before:border-t-0 before:border-b-[.75rem] before:border-b-white
                                 before:border-transparent before:border-l-[.75rem] before:border-r-[.75rem] before:border-transparent before:content-[''] 
                                 before:[filter:drop-shadow(0_-0.0625rem_0.0625rem_rgba(0,_0,_0,_0.1))] hidden peer-checked:block
                                 absolute left-0 mt-[16px] w-[250px] rounded-md shadow-xl bg-white border border-gray-200"

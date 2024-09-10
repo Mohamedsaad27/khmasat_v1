@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 
 /*
  * FRONT ROUTES
-*/
+ */
 Route::group([
     'middleware',
 ], function () {
@@ -33,12 +33,12 @@ Route::group([
     //--------------------------------/* HOME ROUTE */--------------------------------
     Route::get('/', function () {
         return view('front.index');
-    })->name('welcome');
+    })->name('front.welcome');
 
     //--------------------------------/* PROPERTIES ROUTE */--------------------------------
     Route::get('/properties', function () {
         return view('front.properties');
-    })->name('properties');
+    })->name('front.properties');
 
 });
 

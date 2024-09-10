@@ -54,8 +54,10 @@
 
                 {{-- links --}}
                 <div class="links font-bold hidden md:block">
-                    <a href="" class="{{ $currentRoute == 'welcome' ? 'active' : '' }}">الرئيسية</a>
-                    <a href="" class="mr-3 {{ $currentRoute == 'aqar' ? 'active' : '' }}">العقارات</a>
+                    <a href="{{ route('front.welcome') }}"
+                        class="{{ $currentRoute == 'front.welcome' ? 'active' : '' }}">الرئيسية</a>
+                    <a href="{{ route('front.properties') }}"
+                        class="mr-3 {{ $currentRoute == 'front.properties' ? 'active' : '' }}">العقارات</a>
                     <a href="" class="mr-3 {{ $currentRoute == 'about' ? 'active' : '' }}">من نحن</a>
                     <a href="" class="mr-3 {{ $currentRoute == 'contact-us' ? 'active' : '' }}">اتصل بنا</a>
                 </div>
