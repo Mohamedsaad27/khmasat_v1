@@ -172,7 +172,7 @@
                 </div>
 
                 {{-- Number of [ Bedroom , Pathroom --}}
-                <div class="relative w-1/2 sm:w-auto mt-2 lg:mt-0 inline-block text-left md:mr-2.5 ml-2.5 md:ml-0"
+                <div class="relative min-w-[50%] sm:w-auto mt-2 lg:mt-0 inline-block text-left md:mr-2.5 ml-2.5 md:ml-0"
                     id="dropdownWrapperRooms">
                     <!-- Hidden checkbox to control the dropdown toggle -->
                     <input type="checkbox" id="toggleDropdownRooms" class="peer hidden">
