@@ -118,12 +118,12 @@
                                     <!-- Add your sidebar content here -->
 
                                     <div class="links pb-5 border-b border-gray-500">
-                                        <a href=""
-                                            class="block py-2.5 px-4 flex items-center space-x-2 text-black font-bold rounded mb-1 text-[16px] {{ $currentRoute == 'welcome' ? 'active' : '' }}">
+                                        <a href="{{ route('front.welcome') }}"
+                                            class="block py-2.5 px-4 flex items-center space-x-2 text-black font-bold rounded mb-1 text-[16px] {{ $currentRoute == 'front.welcome' ? 'active' : '' }}">
                                             <i class="fa-solid fa-house ml-3"></i> الرئيسية
                                         </a>
-                                        <a href=""
-                                            class="block py-2.5 px-4 flex items-center space-x-2 text-black font-bold rounded mb-1 text-[16px] {{ $currentRoute == 'name' ? 'active' : '' }}">
+                                        <a href="{{ route('front.properties') }}"
+                                            class="block py-2.5 px-4 flex items-center space-x-2 text-black font-bold rounded mb-1 text-[16px] {{ $currentRoute == 'front.properties' ? 'active' : '' }}">
                                             <i class="fa-solid fa-list ml-3"></i> العقارات
                                         </a>
                                         <a href=""
