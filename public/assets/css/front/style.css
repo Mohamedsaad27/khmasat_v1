@@ -199,6 +199,10 @@ section.search .home-search .main-search .submit-search:hover {
     font-weight: bold;
 }
 
+.dropdown-type::before{
+    left: 12.6rem;
+}
+
 /* end search filter section */
 
 /* start properties section */
