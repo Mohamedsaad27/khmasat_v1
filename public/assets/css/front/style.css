@@ -213,3 +213,20 @@ section.search .home-search .main-search .submit-search:hover {
 }
 
 /* end properties section */
+
+/* 
+**  PEOPERTY-DETILES PAGE 
+*/
+
+.property-detiles .description::-webkit-scrollbar {
+    width: .2rem;
+    height: .5rem;
+}
+
+.property-detiles .description::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.property-detiles .description::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+}

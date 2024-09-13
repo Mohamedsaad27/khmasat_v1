@@ -40,6 +40,11 @@ Route::group([
         return view('front.properties');
     })->name('front.properties');
 
+    //--------------------------------/* PROPERTY-DETILES ROUTE */--------------------------------
+    Route::get('/property-detiles', function () {
+        return view('front.property-detiles');
+    })->name('front.property-detiles');
+
 });
 
 
