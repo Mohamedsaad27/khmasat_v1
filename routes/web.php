@@ -8,24 +8,15 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 
 
-
-Route::get('/admin', function () {
-    return view('layouts.admin.admin-layout');
-})->name('admin');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 /*
- * FRONT ROUTES
- */
+    |--------------------------------------------------------------------------
+    | FRONTEND ROUTES
+    |--------------------------------------------------------------------------
+    | These routes handle all the frontend views and functionalities accessible
+    | by users or guests. They manage the user interface, site navigation, and
+    | public-facing content.
+    |--------------------------------------------------------------------------
+*/
 Route::group([
     'middleware',
 ], function () {
@@ -47,8 +38,35 @@ Route::group([
 
 });
 
+/*
+|--------------------------------------------------------------------------
+| ADMIN ROUTES
+|--------------------------------------------------------------------------
+| These routes are reserved for the admin panel. Admins have full access
+| to manage users, roles, permissions, and other sensitive settings.
+|--------------------------------------------------------------------------
+*/
+Route::group(
+    [
+        'prefix' => 'admin'
+    ]
+    ,
+    function () {
 
-Route::resource('category', CategoryController::class);
+        //--------------------------------/* PROPERTY ROUTES */--------------------------------
+        Route::group([
+            'prefix' => 'property'
+        ], function () {
+
+            // Create Property
+            Route::get('create', function () {
+                return view('admin.property.create');
+            });
+
+        });
+
+    }
+);
 
 
 

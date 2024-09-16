@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    protected  $categoryRepository;
+    protected $categoryRepository;
     public function __construct(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-      return   $this->categoryRepository->index();
+        return $this->categoryRepository->index();
     }
 
     /**
@@ -34,7 +34,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        return   $this->categoryRepository->store($request);
+        return $this->categoryRepository->store($request);
     }
 
     /**
@@ -56,7 +56,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         //
     }
