@@ -59,7 +59,7 @@ Route::group(
         ], function () {
 
             // Create Property
-            Route::get('create', function () {
+            Route::get('/create', function () {
                 return view('admin.property.create');
             });
 
