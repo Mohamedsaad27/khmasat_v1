@@ -16,6 +16,9 @@
     {{-- LINK CDN STYLE FLOWBIT --}}
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
 
+    {{-- LINK CDN FONTAWSOME --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
     @stack('styles')
 </head>
 
@@ -25,7 +28,7 @@
     @include('layouts.admin.partials.navbar')
     {{-- END NAVBAR --}}
 
-    <div class="flex pt-[70.4px] overflow-hidden bg-gray-50 dark:bg-gray-900">
+    <div class="flex pt-[64.8px] lg:pt-[70.4px] overflow-hidden bg-gray-50 dark:bg-gray-900">
 
         {{-- START SIDEBAR  --}}
         @include('layouts.admin.partials.sidebar')

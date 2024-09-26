@@ -55,13 +55,18 @@ Route::group(
 
         //--------------------------------/* PROPERTY ROUTES */--------------------------------
         Route::group([
-            'prefix' => 'property'
+            'prefix' => 'properties'
         ], function () {
 
             // Create Property
             Route::get('/create', function () {
                 return view('admin.property.create');
-            });
+            })->name('properties.create');
+
+            // Show Properties
+            Route::get('/', function () {
+                return view('admin.property.index');
+            })->name('admin.properties');
 
         });
 
