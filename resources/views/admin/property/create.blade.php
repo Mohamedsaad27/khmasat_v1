@@ -54,7 +54,8 @@
         </div>
         {{-- END Breadcrumb --}}
 
-        <form class="flex flex-wrap justify-between">
+        <form class="flex flex-wrap justify-between" action="{{ route('admin.properties.store') }}" method="POST" enctype="multipart/form-data" >
+            @csrf
 
             <div
                 class="w-full h-fit lg:w-[59%] xl:w-[69%] p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
@@ -116,7 +117,7 @@
                 <div class="mb-3">
                     <label for="description"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">الوصف</label>
-                    <textarea id="message" rows="2"
+                    <textarea id="message" rows="2" name="description"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="اكتب وصف العقار هنا..."></textarea>
                 </div>
@@ -126,12 +127,11 @@
                     <div class="w-[49%]">
                         <label for="type"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">النوع</label>
-                        <select id="type"
+                        <select id="type" name="property_type_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected>شالية</option>
-                            <option value="US">شقة</option>
-                            <option value="CA">عمارة</option>
-                            <option value="FR">فيلا</option>
+                            @foreach ($propertyTypes as $propertyType)
+                                <option value="{{ $propertyType->id }}">{{ $propertyType->type }}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -140,7 +140,7 @@
                         <label for="area"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">المساحة <span
                                 class="text-blue-500">م <sup>2</sup></span></label>
-                        <input type="number" name="price" id="price"
+                        <input type="number" name="area" id="price"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
                             placeholder="ادخل المساحة بالمتر المربع" required>
                     </div>
@@ -166,13 +166,28 @@
                     </div>
                 </div>
 
+                {{-- status --}}
+                <div class="mb-3">
+                    <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">حالة العقار</label>
+                    <select id="status" name="status"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="available" selected>متاح</option>
+                        <option value="sold">تم البيع</option>
+                        <option value="rented">تم التأجير</option>
+                    </select>
+                </div>
+
                 {{-- benefits --}}
                 <div class="mb-3">
-                    <label for="bathroom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        المميزات</label>
-                    <input name='input-custom-dropdown' id="input-custom-dropdown"
-                        class='tagify--custom-dropdown shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200'
-                        placeholder='ادخل مميزات العقار' value='css, html, javascript'>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">المميزات</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        @foreach($benefits as $benefit)
+                            <div class="flex items-center">
+                                <input type="checkbox" name="benefits[]" id="benefit_{{ $benefit->id }}" value="{{ $benefit->id }}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="benefit_{{ $benefit->id }}" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300 mr-3">{{ $benefit->name }}</label>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
@@ -198,19 +213,19 @@
                                     800x400px)
                                 </p>
                             </div>
-                            <input id="fileInput" type="file" class="hidden" multiple />
+                            <input id="fileInput" type="file" name="images[]" class="hidden" multiple />
                         </label>
                         <!-- Container to show the file names -->
                         <div id="fileList" class="file-list"></div>
                     </div>
                 </div>
-
+{{-- 
                 <div
                     class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 py-4 px-6 dark:bg-gray-800">
                     <p class="font-medium text-gray-900 dark:text-white text-center mb-3">العنوان</p>
 
                     {{-- country --}}
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="countries"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">الدولة</label>
                         <select id="countries"
@@ -223,7 +238,7 @@
                     </div>
 
                     {{-- gavernate --}}
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="gavernate"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">المحافظة</label>
                         <select id="gavernate"
@@ -233,10 +248,10 @@
                             <option value="CA">عزبة نجيب</option>
                             <option value="FR">الدرب</option>
                         </select>
-                    </div>
+                    </div> --}}
 
                     {{-- city --}}
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="gavernate"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">المدينة</label>
                         <select id="gavernate"
@@ -246,8 +261,8 @@
                             <option value="CA">عزبة نجيب</option>
                             <option value="FR">الدرب</option>
                         </select>
-                    </div>
-                </div>
+                    </div> --}}
+                 
                 <div
                     class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 py-4 px-6 dark:bg-gray-800">
                     <div id="map" class="w-full h-[400px]"></div>

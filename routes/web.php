@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\PropertyController;
 
 
 require __DIR__ . '/auth.php';
@@ -59,10 +58,8 @@ Route::group(
         ], function () {
 
             // Create Property
-            Route::get('/create', function () {
-                return view('admin.property.create');
-            })->name('properties.create');
-
+            Route::get('/create', [PropertyController::class, 'createProperty'])->name('properties.create');
+            Route::post('/store', [PropertyController::class, 'storeProperty'])->name('admin.properties.store');
             // Show Properties
             Route::get('/', function () {
                 return view('admin.property.index');
