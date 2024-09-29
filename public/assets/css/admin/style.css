@@ -5,27 +5,29 @@
 style
 
 /* Custom scrollbar styles */
-.custom-scrollbar {
+.custom-scrollbar,
+.table-scrollerbar {
   scrollbar-width: thin;
-  scrollbar-color: #3b82f6 #d1d5db;
+  scrollbar-color: #3b82f6 transparent;
 }
 
-.custom-scrollbar::-webkit-scrollbar {
+.custom-scrollbar::-webkit-scrollbar,
+.table-scrollerbar::-webkit-scrollbar {
   width: 5px;
-  /* Scrollbar width */
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
+.custom-scrollbar::-webkit-scrollbar-track,
+.table-scrollerbar::-webkit-scrollbar-track {
   background: transparent;
-  /* Track color */
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.table-scrollerbar::-webkit-scrollbar-thumb {
   background-color: #3b82f6;
-  /* Thumb color */
   border-radius: 10px;
-  /* Rounded corners */
 }
+
+
 
 
 /* chart styles */

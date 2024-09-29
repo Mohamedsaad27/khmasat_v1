@@ -1,5 +1,3 @@
-
-
 // show images will send to request under input 
 const fileInput = document.getElementById('fileInput');
 const fileList = document.getElementById('fileList');
@@ -36,7 +34,7 @@ fileInput.addEventListener('change', function () {
         fileItem.appendChild(parentImg);
         fileItem.appendChild(fileNameWrapper);
 
-        // Append the file item to the file list
+        // Append the file item to the file list    
         fileList.appendChild(fileItem);
     });
 });
@@ -71,7 +69,7 @@ function handleDiscount() {
             discountElement.innerHTML = `
             <label for="discount-amount"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">السعر بعد الخصم</label>
-            <input type="number" name="discount-amount" id="discount-amount"
+            <input type="number" name="price_after_dicount" id="discount-amount"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
                 placeholder="ادخل السعر بعد الخصم " required>`;
 
@@ -110,7 +108,7 @@ function handleInstallment() {
             installmentElement.innerHTML = `
             <label for="installment-amount"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">المقدم</label>
-            <input type="number" name="installment-amount" id="installment-amount"
+            <input type="number" name="installment_amount" id="installment-amount"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
                 placeholder="ادخل المقدم " required>`;
 

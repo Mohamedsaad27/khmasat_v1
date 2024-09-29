@@ -25,6 +25,11 @@ class Property extends Model
         'price',
         'status',
         'furnished',
+        'bathroom',
+        'bedroom',
+        'area',
+        'price_after_dicount',
+        'installment_amount',
     ];
 
     /**

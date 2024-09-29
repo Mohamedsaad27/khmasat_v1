@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Dashboard\PropertyController;
+use App\Http\Controllers\Admin\PropertyController;
 
 
 require __DIR__ . '/auth.php';
@@ -47,25 +48,15 @@ Route::group([
 */
 Route::group(
     [
-        'prefix' => 'admin'
-    ]
-    ,
+        'prefix' => 'admin',
+    ],
     function () {
 
+        //--------------------------------/* DASHBOARD ROUTE */--------------------------------
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
         //--------------------------------/* PROPERTY ROUTES */--------------------------------
-        Route::group([
-            'prefix' => 'properties'
-        ], function () {
-
-            // Create Property
-            Route::get('/create', [PropertyController::class, 'createProperty'])->name('properties.create');
-            Route::post('/store', [PropertyController::class, 'storeProperty'])->name('admin.properties.store');
-            // Show Properties
-            Route::get('/', function () {
-                return view('admin.property.index');
-            })->name('admin.properties');
-
-        });
+        Route::resource('/properties', PropertyController::class);
 
     }
 );

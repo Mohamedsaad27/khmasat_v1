@@ -1,4 +1,5 @@
 <x-admin-layout>
+
     @push('styles')
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.31.3/tagify.min.css" />
     @endpush
@@ -10,7 +11,7 @@
             <nav class="dark:bg-gray-800 bg-white rounded-lg shadow flex py-5 px-2" aria-label="Breadcrumb">
                 <ol class="inline-flex flex-wrap items-center space-x-1 text-sm font-medium md:space-x-2">
                     <li class="inline-flex items-center">
-                        <a href="{{ route('admin.dashboard') }}"
+                        <a href="#"
                             class="inline-flex mr-2 items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white">
                             <svg class="w-5 h-5 ml-2.5" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +31,7 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                             <a href="{{ route('properties.index') }}"
-                                class="mr-1 text-gray-700 hover:text-primary-600 md:mr-2 dark:text-gray-300 dark:hover:text-white">العقارات</a>
+                                class="mr-1 text-gray-700 hover:text-primary-600 md:mr-2 dark:text-gray-300 dark:hover:text-white">العقارت</a>
                         </div>
                     </li>
                     <li>
@@ -53,7 +54,7 @@
         </div>
         {{-- END Breadcrumb --}}
 
-        <form class="flex flex-wrap justify-between" action="{{ route('properties.store') }}" method="POST"
+        <form class="flex flex-wrap justify-between" action="{{ route('admin.properties.store') }}" method="POST"
             enctype="multipart/form-data">
             @csrf
 
@@ -92,10 +93,7 @@
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">العنوان</label>
                     <input type="text" name="title" id="title"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
-                        placeholder="ادخل عنوان للعقار" required value="{{ old('title') }}">
-                    @error('title')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
+                        placeholder="ادخل عنوان للعقار" required>
                 </div>
 
                 <div class="price-parent flex items-center justify-between mb-3">
@@ -104,11 +102,10 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">السعر</label>
                         <input type="number" name="price" id="price"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
-                            placeholder="ادخل سعر للعقار" required value="{{ old('price') }}">
-                        @error('price')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                        @enderror
+                            placeholder="ادخل سعر للعقار" required>
                     </div>
+
+                    {{-- when discount checked print input for this --}}
                 </div>
 
                 <div class="installment-parent flex items-center justify-between mb-3">
@@ -123,10 +120,7 @@
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">الوصف</label>
                     <textarea id="message" rows="2" name="description"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="اكتب وصف العقار هنا...">{{ old('description') }}</textarea>
-                    @error('description')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
+                        placeholder="اكتب وصف العقار هنا..."></textarea>
                 </div>
 
                 <div class="mb-3 flex items-center justify-between">
@@ -140,9 +134,6 @@
                                 <option value="{{ $propertyType->id }}">{{ $propertyType->type }}</option>
                             @endforeach
                         </select>
-                        @error('property_type_id')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     {{-- area --}}
@@ -152,10 +143,7 @@
                                 class="text-blue-500">م <sup>2</sup></span></label>
                         <input type="number" name="area" id="price"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
-                            placeholder="ادخل المساحة بالمتر المربع" required value="{{ old('area') }}">
-                        @error('area')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                        @enderror
+                            placeholder="ادخل المساحة بالمتر المربع" required>
                     </div>
                 </div>
 
@@ -166,10 +154,7 @@
                             الغرف</label>
                         <input type="number" name="bedroom" id="bedroom"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
-                            placeholder="ادخل عدد الغرف" required value="{{ old('bedroom') }}">
-                        @error('bedroom')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                        @enderror
+                            placeholder="ادخل عدد الغرف" required>
                     </div>
 
                     {{-- bathroom --}}
@@ -178,10 +163,7 @@
                             الحمامات</label>
                         <input type="number" name="bathroom" id="bathroom"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
-                            placeholder="ادخل عدد الحمامات" required value="{{ old('bathroom') }}">
-                        @error('bathroom')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                        @enderror
+                            placeholder="ادخل عدد الحمامات" required>
                     </div>
                 </div>
 
@@ -195,9 +177,6 @@
                         <option value="sold">تم البيع</option>
                         <option value="rented">تم التأجير</option>
                     </select>
-                    @error('status')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
                 </div>
 
                 {{-- benefits --}}
@@ -208,10 +187,7 @@
                     </label>
                     <input name='benefits' id="input-benefits"
                         class='tagify--custom-dropdown shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200'
-                        placeholder='ادخل مميزات العقار' value="{{ old('benefits') }}">
-                    @error('benefits')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
+                        placeholder='ادخل مميزات العقار'>
                 </div>
 
                 <!-- Hidden input container for benefit IDs -->

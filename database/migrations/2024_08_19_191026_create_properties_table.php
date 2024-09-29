@@ -17,6 +17,11 @@ class CreatePropertiesTable extends Migration
             $table->string('slug')->unique();
             $table->text('description');
             $table->decimal('price', 10, 2);
+            $table->decimal('price_after_dicount', 10, 2)->nullable(); // قيمة الخصم
+            $table->decimal('installment_amount', 10, 2)->nullable(); // قيمة المقدم
+            $table->integer('bedroom');
+            $table->integer('bathroom');
+            $table->decimal('area');
             $table->enum('status', ['available', 'sold', 'rented'])->default('available');
             $table->boolean('furnished')->default(false);
             $table->timestamps();
@@ -24,6 +29,9 @@ class CreatePropertiesTable extends Migration
             $table->index('title');
             $table->index('slug');
             $table->index('status');
+            $table->index('bedroom');
+            $table->index('bathroom');
+            $table->index('area');
         });
     }
 
@@ -32,4 +40,3 @@ class CreatePropertiesTable extends Migration
         Schema::dropIfExists('properties');
     }
 }
-

@@ -7,7 +7,7 @@ use App\Interfaces\CrudInterface;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryRepository implements crudInterface , CategoryInterface
+class CategoryRepository
 {
     public function index(){
         $categories = Category::all();

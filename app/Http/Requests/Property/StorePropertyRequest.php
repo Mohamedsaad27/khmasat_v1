@@ -13,12 +13,6 @@ class StorePropertyRequest extends FormRequest
     {
         return true;
     }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
@@ -26,35 +20,21 @@ class StorePropertyRequest extends FormRequest
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
+            'price_after_dicount' => 'nullable|numeric|min:0|lt:price',
+            'installment_amount' => 'nullable|numeric|min:0',
             'area' => 'required|numeric|min:0',
             'bedroom' => 'required|integer|min:0',
             'bathroom' => 'required|integer|min:0',
-            'address' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
-            'zip_code' => 'required|string|max:20',
-            'attributes' => 'required|array',
-            'attributes.*' => 'exists:attributes,id',
             'benefits' => 'required|array',
             'benefits.*' => 'exists:benefits,id',
             'images' => 'required|array|min:1',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|string|in:available,sold,rented',
-            'discount-amount' => 'nullable|numeric|min:0',
-            'installment-amount' => 'nullable|numeric|min:0',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
-            'country' => 'required|string|max:255',
-            'governorate' => 'required|string|max:255',
-            'street' => 'required|string|max:255',
         ];
     }
 
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array<string, string>
-     */
     public function messages(): array
     {
         return [
@@ -66,6 +46,11 @@ class StorePropertyRequest extends FormRequest
             'price.required' => 'سعر العقار مطلوب.',
             'price.numeric' => 'سعر العقار يجب أن يكون رقمًا.',
             'price.min' => 'سعر العقار يجب أن يكون 0 أو أكثر.',
+            'price_after_dicount.numeric' => 'مبلغ الخصم يجب أن يكون رقمًا.',
+            'price_after_dicount.min' => 'مبلغ الخصم يجب أن يكون 0 أو أكثر.',
+            'price_after_dicount.lt' => 'المبلغ بعد الخصم يجب أن يكون أقل من السعر.',
+            'installment_amount.numeric' => 'مبلغ القسط يجب أن يكون رقمًا.',
+            'installment_amount.min' => 'مبلغ القسط يجب أن يكون 0 أو أكثر.',
             'area.required' => 'مساحة العقار مطلوبة.',
             'area.numeric' => 'مساحة العقار يجب أن تكون رقمًا.',
             'area.min' => 'مساحة العقار يجب أن تكون 0 أو أكثر.',
@@ -75,17 +60,6 @@ class StorePropertyRequest extends FormRequest
             'bathroom.required' => 'عدد الحمامات مطلوب.',
             'bathroom.integer' => 'عدد الحمامات يجب أن يكون رقمًا صحيحًا.',
             'bathroom.min' => 'عدد الحمامات يجب أن يكون 0 أو أكثر.',
-            'address.required' => 'عنوان العقار مطلوب.',
-            'address.max' => 'عنوان العقار يجب ألا يتجاوز 255 حرفًا.',
-            'city.required' => 'المدينة مطلوبة.',
-            'city.max' => 'اسم المدينة يجب ألا يتجاوز 255 حرفًا.',
-            'state.required' => 'الولاية/المحافظة مطلوبة.',
-            'state.max' => 'اسم الولاية/المحافظة يجب ألا يتجاوز 255 حرفًا.',
-            'zip_code.required' => 'الرمز البريدي مطلوب.',
-            'zip_code.max' => 'الرمز البريدي يجب ألا يتجاوز 20 حرفًا.',
-            'attributes.required' => 'سمات العقار مطلوبة.',
-            'attributes.array' => 'سمات العقار يجب أن تكون مصفوفة.',
-            'attributes.*.exists' => 'إحدى سمات العقار المحددة غير صالحة.',
             'benefits.required' => 'مزايا العقار مطلوبة.',
             'benefits.array' => 'مزايا العقار يجب أن تكون مصفوفة.',
             'benefits.*.exists' => 'إحدى مزايا العقار المحددة غير صالحة.',
@@ -97,18 +71,8 @@ class StorePropertyRequest extends FormRequest
             'images.*.max' => 'حجم الصورة يجب ألا يتجاوز 2 ميجابايت.',
             'status.required' => 'حالة العقار مطلوبة.',
             'status.in' => 'حالة العقار يجب أن تكون متاح، مباع، أو مؤجر.',
-            'discount-amount.numeric' => 'مبلغ الخصم يجب أن يكون رقمًا.',
-            'discount-amount.min' => 'مبلغ الخصم يجب أن يكون 0 أو أكثر.',
-            'installment-amount.numeric' => 'مبلغ القسط يجب أن يكون رقمًا.',
-            'installment-amount.min' => 'مبلغ القسط يجب أن يكون 0 أو أكثر.',
             'latitude.numeric' => 'الخط العرضي يجب أن يكون رقمًا.',
             'longitude.numeric' => 'الخط الطولي يجب أن يكون رقمًا.',
-            'country.required' => 'البلد مطلوبة.',
-            'country.max' => 'اسم البلد يجب ألا يتجاوز 255 حرفًا.',
-            'governorate.required' => 'المحافظة مطلوبة.',
-            'governorate.max' => 'اسم المحافظة يجب ألا يتجاوز 255 حرفًا.',
-            'street.required' => 'الشارع مطلوب.',
-            'street.max' => 'اسم الشارع يجب ألا يتجاوز 255 حرفًا.',
         ];
     }
 }
