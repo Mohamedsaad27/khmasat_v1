@@ -42,32 +42,33 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">إضافة عقار
-                                جديد</span>
+                            <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page"> تعديل
+                                العقار</span>
                         </div>
                     </li>
                 </ol>
             </nav>
 
             {{-- title page --}}
-            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white mt-4">إضافة عقار جديد</h1>
+            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white mt-4">تعديل العقار </h1>
         </div>
         {{-- END Breadcrumb --}}
 
-        <form class="flex flex-wrap justify-between" action="{{ route('admin.properties.store') }}" method="POST"
-            enctype="multipart/form-data">
+        <form class="flex flex-wrap justify-between" action="{{ route('properties.update', $property->slug) }}"
+            method="POST" enctype="multipart/form-data">
             @csrf
 
             <div
                 class="w-full h-fit lg:w-[59%] xl:w-[69%] p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
 
-                <div class="flex items-center justify-between mb-5">
+                <div class="flex flex-wrap items-center justify-between mb-5">
 
                     <div
-                        class="flex items-center justify-between w-[49%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
+                        class="flex items-center justify-between w-[49%] sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">خصم</p>
                         <label class="relative inline-flex cursor-pointer items-center">
-                            <input id="discount-checkbox" type="checkbox" class="peer sr-only" checked />
+                            <input id="discount-checkbox" type="checkbox" class="peer sr-only"
+                                @checked(old('price_after_discount', $property->price_after_discount != null)) />
                             <label for="discount-checkbox" class="hidden"></label>
                             <div
                                 class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-focus:ring-green-500">
@@ -75,10 +76,23 @@
                         </label>
                     </div>
                     <div
-                        class="flex items-center justify-between w-[49%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
+                        class="flex items-center justify-between w-[49%] sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
+                        <p class="font-medium text-gray-900 dark:text-white">مميز</p>
+                        <label class="relative inline-flex cursor-pointer items-center">
+                            <input id="feature" name="feature" type="checkbox" class="peer sr-only"
+                                @checked(old('feature', $property->feature == true)) />
+                            <label for="feature" class="hidden"></label>
+                            <div
+                                class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-focus:ring-green-500">
+                            </div>
+                        </label>
+                    </div>
+                    <div
+                        class="flex items-center justify-between mt-2 sm:mt-0 w-full sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">تقسيط</p>
                         <label class="relative inline-flex cursor-pointer items-center">
-                            <input id="installment-checkbox" type="checkbox" class="peer sr-only" checked />
+                            <input id="installment-checkbox" type="checkbox" class="peer sr-only"
+                                @checked(old('installment_amount', $property->installment_amount != null)) />
                             <label for="installment-checkbox" class="hidden"></label>
                             <div
                                 class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-focus:ring-green-500">
@@ -93,24 +107,36 @@
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">العنوان</label>
                     <input type="text" name="title" id="title"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
-                        placeholder="ادخل عنوان للعقار" required>
+                        placeholder="ادخل عنوان للعقار" required value="{{ old('title', $property->title) }}" />
                 </div>
 
                 <div class="price-parent flex items-center justify-between mb-3">
-                    <div class="w-full price">
+                    <div class="price w-[49%]">
                         <label for="price"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">السعر</label>
                         <input type="number" name="price" id="price"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
-                            placeholder="ادخل سعر للعقار" required>
+                            placeholder="ادخل سعر للعقار" required value="{{ old('price', $property->price) }}" />
                     </div>
 
-                    {{-- when discount checked print input for this --}}
+                    <div class="discount-amount-parent w-[49%]">
+                        <label for="discount-amount"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">السعر بعد الخصم</label>
+                        <input type="number" name="price_after_discount" id="discount-amount"
+                            value="{{ old('price_after_discount', $property->price_after_discount) }}"
+                            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
+                            placeholder="ادخل السعر بعد الخصم " required />
+                    </div>
                 </div>
 
                 <div class="installment-parent flex items-center justify-between mb-3">
                     <div class="w-full installment">
-                        {{-- when installment checked print input for this --}}
+                        <label for="installment-amount"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">المقدم</label>
+                        <input type="number" name="installment_amount" id="installment-amount"
+                            value="{{ old('installment_amount', $property->installment_amount) }}"
+                            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
+                            placeholder="ادخل المقدم " required>
                     </div>
                 </div>
 
@@ -118,9 +144,9 @@
                 <div class="mb-3">
                     <label for="description"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">الوصف</label>
-                    <textarea id="message" rows="2" name="description"
+                    <textarea id="message" rows="3" name="description"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="اكتب وصف العقار هنا..."></textarea>
+                        placeholder="اكتب وصف العقار هنا...">{{ old('description', $property->description) }}</textarea>
                 </div>
 
                 <div class="mb-3 flex items-center justify-between">
@@ -128,10 +154,11 @@
                     <div class="w-[49%]">
                         <label for="type"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">النوع</label>
-                        <select id="type" name="property_type_id"
+                        <select id="type" name="type_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             @foreach ($propertyTypes as $propertyType)
-                                <option value="{{ $propertyType->id }}">{{ $propertyType->type }}</option>
+                                <option value="{{ $propertyType->id }}" @selected($property->type_id == $propertyType->id)>
+                                    {{ $propertyType->type }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -142,6 +169,7 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">المساحة <span
                                 class="text-blue-500">م <sup>2</sup></span></label>
                         <input type="number" name="area" id="price"
+                            value="{{ old('area', $property->area) }}"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
                             placeholder="ادخل المساحة بالمتر المربع" required>
                     </div>
@@ -153,6 +181,7 @@
                         <label for="bedroom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">عدد
                             الغرف</label>
                         <input type="number" name="bedroom" id="bedroom"
+                            value="{{ old('bedroom', $property->bedroom) }}"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
                             placeholder="ادخل عدد الغرف" required>
                     </div>
@@ -162,6 +191,7 @@
                         <label for="bathroom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">عدد
                             الحمامات</label>
                         <input type="number" name="bathroom" id="bathroom"
+                            value="{{ old('bathroom', $property->bathroom) }}"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
                             placeholder="ادخل عدد الحمامات" required>
                     </div>
@@ -173,21 +203,21 @@
                         العقار</label>
                     <select id="status" name="status"
                         class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="available" selected>متاح</option>
-                        <option value="sold">تم البيع</option>
-                        <option value="rented">تم التأجير</option>
+                        <option value="available" @selected(old('status', $property->status == 'available'))>متاح</option>
+                        <option value="sold" @selected(old('status', $property->status == 'sold'))>تم البيع</option>
+                        <option value="rented" @selected(old('status', $property->status == 'rented'))>تم التأجير</option>
                     </select>
                 </div>
 
                 {{-- benefits --}}
-
                 <div class="mb-3">
                     <label for="input-benefits" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         المميزات
                     </label>
                     <input name='benefits' id="input-benefits"
                         class='tagify--custom-dropdown shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200'
-                        placeholder='ادخل مميزات العقار'>
+                        placeholder='ادخل مميزات العقار'
+                        value='{{ implode(',', $property->benefits->pluck('name')->toArray()) }}'>
                 </div>
 
                 <!-- Hidden input container for benefit IDs -->
@@ -219,7 +249,46 @@
                             <input id="fileInput" type="file" name="images[]" class="hidden" multiple />
                         </label>
                         <!-- Container to show the file names -->
-                        <div id="fileList" class="file-list"></div>
+                        <div id="fileList" class="file-list w-full">
+                            @forelse($property->propertyImages as $image)
+                                <div
+                                    class="file-item flex items-center justify-between mt-[10px] dark:bg-gray-700 bg-gray-200 p-2 rounded w-full">
+                                    <div class="w-auto flex items-center">
+                                        <div class="w-[50px] h-[50px] ml-[10px]">
+                                            <img src="{{ $image->image_path }}"
+                                                alt="{{ basename($image->image_path) }}"
+                                                class="w-full h-full object-cover rounded">
+                                        </div>
+                                        <div class="truncate" style="width: calc(100% - 60px);">
+                                            <span
+                                                class="text-gray-500 dark:text-gray-400 truncate">{{ basename($image->image_path) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="w-fit">
+                                        <form action="">
+                                            <button type="button" id="deleteProductButton"
+                                                data-drawer-target="drawer-delete-product-default"
+                                                data-drawer-show="drawer-delete-product-default"
+                                                aria-controls="drawer-delete-product-default"
+                                                data-drawer-placement="right"
+                                                class="inline-flex items-center p-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900 transition duration-200">
+                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                        clip-rule="evenodd"></path>
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="text-gray-500 dark:text-gray-400 mt-2">
+                                    No images available for this property.
+                                </div>
+                            @endforelse
+
+                        </div>
                     </div>
                 </div>
 
@@ -236,8 +305,10 @@
                     العقار</button>
             </div>
 
-            <input type="hidden" id="latitude" name="latitude">
-            <input type="hidden" id="longitude" name="longitude">
+            <input type="hidden" id="latitude" name="latitude"
+                value={{ old('latitude', $property->address->latitude) }}>
+            <input type="hidden" id="longitude" name="longitude"
+                value={{ old('longitude', $property->address->longitude) }}>
 
         </form>
 
@@ -247,7 +318,6 @@
         {{-- create benefits input using tagify  --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.31.3/tagify.min.js"></script>
         <script>
-            // Replace with actual benefit IDs and names from your backend
             const benefits = [
                 @foreach ($benefits as $benefit)
                     {
@@ -270,20 +340,15 @@
                     }
                 });
 
-            // Handle change event to update hidden inputs
-            input.addEventListener('change', function(e) {
-                // Clear previous hidden inputs
+            function updateHiddenInputs() {
                 const hiddenInputContainer = document.getElementById('hidden-benefit-ids');
-                hiddenInputContainer.innerHTML = '';
+                hiddenInputContainer.innerHTML = ''; // Clear previous hidden inputs
 
-                // Get selected benefit IDs
                 let selectedBenefits = tagify.value.map(item => {
-                    // Find the benefit ID from the selected value
-                    let benefit = benefits.find(b => b.value === item.value);
+                    const benefit = benefits.find(b => b.value === item.value);
                     return benefit ? benefit.id : null; // Return ID if found
                 }).filter(id => id !== null); // Filter out any null values
 
-                // Dynamically create hidden inputs for each selected benefit ID
                 selectedBenefits.forEach(id => {
                     let hiddenInput = document.createElement('input');
                     hiddenInput.type = 'hidden';
@@ -291,7 +356,14 @@
                     hiddenInput.value = id; // Set the value to the benefit ID
                     hiddenInputContainer.appendChild(hiddenInput);
                 });
-            });
+            }
+
+            // Update hidden inputs when tags are added or removed
+            tagify.on('add', updateHiddenInputs);
+            tagify.on('remove', updateHiddenInputs);
+
+            // Initial call to populate hidden inputs
+            updateHiddenInputs();
         </script>
 
         {{-- integreation with google map --}}

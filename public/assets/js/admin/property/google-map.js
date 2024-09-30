@@ -1,7 +1,10 @@
+const lat = document.querySelector('#latitude').value;
+const long = document.querySelector('#longitude').value;
+
 function initMap() {
     const initialCoords = {
-        lat: 30.033333,
-        lng: 31.233334
+        lat: lat ? parseFloat(lat) : 30.033333,
+        lng: long ? parseFloat(long) : 31.23333
     }; // Cairo, Egypt (initial location)
 
     const map = new google.maps.Map(document.getElementById("map"), {

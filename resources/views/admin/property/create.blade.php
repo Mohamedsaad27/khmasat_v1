@@ -60,10 +60,10 @@
             <div
                 class="w-full h-fit lg:w-[59%] xl:w-[69%] p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
 
-                <div class="flex items-center justify-between mb-5">
+                <div class="flex flex-wrap items-center justify-between mb-5">
 
                     <div
-                        class="flex items-center justify-between w-[49%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
+                        class="flex items-center justify-between w-[49%] sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">خصم</p>
                         <label class="relative inline-flex cursor-pointer items-center">
                             <input id="discount-checkbox" type="checkbox" class="peer sr-only" checked />
@@ -74,7 +74,18 @@
                         </label>
                     </div>
                     <div
-                        class="flex items-center justify-between w-[49%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
+                        class="flex items-center justify-between w-[49%] sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
+                        <p class="font-medium text-gray-900 dark:text-white">مميز</p>
+                        <label class="relative inline-flex cursor-pointer items-center">
+                            <input id="feature" name="feature" type="checkbox" class="peer sr-only" />
+                            <label for="feature" class="hidden"></label>
+                            <div
+                                class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-focus:ring-green-500">
+                            </div>
+                        </label>
+                    </div>
+                    <div
+                        class="flex items-center justify-between mt-2 sm:mt-0 w-full sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">تقسيط</p>
                         <label class="relative inline-flex cursor-pointer items-center">
                             <input id="installment-checkbox" type="checkbox" class="peer sr-only" checked />
@@ -99,7 +110,7 @@
                 </div>
 
                 <div class="price-parent flex items-center justify-between mb-3">
-                    <div class="w-full price">
+                    <div class="price w-[49%]">
                         <label for="price"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">السعر</label>
                         <input type="number" name="price" id="price"
@@ -109,11 +120,31 @@
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
                     </div>
+
+                    <div class="discount-amount-parent w-[49%]">
+                        <label for="discount-amount"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">السعر بعد الخصم</label>
+                        <input type="number" name="price_after_discount" id="discount-amount"
+                            value="{{ old('price_after_discount') }}"
+                            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
+                            placeholder="ادخل السعر بعد الخصم " required />
+                        @error('price_after_discount')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="installment-parent flex items-center justify-between mb-3">
                     <div class="w-full installment">
-                        {{-- when installment checked print input for this --}}
+                        <label for="installment-amount"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">المقدم</label>
+                        <input type="number" name="installment_amount" id="installment-amount"
+                            value="{{ old('installment_amount') }}"
+                            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
+                            placeholder="ادخل المقدم " required>
+                        @error('installment_amount')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 

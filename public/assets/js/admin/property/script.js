@@ -3,7 +3,7 @@ const fileInput = document.getElementById('fileInput');
 const fileList = document.getElementById('fileList');
 
 fileInput.addEventListener('change', function () {
-    fileList.innerHTML = '';
+    // fileList.innerHTML = '';
     fileList.classList.add('w-full', 'mt-[10px]');
 
     // Loop through the selected files
@@ -39,87 +39,55 @@ fileInput.addEventListener('change', function () {
     });
 });
 
-
 /* =============== ♥_♥ =============== */
-
 
 // show input discount when click on discountCheckbox
 var priceParent = document.querySelector('.price-parent');
 var price = document.querySelector('.price');
 var discountCheckbox = document.getElementById('discount-checkbox');
+var discountAmountParent = document.getElementsByClassName('discount-amount-parent')[0]; // Access the first element
 
 function handleDiscount() {
     if (!discountCheckbox.checked) {
         price.classList.add('w-full');
         price.classList.remove('w-[49%]');
 
-        // Remove discount element if it exists
-        var existingDiscountElement = document.getElementById('discount-amount');
-        if (existingDiscountElement) {
-            existingDiscountElement.parentNode.remove();
+        // Hide discount input
+        if (!discountAmountParent.classList.contains('hidden')) {
+            discountAmountParent.classList.add('hidden');
         }
     } else {
         price.classList.remove('w-full');
         price.classList.add('w-[49%]');
 
-        // Create and append the discount element if it doesn't exist
-        if (!document.getElementById('discount-amount')) {
-            var discountElement = document.createElement('div');
-            discountElement.classList.add('w-[49%]');
-            discountElement.innerHTML = `
-            <label for="discount-amount"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">السعر بعد الخصم</label>
-            <input type="number" name="price_after_dicount" id="discount-amount"
-                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
-                placeholder="ادخل السعر بعد الخصم " required>`;
-
-            // Append the discount element to the parent
-            priceParent.appendChild(discountElement);
+        // Show discount input
+        if (discountAmountParent.classList.contains('hidden')) {
+            discountAmountParent.classList.remove('hidden');
         }
     }
 }
 
-// Run on page load
-window.addEventListener('load', handleDiscount);
+// Run immediately
+handleDiscount();
 
 // Run when checkbox changes
 discountCheckbox.addEventListener('change', handleDiscount);
 
-
 /* =============== ♥_♥ =============== */
 
-
 // show input installment when click on installmentCheckbox 
-var installment = document.querySelector('.installment');
+var installmentParent = document.querySelector('.installment-parent');
 var installmentCheckbox = document.getElementById('installment-checkbox');
 
-// Function to handle the installment input visibility
 function handleInstallment() {
     if (!installmentCheckbox.checked) {
-        // Remove installment input if it exists
-        var existingInstallmentElement = document.getElementById('installment-amount');
-        if (existingInstallmentElement) {
-            existingInstallmentElement.parentNode.remove();
-        }
+        installmentParent.classList.add('hidden');
     } else {
-        // Create and append the installment input if it doesn't exist
-        if (!document.getElementById('installment-amount')) {
-            var installmentElement = document.createElement('div');
-            installmentElement.innerHTML = `
-            <label for="installment-amount"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">المقدم</label>
-            <input type="number" name="installment_amount" id="installment-amount"
-                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
-                placeholder="ادخل المقدم " required>`;
-
-            // Append the new element to the installment div
-            installment.appendChild(installmentElement);
-        }
+        installmentParent.classList.remove('hidden');
     }
 }
 
-// Run on page load
-window.addEventListener('load', handleInstallment);
-
+// Run immediately
+handleInstallment();
 // Run when checkbox changes
 installmentCheckbox.addEventListener('change', handleInstallment);

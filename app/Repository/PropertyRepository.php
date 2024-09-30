@@ -60,7 +60,10 @@ class PropertyRepository implements PropertyRepositoryInterface
     }
     public function edit(Property $property)
     {
+        $benefits = DB::table('benefits')->get();
+        $propertyTypes = DB::table('property_types')->get();
 
+        return view('admin.property.edit', compact('property', 'benefits', 'propertyTypes'));
     }
     public function update(UpdatePropertyRequest $request)
     {

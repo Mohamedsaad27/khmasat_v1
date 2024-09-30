@@ -28,7 +28,7 @@ class Property extends Model
         'bathroom',
         'bedroom',
         'area',
-        'price_after_dicount',
+        'price_after_discount',
         'installment_amount',
     ];
 
@@ -59,6 +59,13 @@ class Property extends Model
         return $this->belongsTo(User::class);
     }
     /**
+     * Get the user that owns the property.
+     */
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
+    /**
      * Get the category that owns the property.
      */
     public function category()
@@ -73,17 +80,31 @@ class Property extends Model
         return $this->belongsTo(PropertyType::class, 'type_id');
     }
     /**
+     * Get the benefits that owns the property.
+     */
+    public function benefits()
+    {
+        return $this->belongsToMany(Benefit::class, 'property_benefits');
+    }
+    /**
      * Get the property Images that owns the property.
      */
-    public function propertyImages(){
+    public function propertyImages()
+    {
         return $this->hasMany(PropertyImage::class);
     }
     /**
      * Get the property Attributes that owns the property.
      */
-    public function attributes(){
+    public function attributes()
+    {
         return $this->hasMany(Attribute::class);
     }
 
+    // Override on model binding for give property using slug
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
 }

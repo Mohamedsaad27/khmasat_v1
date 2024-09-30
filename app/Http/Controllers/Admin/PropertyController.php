@@ -86,7 +86,7 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        return $this->propertyRepository->edit();
+        return $this->propertyRepository->edit($property);
     }
 
     /**
