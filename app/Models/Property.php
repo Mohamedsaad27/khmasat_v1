@@ -27,6 +27,7 @@ class Property extends Model
         'furnished',
         'bathroom',
         'bedroom',
+        'feature',
         'area',
         'price_after_discount',
         'installment_amount',

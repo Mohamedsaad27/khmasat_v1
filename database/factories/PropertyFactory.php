@@ -39,9 +39,10 @@ class PropertyFactory extends Factory
             'status' => $this->faker->randomElement(['available', 'sold', 'rented']),
             'furnished' => $this->faker->boolean,
             'area' => $this->faker->randomFloat(2, 10000, 1000000),
+            'feature' => $this->faker->boolean,
             'bathroom' => $this->faker->randomFloat(2, 10000, 1000000),
             'bedroom' => $this->faker->randomFloat(2, 10000, 1000000),
-            'price_after_dicount' => $this->faker->randomFloat(2, 10000, 1000000),
+            'price_after_discount' => $this->faker->randomFloat(2, 10000, 1000000),
             'installment_amount' => $this->faker->randomFloat(2, 10000, 1000000),
         ];
     }

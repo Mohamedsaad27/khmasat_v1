@@ -10,6 +10,7 @@ use App\Interfaces\PropertyRepositoryInterface;
 use App\Http\Requests\Property\StorePropertyRequest;
 use App\Http\Requests\Property\UpdatePropertyRequest;
 use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Client;
 
 class PropertyRepository implements PropertyRepositoryInterface
 {
@@ -44,14 +45,59 @@ class PropertyRepository implements PropertyRepositoryInterface
                 'area' => $validatedData['area'],
                 'status' => $validatedData['status'],
                 'furnished' => $validatedData['furnished'] ?? false,
+                'feaeture' => $request->feaeture
             ]);
+            $this->handleAddress($property, $request);
             $property->attributes()->attach($validatedData['attributes']);
             $property->benefits()->attach($validatedData['benefits']);
+            foreach ($validatedData['images'] as $image) {
+                $imageName = $image->getClientOriginalName();
+                $image->move(public_path('assets/images/properties/' . $property->id), $imageName);
+                $property->propertyImages()->create([
+                    'image' => $imageName,
+                ]);
+            }
             DB::commit();
             return redirect()->route('admin.properties.index')->with('success', 'Property created successfully');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to create property');
+        }
+    }
+    private function handleAddress($property, $request)
+    {
+        $lat = $request->input('latitude');
+        $lng = $request->input('longitude');
+
+        if (!$lat || !$lng) {
+            dd(['error' => 'Latitude and longitude are required.']);
+        }
+
+        // URL for the OpenStreetMap Nominatim API
+        $url = "https://nominatim.openstreetmap.org/reverse?format=json&lat={$lat}&lon={$lng}&addressdetails=1";
+
+        // Make the request
+        $client = new Client([
+            'verify' => false,
+            'headers' => [
+                'User-Agent' => 'KHMASAT/1.0 (https://KHMASAT.com)'
+            ]
+        ]);
+        $response = $client->get($url);
+        $data = json_decode($response->getBody()->getContents());
+
+        if (isset($data->address)) {
+            $country = $data->address->country ?? null;
+            $governorate = $data->address->state ?? null;
+            $street = $data->address->road ?? null;
+            $city = $data->address->city ?? $data->address->town ?? $data->address->village ?? null;
+
+            $property->address()->create([
+                'country' => $country,
+                'governorate' => $governorate,
+                'city' => $city,
+                'street' => $street
+            ]);
         }
     }
     public function show(Property $property)
