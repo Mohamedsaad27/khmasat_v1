@@ -223,6 +223,7 @@
     <!-- Include Alpine.js -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
     @stack('scripts')
 </body>
 
