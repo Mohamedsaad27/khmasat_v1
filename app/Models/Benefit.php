@@ -17,4 +17,5 @@ class Benefit extends Model
     protected $fillable = [
         'name',
     ];
+    
 }

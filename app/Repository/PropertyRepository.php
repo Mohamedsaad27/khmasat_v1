@@ -28,6 +28,7 @@ class PropertyRepository implements PropertyRepositoryInterface
     public function store(StorePropertyRequest $request)
     {
         $validatedData = $request->validated();
+        // dd($validatedData);
         try {
             DB::beginTransaction();
             $property = Property::create([
@@ -38,23 +39,22 @@ class PropertyRepository implements PropertyRepositoryInterface
                 'slug' => Str::slug($validatedData['title']),
                 'description' => $validatedData['description'],
                 'price' => $validatedData['price'],
-                'price_after_dicount' => $validatedData['price_after_dicount'] ?? null,
+                'price_after_discount' => $validatedData['price_after_discount'] ?? null,
                 'installment_amount' => $validatedData['installment_amount'] ?? null,
                 'bedroom' => $validatedData['bedroom'],
                 'bathroom' => $validatedData['bathroom'],
                 'area' => $validatedData['area'],
                 'status' => $validatedData['status'],
                 'furnished' => $validatedData['furnished'] ?? false,
-                'feaeture' => $request->feaeture
+                'feature' => $validatedData['feature'] === 'on' ? true : false, 
             ]);
             $this->handleAddress($property, $request);
-            $property->attributes()->attach($validatedData['attributes']);
-            $property->benefits()->attach($validatedData['benefits']);
+            $property->benefits()->sync($validatedData['benefits']);
             foreach ($validatedData['images'] as $image) {
                 $imageName = $image->getClientOriginalName();
                 $image->move(public_path('assets/images/properties/' . $property->id), $imageName);
                 $property->propertyImages()->create([
-                    'image' => $imageName,
+                    'image_path' => $imageName, 
                 ]);
             }
             DB::commit();
@@ -70,7 +70,7 @@ class PropertyRepository implements PropertyRepositoryInterface
         $lng = $request->input('longitude');
 
         if (!$lat || !$lng) {
-            dd(['error' => 'Latitude and longitude are required.']);
+            return redirect()->back()->with('error', 'Latitude and longitude are required.');
         }
 
         // URL for the OpenStreetMap Nominatim API
