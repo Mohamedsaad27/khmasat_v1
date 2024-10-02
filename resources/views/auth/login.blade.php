@@ -45,7 +45,7 @@
                     <span class="flex-1 h-[1px] bg-gray-400"></span>
                 </div>
 
-                <a href=""
+                <a href="{{ route('auth.socialite.redirect', 'google') }}"
                     class="w-full flex items-center justify-center border border-gray-400 rounded-[5px] py-2 transition-all duration-200 hover:bg-gray-200">
                     <img class="w-[30px]" src="{{ asset('assets/imgs/front/google logo.png') }}" alt="">
                     <p class="font-500 mr-2">تسجيل الدخول باستخدام جوجل</p>
