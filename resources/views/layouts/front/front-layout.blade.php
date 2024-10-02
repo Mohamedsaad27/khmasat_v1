@@ -36,7 +36,7 @@
     <div x-data="{ open: false }" class="sticky top-0 z-[10000]">
         {{-- start header --}}
         <header class="header bg-white w-full border-b border-gray-200">
-            <div class="container mx-auto flex justify-between items-center p-6">
+            <div class="container mx-auto flex justify-between items-center p-6 md:px-0 xl:px-6">
                 {{-- logo and menu button --}}
                 <div class="flex items-center">
                     <p class="font-bold text-lg">Logo</p>

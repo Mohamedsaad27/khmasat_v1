@@ -1,10 +1,13 @@
-<x-front-layout class="px-6">
+<x-front-layout class="md:px-6">
 
-    <div class="flex flex-wrap justify-between h-[calc(100vh-78px)]">
-        <div class="w-[50%] pt-[54px] flex flex-col items-center">
+    <x-auth.layout title="تسجيل الدخول">
+        <div
+            class="w-full md:w-[50%] xl:w-[62%] px-6 md:px-0 pt-[54px] pb-[54px] md:pb-0 mt-[-100px] md:mt-0 bg-white rounded-[50px] md:rounded-0 flex flex-col items-center">
             <div class="text-[28px] font-bold text-center">تسجيل الدخول</div>
 
-            <form class="w-[385px]">
+            <form class="sm:w-[385px]" method="POST" accept="">
+                @csrf
+
                 {{-- email --}}
                 <div class="w-full max-w-sm min-w-[200px] mt-5">
                     <label class="font-[500]" for="">البريد الإلكتروني</label>
@@ -43,23 +46,19 @@
                 </div>
 
                 <a href=""
-                    class="w-full flex items-center justify-center border border-gray-400 rounded-[5px] py-2 transition-all duration-200 hover:bg-red-400">
+                    class="w-full flex items-center justify-center border border-gray-400 rounded-[5px] py-2 transition-all duration-200 hover:bg-gray-200">
                     <img class="w-[30px]" src="{{ asset('assets/imgs/front/google logo.png') }}" alt="">
                     <p class="font-500 mr-2">تسجيل الدخول باستخدام جوجل</p>
                 </a>
 
                 <div class="flex items-center mt-4">
                     <p class="font-[500]">ليس لديك حساب ؟</p>
-                    <a class="mr-2 text-sky-500 font-[500] text-[17px] transition-all duration-200 hover:text-sky-600" href="">سجل من هنا</a>
+                    <a class="mr-2 text-sky-500 font-[500] text-[17px] transition-all duration-200 hover:text-sky-600"
+                        href="">سجل من هنا</a>
                 </div>
 
             </form>
-
         </div>
-        <div class="w-[43%] h-[calc(100vh-150px)]">
-            <img class="h-full object-cover rounded-tl-[5px] rounded-tr-[5px] rounded-bl-[5px] rounded-br-[100px]"
-                src="{{ asset('assets/imgs/front/login.jpg') }}" alt="">
-        </div>
-    </div>
+    </x-auth.layout>
 
 </x-front-layout>
