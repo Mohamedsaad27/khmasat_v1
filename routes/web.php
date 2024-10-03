@@ -24,7 +24,7 @@ Route::group([
 
     //--------------------------------/* HOME ROUTE */--------------------------------
     Route::get('/', function () {
-        // return view('front.index');
+        return view('front.index');
     })->name('front.welcome');
 
     //--------------------------------/* PROPERTIES ROUTE */--------------------------------

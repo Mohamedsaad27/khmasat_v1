@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             BranchSeeder::class,
             CategorySeeder::class,
             PropertyTypeSeeder::class,
-            AttributeSeeder::class,
             PropertySeeder::class,
             BenefitSeeder::class,
             PropertyImageSeeder::class,
@@ -31,7 +30,6 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             ChatSeeder::class,
             ChatMessageSeeder::class,
-//            PropertyAttributeSeeder::class,
             UserImageSeeder::class,
             // Add other seeders here
         ]);
