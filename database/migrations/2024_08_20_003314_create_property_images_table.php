@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('property_id');
             $table->foreign('property_id')->references('id')->on('properties');
             $table->string('image_path');
+            $table->boolean('is_main')->default(false);
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ class StorePropertyRequest extends FormRequest
     {
         return [
             'property_type_id' => 'required|exists:property_types,id',
+            'category_id' => 'required|exists:categories,id',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
@@ -32,7 +33,7 @@ class StorePropertyRequest extends FormRequest
             'status' => 'required|string|in:available,sold,rented',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
-            'feature' => 'nullable'
+
         ];
     }
 
@@ -74,6 +75,7 @@ class StorePropertyRequest extends FormRequest
             'status.in' => 'حالة العقار يجب أن تكون متاح، مباع، أو مؤجر.',
             'latitude.numeric' => 'الخط العرضي يجب أن يكون رقمًا.',
             'longitude.numeric' => 'الخط الطولي يجب أن يكون رقمًا.',
+            'feature.boolean' => 'ميزة العقار يجب أن تكون صحيحة أو خاطئة.', // Added
         ];
     }
 }

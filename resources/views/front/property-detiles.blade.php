@@ -35,33 +35,28 @@
         <div class="container mx-auto px-4 py-8">
             <div class="flex flex-wrap -mx-4">
                 <!-- Product Images -->
+                
                 <div class="w-full md:w-1/2 px-4 mb-8">
-                    <img src="{{ asset('assets/imgs/latest-1.jpg') }}" alt="Product"
+                    <img src="{{ asset($property->propertyImages->first()->image_path) }}" alt="Product"
                         class="w-full h-auto rounded-lg shadow-md mb-4" id="mainImage">
                     <div class="flex gap-4 py-4 justify-center overflow-x-auto">
-                        <img src="{{ asset('assets/imgs/latest-2.jpg') }}" alt="Thumbnail 1"
+                        @foreach ($property->propertyImages as $propertyImage)
+                        <img src="{{ asset($propertyImage->image_path) }}" alt="Thumbnail 1"
                             class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
                             onclick="changeImage(this.src)">
-                        <img src="{{ asset('assets/imgs/latest-3.jpg') }}" alt="Thumbnail 2"
-                            class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
-                            onclick="changeImage(this.src)">
-                        <img src="{{ asset('assets/imgs/latest-4.jpg') }}" alt="Thumbnail 3"
-                            class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
-                            onclick="changeImage(this.src)">
-                        <img src="{{ asset('assets/imgs/latest-5.jpg') }}" alt="Thumbnail 4"
-                            class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
-                            onclick="changeImage(this.src)">
+                        @endforeach
                     </div>
-                </div>
 
+                    </div>
+              
                 <!-- property Details -->
                 <div class="w-full md:w-1/2 px-4" dir="rtl">
                     {{-- name & price --}}
-                    <h2 class="text-2xl font-bold mb-4">شالية في نجع حمادي علي البحر</h2>
+                    <h2 class="text-2xl font-bold mb-4">{{ $property->name }}</h2>
                     <div class="mb-4 flex items-center justify-between border-b pb-5">
                         <div>
-                            <span class="text-2xl font-bold mr-2">1.200.125 ج.م</span>
-                            <span class="text-gray-500 line-through">1.300.000 ج.م</span>
+                            <span class="text-2xl font-bold mr-2">{{ $property->price }} ج.م</span>
+                            <span class="text-gray-500 line-through">{{ $property->price_after_discount }} ج.م</span>
                         </div>
                     </div>
                     {{-- price & contact --}}
@@ -83,6 +78,7 @@
                                         <span>تقسيط</span>
                                     </div>
                                 </div>
+                                @if($property->installment_amount > 0)
                                 <div class="w-1/2 flex flex-col items-center py-2 bg-gray-100 rounded">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -95,6 +91,7 @@
                                         <span>500,215 ج.م</span>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                             {{-- contact --}}
                             <div
@@ -226,7 +223,7 @@
                                     </svg>
                                     <p class="mr-2 font-[500]">مساحة العقار</p>
                                 </div>
-                                <p class="font-bold">120 متر مربع</p>
+                                <p class="font-bold">{{$property->area}} متر مربع</p>
                             </div>
                             <div class="w-full lg:w-[47%] xl:w-[42%] flex items-center justify-between mb-3">
                                 <div class="flex items-center">
@@ -238,7 +235,7 @@
                                     </svg>
                                     <p class="mr-2 font-[500]">غرف النوم</p>
                                 </div>
-                                <p class="font-bold">5</p>
+                                <p class="font-bold">{{$property->bedroom}}</p>
                             </div>
                             <div class="w-full lg:w-[47%] xl:w-[42%] flex items-center justify-between mb-3">
                                 <div class="flex items-center">
@@ -250,7 +247,7 @@
                                     </svg>
                                     <p class="mr-2 font-[500]">الحمامات</p>
                                 </div>
-                                <p class="font-bold">2</p>
+                                <p class="font-bold">{{$property->bathroom}}</p>
                             </div>
                         </div>
                     </div>

@@ -23,14 +23,14 @@ class Property extends Model
         'slug',
         'description',
         'price',
-        'status',
-        'furnished',
-        'bathroom',
-        'bedroom',
-        'feature',
-        'area',
         'price_after_discount',
         'installment_amount',
+        'bathroom',
+        'bedroom',
+        'area',
+        'status',
+        'feature',
+        'furnished',
     ];
 
     /**
@@ -94,13 +94,8 @@ class Property extends Model
     {
         return $this->hasMany(PropertyImage::class);
     }
-    /**
-     * Get the property Attributes that owns the property.
-     */
-    public function attributes()
-    {
-        return $this->hasMany(Attribute::class);
-    }
+   
+    
 
     // Override on model binding for give property using slug
     public function getRouteKeyName()

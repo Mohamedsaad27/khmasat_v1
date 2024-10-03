@@ -73,17 +73,7 @@
                             </div>
                         </label>
                     </div>
-                    <div
-                        class="flex items-center justify-between w-[49%] sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
-                        <p class="font-medium text-gray-900 dark:text-white">مميز</p>
-                        <label class="relative inline-flex cursor-pointer items-center">
-                            <input id="feature" name="feature" type="checkbox" class="peer sr-only" />
-                            <label for="feature" class="hidden"></label>
-                            <div
-                                class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-focus:ring-green-500">
-                            </div>
-                        </label>
-                    </div>
+                
                     <div
                         class="flex items-center justify-between mt-2 sm:mt-0 w-full sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">تقسيط</p>
@@ -176,6 +166,23 @@
                         @enderror
                     </div>
 
+                    {{-- category --}}
+                    <div class="w-[49%]">
+                        <label for="category"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">الفئة</label>
+                        <select id="category" name="category_id"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('category_id')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="mb-3 flex items-center justify-between">
                     {{-- area --}}
                     <div class="w-[49%]">
                         <label for="area"
@@ -188,9 +195,7 @@
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
                     </div>
-                </div>
 
-                <div class="mb-3 flex items-center justify-between">
                     {{-- bedroom --}}
                     <div class="w-[49%]">
                         <label for="bedroom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">عدد
@@ -202,7 +207,9 @@
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
                     </div>
+                </div>
 
+                <div class="mb-3 flex items-center justify-between">
                     {{-- bathroom --}}
                     <div class="w-[49%]">
                         <label for="bathroom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">عدد
@@ -214,21 +221,21 @@
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
                     </div>
-                </div>
 
-                {{-- status --}}
-                <div class="mb-3">
-                    <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">حالة
-                        العقار</label>
-                    <select id="status" name="status"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="available" selected>متاح</option>
-                        <option value="sold">تم البيع</option>
-                        <option value="rented">تم التأجير</option>
-                    </select>
-                    @error('status')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
+                    {{-- status --}}
+                    <div class="w-[49%]">
+                        <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">حالة
+                            العقار</label>
+                        <select id="status" name="status"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="available" selected>متاح</option>
+                            <option value="sold">تم البيع</option>
+                            <option value="rented">تم التأجير</option>
+                        </select>
+                        @error('status')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
 
                 {{-- benefits --}}

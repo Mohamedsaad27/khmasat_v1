@@ -2,15 +2,16 @@
 
 namespace App\Repository;
 
+use GuzzleHttp\Client;
 use App\Models\Property;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use App\Interfaces\PropertyRepositoryInterface;
 use App\Http\Requests\Property\StorePropertyRequest;
 use App\Http\Requests\Property\UpdatePropertyRequest;
-use Illuminate\Support\Facades\Auth;
-use GuzzleHttp\Client;
 
 class PropertyRepository implements PropertyRepositoryInterface
 {
@@ -23,45 +24,55 @@ class PropertyRepository implements PropertyRepositoryInterface
     {
         $benefits = DB::table('benefits')->get();
         $propertyTypes = DB::table('property_types')->get();
-        return view('admin.property.create', compact('benefits', 'propertyTypes'));
+        $categories = DB::table('categories')->get();
+        return view('admin.property.create', compact('benefits', 'propertyTypes', 'categories'));
     }
     public function store(StorePropertyRequest $request)
     {
         $validatedData = $request->validated();
-        // dd($validatedData);
         try {
             DB::beginTransaction();
             $property = Property::create([
+                'user_id' => 1,
                 'category_id' => $validatedData['category_id'],
-                'user_id' => Auth::user()->id,
                 'type_id' => $validatedData['property_type_id'],
                 'title' => $validatedData['title'],
                 'slug' => Str::slug($validatedData['title']),
                 'description' => $validatedData['description'],
                 'price' => $validatedData['price'],
-                'price_after_discount' => $validatedData['price_after_discount'] ?? null,
                 'installment_amount' => $validatedData['installment_amount'] ?? null,
+                'area' => $validatedData['area'],
                 'bedroom' => $validatedData['bedroom'],
                 'bathroom' => $validatedData['bathroom'],
-                'area' => $validatedData['area'],
                 'status' => $validatedData['status'],
-                'furnished' => $validatedData['furnished'] ?? false,
-                'feature' => $validatedData['feature'] === 'on' ? true : false, 
             ]);
-            $this->handleAddress($property, $request);
-            $property->benefits()->sync($validatedData['benefits']);
-            foreach ($validatedData['images'] as $image) {
-                $imageName = $image->getClientOriginalName();
-                $image->move(public_path('assets/images/properties/' . $property->id), $imageName);
-                $property->propertyImages()->create([
-                    'image_path' => $imageName, 
-                ]);
+            
+            if (isset($validatedData['benefits'])) {
+                $property->benefits()->sync($validatedData['benefits']);
             }
+            
+               if ($request->hasFile('images')) {
+                foreach ($validatedData['images'] as $key => $image) {
+                    $imageName = time() . ' ' . $image->getClientOriginalName();
+                    $imagePath = 'assets/images/properties/' . $property->id;
+                    $image->move(public_path('assets/images/properties/' . $property->id), $imageName);
+                    $image = $imagePath . '/' . $imageName;
+                    $property->propertyImages()->create([
+                        'image_path' => $image, 
+                        'is_main' => $key == 0 ? true : false
+                    ]);
+                }
+            }
+   
             DB::commit();
+            
+            $this->handleAddress($property, $request);
+            
             return redirect()->route('admin.properties.index')->with('success', 'Property created successfully');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Failed to create property');
+            Log::error('Failed to create property: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Failed to create property: ' . $e->getMessage());
         }
     }
     private function handleAddress($property, $request)
@@ -102,7 +113,10 @@ class PropertyRepository implements PropertyRepositoryInterface
     }
     public function show(Property $property)
     {
-
+        $property = Property::query()
+         ->with('propertyType','category','benefits','propertyImages','address')
+        ->find($property->id);
+        return view('front.property-detiles', compact('property'));
     }
     public function edit(Property $property)
     {

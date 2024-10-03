@@ -24,7 +24,7 @@ Route::group([
 
     //--------------------------------/* HOME ROUTE */--------------------------------
     Route::get('/', function () {
-        return view('front.index');
+        // return view('front.index');
     })->name('front.welcome');
 
     //--------------------------------/* PROPERTIES ROUTE */--------------------------------
@@ -33,10 +33,7 @@ Route::group([
     })->name('front.properties');
 
     //--------------------------------/* PROPERTY-DETILES ROUTE */--------------------------------
-    Route::get('/property-detiles', function () {
-        return view('front.property-detiles');
-    })->name('front.property-detiles');
-
+    Route::get('/property-detiles/{property}',[PropertyController::class,'show'])->name('front.property-detiles');
 });
 
 /*
