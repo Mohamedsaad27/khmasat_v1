@@ -37,8 +37,10 @@
                 <!-- Product Images -->
                 
                 <div class="w-full md:w-1/2 px-4 mb-8">
-                    <img src="{{ asset($property->propertyImages->first()->image_path) }}" alt="Product"
-                        class="w-full h-auto rounded-lg shadow-md mb-4" id="mainImage">
+                    @if($property->propertyImages->first())
+                        <img src="{{ asset($property->propertyImages->first()->image_path) }}" alt="Product"
+                            class="w-full h-auto rounded-lg shadow-md mb-4" id="mainImage">
+                    @endif
                     <div class="flex gap-4 py-4 justify-center overflow-x-auto">
                         @foreach ($property->propertyImages as $propertyImage)
                         <img src="{{ asset($propertyImage->image_path) }}" alt="Thumbnail 1"

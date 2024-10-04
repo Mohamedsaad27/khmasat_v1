@@ -57,7 +57,7 @@
         <form class="flex flex-wrap justify-between" action="{{ route('properties.update', $property->slug) }}"
             method="POST" enctype="multipart/form-data">
             @csrf
-
+            @method('PUT')
             <div
                 class="w-full h-fit lg:w-[59%] xl:w-[69%] p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
 
@@ -306,9 +306,9 @@
             </div>
 
             <input type="hidden" id="latitude" name="latitude"
-                value={{ old('latitude', $property->address->latitude) }}>
+                value="{{ old('latitude', $property->address->latitude ?? '') }}">
             <input type="hidden" id="longitude" name="longitude"
-                value={{ old('longitude', $property->address->longitude) }}>
+                value={{ old('longitude', $property->address->longitude ?? '') }}>
 
         </form>
 
