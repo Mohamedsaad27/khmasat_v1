@@ -1,4 +1,5 @@
-// show images will send to request under input 
+// show images will send to request under input
+
 const fileInput = document.getElementById('fileInput');
 const fileList = document.getElementById('fileList');
 
