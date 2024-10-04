@@ -1,5 +1,16 @@
 <x-admin-layout>
 
+    @push('alerts')
+        @if (Session::has('successCreate'))
+            <script>
+                iziToast.success({
+                    title: "{{ session('successCreate') }}",
+                    position: 'topRight',
+                });
+            </script>
+        @endif
+    @endpush
+
     <div class="p-5">
 
         {{-- START Breadcrumb --}}
@@ -110,9 +121,11 @@
                                     </td>
                                     <td
                                         class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis deleniti
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis
+                                        deleniti
                                         numquam ab laborum fuga quasi aliquid voluptas totam officia facilis tempora
-                                        quis, magni asperiores pariatur autem vitae! Suscipit, aspernatur blanditiis?
+                                        quis, magni asperiores pariatur autem vitae! Suscipit, aspernatur
+                                        blanditiis?
                                     </td>
                                     <td
                                         class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -150,8 +163,7 @@
                                         <button type="button" id="updateProductButton"
                                             data-drawer-target="drawer-update-product-default"
                                             data-drawer-show="drawer-update-product-default"
-                                            aria-controls="drawer-update-product-default"
-                                            data-drawer-placement="right"
+                                            aria-controls="drawer-update-product-default" data-drawer-placement="right"
                                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 transition duration-200">
                                             <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 442.04 442.04"
                                                 xmlns="http://www.w3.org/2000/svg">

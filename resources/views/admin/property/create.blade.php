@@ -3,6 +3,28 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.31.3/tagify.min.css" />
     @endpush
 
+    @push('alerts')
+        @error('feature')
+            <script>
+                iziToast.error({
+                    title: "{{ $message }}",
+                    position: 'topRight',
+                });
+            </script>
+        @enderror
+    @endpush
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+
+    @endif
+
     <div class="p-5">
 
         {{-- START Breadcrumb --}}
@@ -66,19 +88,33 @@
                         class="flex items-center justify-between w-[49%] sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">خصم</p>
                         <label class="relative inline-flex cursor-pointer items-center">
-                            <input id="discount-checkbox" type="checkbox" class="peer sr-only" checked />
+                            <input id="discount-checkbox" type="checkbox" class="peer sr-only"
+                                @checked(old('price_after_discount')) />
                             <label for="discount-checkbox" class="hidden"></label>
                             <div
                                 class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-focus:ring-green-500">
                             </div>
                         </label>
                     </div>
-                
+                    <div
+                        class="flex items-center justify-between w-[49%] sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
+                        <p class="font-medium text-gray-900 dark:text-white">مميز</p>
+
+                        <label class="relative inline-flex cursor-pointer items-center">
+                            <input id="feature" name="feature" type="checkbox" class="peer sr-only"
+                                @checked(old('feature')) value="1" />
+                            <div
+                                class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-focus:ring-green-500">
+                            </div>
+                        </label>
+                    </div>
+
                     <div
                         class="flex items-center justify-between mt-2 sm:mt-0 w-full sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">تقسيط</p>
                         <label class="relative inline-flex cursor-pointer items-center">
-                            <input id="installment-checkbox" type="checkbox" class="peer sr-only" checked />
+                            <input id="installment-checkbox" type="checkbox" class="peer sr-only"
+                                @checked(old('installment_amount')) />
                             <label for="installment-checkbox" class="hidden"></label>
                             <div
                                 class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-focus:ring-green-500">
@@ -224,7 +260,8 @@
 
                     {{-- status --}}
                     <div class="w-[49%]">
-                        <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">حالة
+                        <label for="status"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">حالة
                             العقار</label>
                         <select id="status" name="status"
                             class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -239,6 +276,11 @@
                 </div>
 
                 {{-- benefits --}}
+                @php
+                    $benefitIds = old('benefits', []);
+
+                    $benefitsNames = \App\Models\Benefit::whereIn('id', $benefitIds)->pluck('name')->toArray();
+                @endphp
 
                 <div class="mb-3">
                     <label for="input-benefits" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -246,7 +288,8 @@
                     </label>
                     <input name='benefits' id="input-benefits"
                         class='tagify--custom-dropdown shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200'
-                        placeholder='ادخل مميزات العقار' value="">
+                        placeholder='ادخل مميزات العقار' value="{{ e(implode(',', $benefitsNames)) }}">
+
                     @error('benefits')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
@@ -259,8 +302,11 @@
             <div class="w-full h-fit lg:w-[39%] xl:w-[29%] mb-4">
                 <div
                     class="w-full p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-
+                    @error('images')
+                        <p class="text-red-500 text-center font-[500] text-sm mb-2">{{ $message }}</p>
+                    @enderror
                     <div class="flex flex-col items-center justify-center w-full">
+
                         <label for="fileInput"
                             class="flex flex-col items-center justify-center w-full h-[176px] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -288,6 +334,11 @@
                 <div
                     class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 py-4 px-6 dark:bg-gray-800">
                     <p class="font-medium text-gray-900 dark:text-white text-center mb-3"> حدد عنوان العقار</p>
+                    @if ($errors->has('latitude') || $errors->has('longitude'))
+                        <p class="text-red-500 text-center font-[500] text-sm mb-2">
+                            {{ $errors->first('latitude') ?: $errors->first('longitude') }}
+                        </p>
+                    @endif
                     <div id="map" class="w-full h-[400px] rounded"></div>
                 </div>
             </div>
@@ -298,8 +349,8 @@
                     العقار</button>
             </div>
 
-            <input type="hidden" id="latitude" name="latitude">
-            <input type="hidden" id="longitude" name="longitude">
+            <input type="hidden" id="latitude" name="latitude" value="{{ old('latitude') }}">
+            <input type="hidden" id="longitude" name="longitude" value="{{ old('longitude') }}">
 
         </form>
 
@@ -309,7 +360,6 @@
         {{-- create benefits input using tagify  --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.31.3/tagify.min.js"></script>
         <script>
-            // Replace with actual benefit IDs and names from your backend
             const benefits = [
                 @foreach ($benefits as $benefit)
                     {
@@ -332,20 +382,15 @@
                     }
                 });
 
-            // Handle change event to update hidden inputs
-            input.addEventListener('change', function(e) {
-                // Clear previous hidden inputs
+            function updateHiddenInputs() {
                 const hiddenInputContainer = document.getElementById('hidden-benefit-ids');
-                hiddenInputContainer.innerHTML = '';
+                hiddenInputContainer.innerHTML = ''; // Clear previous hidden inputs
 
-                // Get selected benefit IDs
                 let selectedBenefits = tagify.value.map(item => {
-                    // Find the benefit ID from the selected value
-                    let benefit = benefits.find(b => b.value === item.value);
+                    const benefit = benefits.find(b => b.value === item.value);
                     return benefit ? benefit.id : null; // Return ID if found
                 }).filter(id => id !== null); // Filter out any null values
 
-                // Dynamically create hidden inputs for each selected benefit ID
                 selectedBenefits.forEach(id => {
                     let hiddenInput = document.createElement('input');
                     hiddenInput.type = 'hidden';
@@ -353,7 +398,14 @@
                     hiddenInput.value = id; // Set the value to the benefit ID
                     hiddenInputContainer.appendChild(hiddenInput);
                 });
-            });
+            }
+
+            // Update hidden inputs when tags are added or removed
+            tagify.on('add', updateHiddenInputs);
+            tagify.on('remove', updateHiddenInputs);
+
+            // Initial call to populate hidden inputs
+            updateHiddenInputs();
         </script>
 
         {{-- integreation with google map --}}

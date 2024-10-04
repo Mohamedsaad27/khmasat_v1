@@ -19,6 +19,12 @@
     {{-- LINK CDN FONTAWSOME --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 
+    {{-- link style iziToast "alerts" --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" />
+
+    {{-- link style sweetAlerts "alerts" --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.11.1/sweetalert2.min.css" />
+
     @stack('styles')
 </head>
 
@@ -51,6 +57,10 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
     <script src="https://flowbite.com/application-ui/demo/app.bundle.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    {{-- cdn iziToast "alerts" --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+    {{-- cdn sweetAlert "alerts" --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.11.1/sweetalert2.min.js"></script>
     <script src="{{ asset('assets/js/admin/dark-mode.js') }}"></script>
     <script src="{{ asset('assets/js/admin/sidebar.js') }}"></script>
     <script src="{{ asset('assets/js/admin/charts.js') }}"></script>
@@ -64,6 +74,7 @@
         }
     </script>
     @stack('scripts')
+    @stack('alerts')
     {{-- END FOOTER-SCRIPT --}}
 
 </body>
