@@ -11,45 +11,57 @@
                 {{-- name --}}
                 <div class="w-full max-w-sm min-w-[200px] mt-5">
                     <label class="font-[500]" for="">الأسم</label>
-                    <input
-                        class="w-full mt-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-200 ease focus:outline-none focus:border-slate-600 hover:border-slate-600 shadow-sm focus:shadow"
-                        placeholder="ادخل الاسم بالكامل هنا ...">
+                    <input name="name"
+                        class="w-full mt-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-200 ease focus:outline-none focus:border-slate-600 hover:border-slate-600 shadow-sm focus:shadow @error('name') border-red-500 @enderror"
+                        placeholder="ادخل الاسم بالكامل هنا ..." value="{{ old('name') }}">
+                    @error('name')
+                        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- email --}}
                 <div class="w-full max-w-sm min-w-[200px] mt-3">
                     <label class="font-[500]" for="">البريد الإلكتروني</label>
-                    <input
-                        class="w-full mt-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-200 ease focus:outline-none focus:border-slate-600 hover:border-slate-600 shadow-sm focus:shadow"
-                        placeholder="ادخل البريد الإلكتروني هنا ...">
+                    <input name="email"
+                        class="w-full mt-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-200 ease focus:outline-none focus:border-slate-600 hover:border-slate-600 shadow-sm focus:shadow @error('email') border-red-500 @enderror"
+                        placeholder="ادخل البريد الإلكتروني هنا ..." value="{{ old('email') }}">
+                    @error('email')
+                        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- password --}}
                 <div class="w-full max-w-sm min-w-[200px] mt-3">
                     <label class="font-[500]" for="">كلمة السر</label>
                     <div class="relative">
-                        <input type="password"
-                            class="auth__password w-full mt-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-200 ease focus:outline-none focus:border-slate-600 hover:border-slate-600 shadow-sm focus:shadow"
+                         <input name="password" type="password" 
+                            class="auth__password w-full mt-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-200 ease focus:outline-none focus:border-slate-600 hover:border-slate-600 shadow-sm focus:shadow @error('password') border-red-500 @enderror"
                             placeholder="ادخل كلمة السر هنا ...">
                         <span class="password__icon">
                             <i
                                 class="fa-solid fa-eye-slash absolute left-[14px] top-[15.5px] text-[16px] eye cursor-pointer hover:text-sky-500 transition duration-200"></i>
                         </span>
                     </div>
+                    @error('password')
+                        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- confirm password --}}
                 <div class="w-full max-w-sm min-w-[200px] mt-3">
                     <label class="font-[500]" for="confirm_password">تاكيد كلمة السر</label>
                     <div class="relative">
-                        <input type="password" id="confirm_password"
-                            class="auth__password w-full mt-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-200 ease focus:outline-none focus:border-slate-600 hover:border-slate-600 shadow-sm focus:shadow"
+                        <input name="password_confirmation" type="password" id="confirm_password"
+                            class="auth__password w-full mt-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-200 ease focus:outline-none focus:border-slate-600 hover:border-slate-600 shadow-sm focus:shadow @error('password_confirmation') border-red-500 @enderror"
                             placeholder="ادخل كلمة السر مرة اخري ...">
                         <span class="password__icon">
                             <i
                                 class="fa-solid fa-eye-slash absolute left-[14px] top-[15.5px] text-[16px] eye cursor-pointer hover:text-sky-500 transition duration-200"></i>
                         </span>
                     </div>
+                    @error('password_confirmation')
+                        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <button type="submit"

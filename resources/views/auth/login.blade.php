@@ -11,16 +11,19 @@
                 {{-- email --}}
                 <div class="w-full max-w-sm min-w-[200px] mt-5">
                     <label class="font-[500]" for="">البريد الإلكتروني</label>
-                    <input
+                    <input name="email" value="{{ old('email') }}"
                         class="w-full mt-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-200 ease focus:outline-none focus:border-slate-600 hover:border-slate-600 shadow-sm focus:shadow"
                         placeholder="ادخل البريد الإلكتروني هنا ...">
+                    @error('email')
+                        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- password --}}
                 <div class="w-full max-w-sm min-w-[200px] mt-3">
                     <label class="font-[500]" for="">كلمة السر</label>
                     <div class="relative">
-                        <input type="password"
+                        <input name="password"
                             class="auth__password w-full mt-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-200 ease focus:outline-none focus:border-slate-600 hover:border-slate-600 shadow-sm focus:shadow"
                             placeholder="ادخل كلمة السر هنا ...">
                         <span class="password__icon">
@@ -28,6 +31,9 @@
                                 class="fa-solid fa-eye-slash absolute left-[14px] top-[15.5px] text-[16px] eye cursor-pointer hover:text-sky-500 transition duration-200"></i>
                         </span>
                     </div>
+                    @error('password')
+                        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- forget password --}}

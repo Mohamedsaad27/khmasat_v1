@@ -30,6 +30,7 @@ class PropertyRepository implements PropertyRepositoryInterface
     public function store(StorePropertyRequest $request)
     {
         $validatedData = $request->validated();
+        dd($validatedData);
         try {
             DB::beginTransaction();
             $property = Property::create([
@@ -45,6 +46,7 @@ class PropertyRepository implements PropertyRepositoryInterface
                 'bedroom' => $validatedData['bedroom'],
                 'bathroom' => $validatedData['bathroom'],
                 'status' => $validatedData['status'],
+                'feature' => $validatedData['feature'] ?? 0,
             ]);
             
             if (isset($validatedData['benefits'])) {

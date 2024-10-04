@@ -85,6 +85,17 @@
                             </div>
                         </label>
                     </div>
+                    <div
+                        class="flex items-center justify-between mt-2 sm:mt-0 w-full sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
+                        <p class="font-medium text-gray-900 dark:text-white">مميز</p>
+                        <label class="relative inline-flex cursor-pointer items-center">
+                            <input id="feature-checkbox" type="checkbox" class="peer sr-only" checked  />
+                            <label for="feature-checkbox" class="hidden"></label>
+                            <div
+                                class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-focus:ring-green-500">
+                            </div>
+                        </label>
+                    </div>
                 </div>
 
                 {{-- title --}}
