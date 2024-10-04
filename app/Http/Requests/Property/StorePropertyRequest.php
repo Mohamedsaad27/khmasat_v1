@@ -22,6 +22,7 @@ class StorePropertyRequest extends FormRequest
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'price_after_dicount' => 'nullable|numeric|min:0|lt:price',
+            'feature' => 'boolean',
             'installment_amount' => 'nullable|numeric|min:0',
             'area' => 'required|numeric|min:0',
             'bedroom' => 'required|integer|min:0',
@@ -31,9 +32,8 @@ class StorePropertyRequest extends FormRequest
             'images' => 'required|array|min:1',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|string|in:available,sold,rented',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
         ];
     }
 
@@ -51,6 +51,7 @@ class StorePropertyRequest extends FormRequest
             'price_after_dicount.numeric' => 'مبلغ الخصم يجب أن يكون رقمًا.',
             'price_after_dicount.min' => 'مبلغ الخصم يجب أن يكون 0 أو أكثر.',
             'price_after_dicount.lt' => 'المبلغ بعد الخصم يجب أن يكون أقل من السعر.',
+            'feature.boolean' => 'حقل مميز يجب أن يكون نعم أو لا.',
             'installment_amount.numeric' => 'مبلغ القسط يجب أن يكون رقمًا.',
             'installment_amount.min' => 'مبلغ القسط يجب أن يكون 0 أو أكثر.',
             'area.required' => 'مساحة العقار مطلوبة.',
@@ -73,9 +74,10 @@ class StorePropertyRequest extends FormRequest
             'images.*.max' => 'حجم الصورة يجب ألا يتجاوز 2 ميجابايت.',
             'status.required' => 'حالة العقار مطلوبة.',
             'status.in' => 'حالة العقار يجب أن تكون متاح، مباع، أو مؤجر.',
+            'latitude.required' => 'موقع العقار مطلوب.',
+            'longitude.required' => 'موقع العقار مطلوب.',
             'latitude.numeric' => 'الخط العرضي يجب أن يكون رقمًا.',
             'longitude.numeric' => 'الخط الطولي يجب أن يكون رقمًا.',
-            'feature.boolean' => 'ميزة العقار يجب أن تكون صحيحة أو خاطئة.', // Added
         ];
     }
 }
