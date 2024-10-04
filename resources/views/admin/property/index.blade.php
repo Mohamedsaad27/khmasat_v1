@@ -9,8 +9,15 @@
                 });
             </script>
         @endif
+        @if (Session::has('successUpdate'))
+            <script>
+                iziToast.success({
+                    title: "{{ session('successUpdate') }}",
+                    position: 'topRight',
+                });
+            </script>
+        @endif
     @endpush
-
     <div class="p-5">
 
         {{-- START Breadcrumb --}}
@@ -62,13 +69,10 @@
                     </div>
                 </form>
             </div>
-            <button id="createProductButton"
-                class="bg-blue-700 dark:bg-blue-600 dark:focus:ring-blue-800 dark:hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium hover:bg-blue-800 px-5 py-2.5 rounded-lg text-sm text-white transition duration-200"
-                type="button" data-drawer-target="drawer-create-product-default"
-                data-drawer-show="drawer-create-product-default" aria-controls="drawer-create-product-default"
-                data-drawer-placement="right">
+            <a href="{{ route('properties.create') }}" 
+                class="bg-blue-700 dark:bg-blue-600 dark:focus:ring-blue-800 dark:hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium hover:bg-blue-800 px-5 py-2.5 rounded-lg text-sm text-white transition duration-200">
                 إضافة عقار جديد
-            </button>
+            </a>
         </div>
 
         <div class="flex flex-col">
@@ -105,49 +109,42 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                                @foreach($properties as $property)
                                 <tr class="hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-200">
                                     <td
                                         class="max-w-[250px] p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
                                         <div
                                             class="text-base font-semibold text-gray-900 dark:text-white overflow-hidden text-ellipsis whitespace-nowrap">
-                                            أرض بمنتجع
-                                            عزبة نقيب السياحي
+                                            {{ $property->title }}
                                         </div>
                                     </td>
                                     <td
                                         class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <span class="text-sm font-bold mr-2">1.200.125 ج.م</span>
-                                        <span class="text-gray-500 line-through">1.300.000 ج.م</span>
+                                        <span class="text-sm font-bold mr-2">{{ $property->price }} ج.م</span>
+                                        <span class="text-gray-500 line-through">{{ $property->price_after_discount }} ج.م</span>
                                     </td>
                                     <td
                                         class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis
-                                        deleniti
-                                        numquam ab laborum fuga quasi aliquid voluptas totam officia facilis tempora
-                                        quis, magni asperiores pariatur autem vitae! Suscipit, aspernatur
-                                        blanditiis?
+                                        {{ $property->description }}
                                     </td>
                                     <td
                                         class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        شقة
+                                        {{ $property->propertyType->type }}
                                     </td>
                                     <td
                                         class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        5
+                                        {{ $property->bedroom }}
                                     </td>
                                     <td
                                         class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        2
+                                        {{ $property->bathroom }}
                                     </td>
                                     <td
                                         class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        102.51 م<sup>2</sup>
+                                        {{ $property->area }} م<sup>2</sup>
                                     </td>
                                     <td class="p-4 whitespace-nowrap">
-                                        <button type="button" id="updateProductButton"
-                                            data-drawer-target="drawer-update-product-default"
-                                            data-drawer-show="drawer-update-product-default"
-                                            aria-controls="drawer-update-product-default" data-drawer-placement="right"
+                                        <a href="{{ route('properties.edit', ['property' => $property->slug]) }}"
                                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition duration-200">
                                             <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -159,7 +156,7 @@
                                                     clip-rule="evenodd"></path>
                                             </svg>
                                             تعديل
-                                        </button>
+                                        </a>
                                         <button type="button" id="updateProductButton"
                                             data-drawer-target="drawer-update-product-default"
                                             data-drawer-show="drawer-update-product-default"
@@ -200,11 +197,16 @@
                                         </button>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="pagination">
+            {{ $properties->links() }}
         </div>
 
     </div>
