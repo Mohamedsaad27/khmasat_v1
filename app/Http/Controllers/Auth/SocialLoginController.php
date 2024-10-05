@@ -43,6 +43,7 @@ class SocialLoginController extends Controller
                     'name' => $providerUser->name,
                     'email' => $providerUser->email,
                     'password' => Str::random(8),
+                    'role' => 'user',
                     'provider' => $provider,
                     'provider_id' => $providerUser->id,
                     'provider_token' => $providerUser->token
