@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
             PropertyImageSeeder::class,
             PropertyBenefitSeeder::class,
             AddressSeeder::class,
-            PricingHistorySeeder::class,
             FavoriteSeeder::class,
             ReviewSeeder::class,
             ChatSeeder::class,

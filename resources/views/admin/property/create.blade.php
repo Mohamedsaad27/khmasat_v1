@@ -12,6 +12,22 @@
                 });
             </script>
         @enderror
+        @error('installment_amount')
+            <script>
+                iziToast.error({
+                    title: "{{ $message }}",
+                    position: 'topRight',
+                });
+            </script>
+        @enderror
+        @error('price_after_discount')
+            <script>
+                iziToast.error({
+                    title: "{{ $message }}",
+                    position: 'topRight',
+                });
+            </script>
+        @enderror
     @endpush
 
     <div class="p-5">
