@@ -15,6 +15,6 @@ class ChatSeeder extends Seeder
     public function run()
     {
         // Create 20 chats
-        Chat::factory()->count(20)->create();
+        Chat::factory()->count(10)->create();
     }
 }

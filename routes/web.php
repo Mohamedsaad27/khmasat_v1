@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\SocialLoginController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\PropertyController;
 
 
 require __DIR__ . '/auth.php';
@@ -23,10 +24,8 @@ Route::group([
 ], function () {
 
     //--------------------------------/* HOME ROUTE */--------------------------------
-    Route::get('/', function () {
-        return view('front.index');
-    })->name('front.welcome');
-
+   
+    Route::get('/', [HomeController::class, 'handleHomePage'])->name('front.welcome');
     //--------------------------------/* PROPERTIES ROUTE */--------------------------------
     Route::get('/properties', function () {
         return view('front.properties');
@@ -47,6 +46,7 @@ Route::group([
 Route::group(
     [
         'prefix' => 'admin',
+        'middleware' => 'admin',
     ],
     function () {
 
@@ -60,3 +60,7 @@ Route::group(
 
 Route::get('auth/{provider}/redirect', [SocialLoginController::class, 'redirect'])->name('auth.socialite.redirect');
 Route::get('auth/{provider}/callback', [SocialLoginController::class, 'callback'])->name('auth.socialite.callback');
+
+Route::get('/unauthorized', function () {
+    return view('unauthorizedPage');
+})->name('unauthorizedPage');
