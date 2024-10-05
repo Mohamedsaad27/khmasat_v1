@@ -12,6 +12,6 @@ class UserImageSeeder extends Seeder
      */
     public function run(): void
     {
-        ProfileImage::factory()->count(50)->create();
+        ProfileImage::factory()->count(10)->create();
     }
 }
