@@ -1,5 +1,16 @@
 <x-front-layout class="md:px-6">
 
+    @push('alerts')
+        @error('errorLogin')
+            <script>
+                iziToast.error({
+                    title: "{{ session('errorLogin') }}",
+                    position: 'topRight',
+                });
+            </script>
+        @enderror
+    @endpush
+
     <x-auth.layout title="تسجيل الدخول">
         <div
             class="w-full md:w-[50%] xl:w-[62%] px-6 md:px-0 pt-[54px] pb-[54px] md:pb-0 mt-[-100px] md:mt-0 bg-white rounded-[50px] md:rounded-0 flex flex-col items-center">

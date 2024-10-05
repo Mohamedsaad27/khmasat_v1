@@ -12,22 +12,6 @@
                 });
             </script>
         @enderror
-        @error('installment_amount')
-            <script>
-                iziToast.error({
-                    title: "{{ $message }}",
-                    position: 'topRight',
-                });
-            </script>
-        @enderror
-        @error('price_after_discount')
-            <script>
-                iziToast.error({
-                    title: "{{ $message }}",
-                    position: 'topRight',
-                });
-            </script>
-        @enderror
     @endpush
 
     <div class="p-5">
@@ -88,7 +72,6 @@
                 class="w-full h-fit lg:w-[59%] xl:w-[69%] p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
 
                 <div class="flex flex-wrap items-center justify-between mb-5">
-
                     <div
                         class="flex items-center justify-between w-[49%] sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">خصم</p>
@@ -112,7 +95,6 @@
                             </div>
                         </label>
                     </div>
-
                     <div
                         class="flex items-center justify-between mt-2 sm:mt-0 w-full sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">تقسيط</p>
@@ -281,8 +263,11 @@
 
                 {{-- benefits --}}
                 @php
-                    $benefitIds = old('benefits', []);
-                    $benefitsNames = \App\Models\Benefit::whereIn('id', $benefitIds)->pluck('name')->toArray();
+                    $benefitIds = old('benefits', null);
+                    $benefitsNames = []; // Define varabile benefitsNames
+                    if ($benefitIds) {
+                        $benefitsNames = \App\Models\Benefit::whereIn('id', $benefitIds)->pluck('name')->toArray();
+                    }
                 @endphp
 
                 <div class="mb-3">
