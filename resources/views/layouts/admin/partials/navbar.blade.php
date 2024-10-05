@@ -379,9 +379,12 @@
                                     role="menuitem">Earnings</a>
                             </li>
                             <li>
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    role="menuitem">Sign out</a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="w-full block px-4 py-2 mt-1 text-sm text-gray-700 bg-gray-200 rounded-md transition duration-200 hover:bg-gray-300 hover:text-red-500"
+                                        role="menuitem">Sign out</button>
+                                </form>
                             </li>
                         </ul>
                     </div>

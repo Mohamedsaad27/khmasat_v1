@@ -47,6 +47,7 @@ Route::group([
 Route::group(
     [
         'prefix' => 'admin',
+        'middleware' => 'admin',
     ],
     function () {
 
@@ -60,3 +61,7 @@ Route::group(
 
 Route::get('auth/{provider}/redirect', [SocialLoginController::class, 'redirect'])->name('auth.socialite.redirect');
 Route::get('auth/{provider}/callback', [SocialLoginController::class, 'callback'])->name('auth.socialite.callback');
+
+Route::get('/unauthorized', function () {
+    return view('unauthorizedPage');
+})->name('unauthorizedPage');
