@@ -33,7 +33,7 @@ Route::group([
     })->name('front.properties');
 
     //--------------------------------/* PROPERTY-DETILES ROUTE */--------------------------------
-    Route::get('/property-detiles/{property}',[PropertyController::class,'show'])->name('front.property-detiles');
+    Route::get('/property-detiles/{property}', [PropertyController::class, 'show'])->name('front.property-detiles');
 });
 
 /*
@@ -54,10 +54,9 @@ Route::group(
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
         //--------------------------------/* PROPERTY ROUTES */--------------------------------
-        
+        Route::resource('/properties', PropertyController::class);
     }
 );
 
 Route::get('auth/{provider}/redirect', [SocialLoginController::class, 'redirect'])->name('auth.socialite.redirect');
 Route::get('auth/{provider}/callback', [SocialLoginController::class, 'callback'])->name('auth.socialite.callback');
-Route::resource('/properties', PropertyController::class);

@@ -60,7 +60,7 @@
                 <div class="flex items-center mt-4">
                     <p class="font-[500]">ليس لديك حساب ؟</p>
                     <a class="mr-2 text-sky-500 font-[500] text-[17px] transition-all duration-200 hover:text-sky-600"
-                        href="">سجل من هنا</a>
+                        href="{{ route('register') }}">سجل من هنا</a>
                 </div>
 
             </form>
