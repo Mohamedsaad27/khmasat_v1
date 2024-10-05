@@ -1,4 +1,4 @@
-<x-front-layout class="px-6">
+<x-front-layout class="sm:px-6">
 
     {{-- start search section --}}
     <section class="search md:px-0">
@@ -57,7 +57,7 @@
     {{-- end search section --}}
 
     {{-- start features section --}}
-    <section class="feature py-[60px] md:px-0">
+    <section class="feature py-[60px] px-6">
         <div class="container mx-auto">
 
             <p class="title font-bold text-[30px]">العقارات المميزة</p>
@@ -109,8 +109,8 @@
     {{-- end features section --}}
 
     {{-- start latest properties section --}}
-    <section class="latest pb-[60px]">
-        <div class="container mx-auto px-6 md:px-0">
+    <section class="latest pb-[60px] px-6">
+        <div class="container mx-auto md:px-0">
 
             {{-- All --}}
             <input id="all" class="peer/all hidden" type="radio" name="status" checked />
