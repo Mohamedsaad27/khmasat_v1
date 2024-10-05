@@ -188,7 +188,7 @@
         {{ $slot }}
     </div>
 
-    <footer class="bg-gray-900 py-16">
+    {{-- <footer class="bg-gray-900 py-16">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap">
                 <div class="w-full lg:w-1/4 md:w-1/2 mb-8">
@@ -255,7 +255,7 @@
                 </p>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 
 
     <!-- Include Alpine.js -->
