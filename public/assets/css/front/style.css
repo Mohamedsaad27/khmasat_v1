@@ -56,10 +56,6 @@ header .links a.active {
     color: var(--main-color);
 }
 
-header .login:hover {
-    color: var(--main-color);
-}
-
 /* end header */
 
 /* start sidebar */

@@ -5,7 +5,7 @@
             class="w-full md:w-[50%] xl:w-[62%] px-6 md:px-0 pt-[25px] pb-[54px] md:pb-0 mt-[-100px] md:mt-0 bg-white rounded-[50px] md:rounded-0 flex flex-col items-center">
             <div class="text-[28px] font-bold text-center">سجل الان !</div>
 
-            <form class="sm:w-[385px]" method="POST" action=""> 
+            <form class="sm:w-[385px]" method="POST" action="">
                 @csrf
 
                 {{-- name --}}
@@ -34,7 +34,7 @@
                 <div class="w-full max-w-sm min-w-[200px] mt-3">
                     <label class="font-[500]" for="">كلمة السر</label>
                     <div class="relative">
-                         <input name="password" type="password" 
+                        <input name="password" type="password"
                             class="auth__password w-full mt-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-200 ease focus:outline-none focus:border-slate-600 hover:border-slate-600 shadow-sm focus:shadow @error('password') border-red-500 @enderror"
                             placeholder="ادخل كلمة السر هنا ...">
                         <span class="password__icon">
@@ -75,7 +75,7 @@
                     <span class="flex-1 h-[1px] bg-gray-400"></span>
                 </div>
 
-                <a href=""
+                <a href="{{ route('auth.socialite.redirect', 'google') }}"
                     class="w-full flex items-center justify-center border border-gray-400 rounded-[5px] py-2 transition-all duration-200 hover:bg-gray-200">
                     <img class="w-[30px]" src="{{ asset('assets/imgs/front/google logo.png') }}" alt="">
                     <p class="font-500 mr-2">تسجيل الدخول باستخدام جوجل</p>

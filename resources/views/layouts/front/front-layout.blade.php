@@ -72,11 +72,46 @@
                         <i class="fa-regular fa-heart"></i>
                     </a>
 
-                    {{-- user --}}
-                    <div class="user-icon flex justify-center items-center w-[30px] h-[30px] mr-4">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-                    <a href="" class="login mr-2 font-bold">تسجيل الدخول</a>
+                    @guest
+                        <a href="{{ route('login') }}" class="flex items-center group">
+                            <div class="user-icon flex justify-center items-center w-[30px] h-[30px] mr-4">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <p class="login mr-2 font-bold group-hover:text-sky-500">تسجيل الدخول</p>
+                        </a>
+                    @endguest
+
+                    @auth
+                        @if (Auth::user()->role === 'user')
+                            <button class="flex items-center" id="user-menu-button-2" aria-expanded="false"
+                                data-dropdown-toggle="dropdown-2">
+                                <div class="user-icon flex justify-center items-center w-[30px] h-[30px] mr-4">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <p class="login mr-2 font-bold">{{ Auth::user()->name }}</p>
+                            </button>
+                            <!-- Dropdown menu -->
+                            <div class="z-50 w-[175px] hidden my-4 text-base list-none bg-gray-100 divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                                id="dropdown-2">
+                                <ul class="p-2 pt-3 text-center font-[500]" role="none">
+                                    <li>
+                                        <a href="#"
+                                            class="block px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded-md transition duration-200 hover:bg-gray-300 hover:text-sky-500"
+                                            role="menuitem">الصفحة الشخصية</a>
+                                    </li>
+                                    <li>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit"
+                                                class="w-full block px-4 py-2 mt-1 text-sm text-gray-700 bg-gray-200 rounded-md transition duration-200 hover:bg-gray-300 hover:text-red-500"
+                                                role="menuitem">تسجيل الخروج</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endif
+                    @endauth
+
                 </div>
             </div>
         </header>
