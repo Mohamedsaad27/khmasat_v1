@@ -17,6 +17,8 @@ class Admin
     {
         if (auth()->user()->role != 'admin') {
             return redirect()->route('unauthorizedPage');
+        }else{
+            return redirect()->route('login');
         }
         
         return $next($request);
