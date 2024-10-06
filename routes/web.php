@@ -24,19 +24,24 @@ Route::group([
 ], function () {
 
     //--------------------------------/* HOME ROUTE */--------------------------------
-   
     Route::get('/', [HomeController::class, 'handleHomePage'])->name('front.welcome');
-    //--------------------------------/* PROPERTIES ROUTE */--------------------------------
+
+    //--------------------------------/* PROPERTIES ROUTE */---------------------------
     Route::get('/properties', function () {
         return view('front.properties');
     })->name('front.properties');
 
-    //--------------------------------/* PROPERTY-DETILES ROUTE */--------------------------------
+    //--------------------------------/* PROPERTY-DETILES ROUTE */----------------------
     Route::get('/property-detiles/{property}', [PropertyController::class, 'show'])->name('front.property-detiles');
+
+    //--------------------------------/* FAVORITE ROUTE */------------------------------
+    Route::get('/favorite', function () {
+        return view('front.favorite'); })->name('favorite');
+
 });
 
 /*
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------
 | ADMIN ROUTES
 |--------------------------------------------------------------------------
 | These routes are reserved for the admin panel. Admins have full access
