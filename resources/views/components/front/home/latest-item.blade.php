@@ -1,16 +1,28 @@
-@props(['srcImg', 'name', 'price', 'country', 'governate', 'city', 'type', 'area', 'bedroom', 'bathroom'])
+@props([
+    'srcItem' => null,
+    'srcImg',
+    'name',
+    'price',
+    'country',
+    'governate',
+    'city',
+    'type',
+    'area',
+    'bedroom',
+    'bathroom',
+])
 
-<a href="" class="w-full h-full">
-    <div class="relative w-full h-[70%]">
+<a href="{{ $srcItem }}" class="w-full h-full">
+    <div class="relative w-full h-[60%]">
         <img src="{{ $srcImg }}" alt="" class="absolute w-full h-full object-cover rounded-[8px]">
         <a href=""
             class="group love absolute left-0 flex items-center justify-center bg-white ml-3 mt-3 p-3 w-[30px] h-[30px] rounded-full transform transition-transform duration-200 hover:scale-110">
             <i class="fa-regular fa-heart text-[15px] transition duration-200 group-hover:text-red-500"></i>
         </a>
     </div>
-    <div class="pt-3">
+    <div class="pt-3 h-[40%]">
         {{-- name property --}}
-        <p class="font-bold">{{ $name }}</p>
+        <p class="font-bold whitespace-nowrap overflow-hidden text-ellipsis">{{ $name }}</p>
         {{-- address property --}}
         <div class="flex items-center justify-between mt-1">
             <div class="flex items-center">
@@ -60,7 +72,7 @@
                         fill="currentColor"></path>
                 </svg>
                 <p class="text-[16px] font-[500]">{{ $area }}
-                    <span>m<sup>2</sup></span>
+                    <span>م<sup>2</sup></span>
                 </p>
             </div>
         </div>

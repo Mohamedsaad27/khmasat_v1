@@ -21,22 +21,24 @@ require __DIR__ . '/auth.php';
 */
 Route::group([
     'middleware',
+    'as' => 'front.'
 ], function () {
 
     //--------------------------------/* HOME ROUTE */--------------------------------
-    Route::get('/', [HomeController::class, 'handleHomePage'])->name('front.welcome');
+    Route::get('/', [HomeController::class, 'handleHomePage'])->name('welcome');
 
     //--------------------------------/* PROPERTIES ROUTE */---------------------------
     Route::get('/properties', function () {
         return view('front.properties');
-    })->name('front.properties');
+    })->name('properties');
 
     //--------------------------------/* PROPERTY-DETILES ROUTE */----------------------
-    Route::get('/property-detiles/{property}', [PropertyController::class, 'show'])->name('front.property-detiles');
+    Route::get('/property-detiles/{property}', [PropertyController::class, 'show'])->name('property-detiles');
 
     //--------------------------------/* FAVORITE ROUTE */------------------------------
     Route::get('/favorite', function () {
-        return view('front.favorite'); })->name('favorite');
+        return view('favorite');
+    })->name('favorite');
 
 });
 

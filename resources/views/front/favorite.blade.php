@@ -1,142 +1,188 @@
-<x-front-layout class="px-6">
+<x-front-layout class="p-6">
 
-    <section class="py-20 relative">
+    {{-- Start Breadcrumb --}}
+    <div class="flex text-gray-700 my-4" aria-label="Breadcrumb">
+        <div class="container mx-auto">
+            <ol
+                class="px-5 py-3 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                <li class="inline-flex items-center">
+                    <a href="#"
+                        class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                        <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                        </svg>
+                    </a>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg class="rtl:rotate-180  w-3 h-3 mx-1 text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                        <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">المفضلة</span>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+    {{-- End Breadcrumb --}}
+
+    <section class="py-10 relative">
         <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
 
             <h2 class="title font-manrope font-bold text-4xl leading-10 mb-[50px] text-center text-black">المفضل
             </h2>
-            <div
-                class="rounded-3xl border-2 border-gray-200 p-4 lg:p-8 grid grid-cols-12 mb-8 max-lg:max-w-lg max-lg:mx-auto gap-y-4 ">
-                <div class="col-span-12 lg:col-span-2 img box">
+
+            {{-- items --}}
+
+            <a href=""
+                class="rounded-3xl border-2 border-gray-200 p-4 lg:p-8 grid grid-cols-12 mb-4 max-md:max-w-lg max-lg:mx-auto gap-y-4 transition duration-200 hover:bg-gray-200">
+                <div class="col-span-12 sm:col-span-2 img box">
                     <img src="https://pagedone.io/asset/uploads/1701162826.png" alt="speaker image"
-                        class="max-lg:w-full lg:w-[180px] rounded-lg object-cover">
+                        class="h-[240px] sm:h-[125px] w-full sm:w-[180px] rounded-lg object-cover">
                 </div>
-                <div class="col-span-12 lg:col-span-10 detail w-full lg:pl-3">
-                    <div class="flex items-center justify-between w-full mb-4">
+                <div class="col-span-12 sm:col-span-10 detail w-full sm:pr-3">
+                    <div class="flex items-center justify-between w-full mb-2">
                         <h5 class="font-manrope font-bold text-2xl leading-9 text-gray-900">فيلا بعزبة نقيب تطل علي
                             الترعة</h5>
-                        <button
-                            class="rounded-full group flex items-center justify-center focus-within:outline-red-500">
-                            <svg width="34" height="34" viewBox="0 0 34 34" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <circle class="fill-red-50 transition-all duration-500 group-hover:fill-red-400"
-                                    cx="17" cy="17" r="17" fill="" />
-                                <path class="stroke-red-500 transition-all duration-500 group-hover:stroke-white"
-                                    d="M14.1673 13.5997V12.5923C14.1673 11.8968 14.7311 11.333 15.4266 11.333H18.5747C19.2702 11.333 19.834 11.8968 19.834 12.5923V13.5997M19.834 13.5997C19.834 13.5997 14.6534 13.5997 11.334 13.5997C6.90804 13.5998 27.0933 13.5998 22.6673 13.5997C21.5608 13.5997 19.834 13.5997 19.834 13.5997ZM12.4673 13.5997H21.534V18.8886C21.534 20.6695 21.534 21.5599 20.9807 22.1131C20.4275 22.6664 19.5371 22.6664 17.7562 22.6664H16.2451C14.4642 22.6664 13.5738 22.6664 13.0206 22.1131C12.4673 21.5599 12.4673 20.6695 12.4673 18.8886V13.5997Z"
-                                    stroke="#EF4444" stroke-width="1.6" stroke-linecap="round" />
-                            </svg>
-                        </button>
+                        <form action="kaks" class="mr-3">
+                            <button type="submit"
+                                class="z-[500] rounded-full group flex items-center justify-center focus-within:outline-red-500">
+                                <svg width="34" height="34" viewBox="0 0 34 34" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="fill-red-100 transition-all duration-500 group-hover:fill-red-400"
+                                        cx="17" cy="17" r="17" fill="" />
+                                    <path class="stroke-red-500 transition-all duration-500 group-hover:stroke-white"
+                                        d="M14.1673 13.5997V12.5923C14.1673 11.8968 14.7311 11.333 15.4266 11.333H18.5747C19.2702 11.333 19.834 11.8968 19.834 12.5923V13.5997M19.834 13.5997C19.834 13.5997 14.6534 13.5997 11.334 13.5997C6.90804 13.5998 27.0933 13.5998 22.6673 13.5997C21.5608 13.5997 19.834 13.5997 19.834 13.5997ZM12.4673 13.5997H21.534V18.8886C21.534 20.6695 21.534 21.5599 20.9807 22.1131C20.4275 22.6664 19.5371 22.6664 17.7562 22.6664H16.2451C14.4642 22.6664 13.5738 22.6664 13.0206 22.1131C12.4673 21.5599 12.4673 20.6695 12.4673 18.8886V13.5997Z"
+                                        stroke="#EF4444" stroke-width="1.6" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                        </form>
                     </div>
-                    <p class="font-normal text-base leading-7 text-gray-500 mb-6">
-                        Introducing our sleek round white portable speaker, the epitome of style and sound! Elevate your
-                        auditory experience with this compact yet powerful device that delivers crystal-clear audio
-                        wherever you go. <a href="javascript:;" class="text-indigo-600">More....</a>
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-4">
-                            <button
-                                class="group rounded-[50px] border border-gray-200 shadow-sm shadow-transparent p-2.5 flex items-center justify-center bg-white transition-all duration-500 hover:shadow-gray-200 hover:bg-gray-50 hover:border-gray-300 focus-within:outline-gray-300">
-                                <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
-                                    width="18" height="19" viewBox="0 0 18 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 9.5H13.5" stroke="" stroke-width="1.6" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                            <input type="text" id="number"
-                                class="border border-gray-200 rounded-full w-10 aspect-square outline-none text-gray-900 font-semibold text-sm py-1.5 px-3 bg-gray-100  text-center"
-                                placeholder="2">
-                            <button
-                                class="group rounded-[50px] border border-gray-200 shadow-sm shadow-transparent p-2.5 flex items-center justify-center bg-white transition-all duration-500 hover:shadow-gray-200 hover:bg-gray-50 hover:border-gray-300 focus-within:outline-gray-300">
-                                <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
-                                    width="18" height="19" viewBox="0 0 18 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.5H14.25M9 14.75V4.25" stroke="" stroke-width="1.6"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </button>
+                    <div class="flex items-center mt-2">
+                        <i class="fa-solid fa-location-dot text-[16px]"></i>
+                        <p class="mr-1 text-[16px] font-[500]">
+                            <span>مصر</span>
+                            |
+                            <span>قنا الجديدة</span>
+                            |
+                            <span>الوحدة الاولي</span>
+                        </p>
+                    </div>
+                    <div class="sm:flex justify-between items-center">
+                        <div class="flex items-center mt-2">
+
+                            <p class="pl-2 text-[16px] font-[500] border-l border-gray-300">شالية</p>
+
+
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="mr-1">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M17.2929 18H7.70711L6.85355 18.8536C6.65829 19.0488 6.34171 19.0488 6.14645 18.8536C5.95118 18.6583 5.95118 18.3417 6.14645 18.1464L6.29289 18H6C4.89543 18 4 17.1046 4 16V15C4 13.8954 4.89543 13 6 13H7.26756C7.09739 12.7058 7 12.3643 7 12C7 10.8954 7.89543 10 9 10H11C11.5973 10 12.1335 10.2619 12.5 10.6771C12.8665 10.2619 13.4027 10 14 10H16C17.1046 10 18 10.8954 18 12C18 12.3643 17.9026 12.7058 17.7324 13H19C20.1046 13 21 13.8954 21 15V16C21 17.1046 20.1046 18 19 18H18.7071L18.8536 18.1464C19.0488 18.3417 19.0488 18.6583 18.8536 18.8536C18.6583 19.0488 18.3417 19.0488 18.1464 18.8536L17.2929 18ZM19 14H6C5.44772 14 5 14.4477 5 15V16C5 16.5523 5.44772 17 6 17H19C19.5523 17 20 16.5523 20 16V15C20 14.4477 19.5523 14 19 14ZM16 13C16.5523 13 17 12.5523 17 12C17 11.4477 16.5523 11 16 11H14C13.4477 11 13 11.4477 13 12C13 12.5523 13.4477 13 14 13H16ZM9 13H11C11.5523 13 12 12.5523 12 12C12 11.4477 11.5523 11 11 11H9C8.44772 11 8 11.4477 8 12C8 12.5523 8.44772 13 9 13ZM6 11.5C6 11.7761 5.77614 12 5.5 12C5.22386 12 5 11.7761 5 11.5V8.5C5 7.1384 5.9375 6 7.14706 6H17.8529C19.0625 6 20 7.1384 20 8.5V11.5C20 11.7761 19.7761 12 19.5 12C19.2239 12 19 11.7761 19 11.5V8.5C19 7.65246 18.4627 7 17.8529 7H7.14706C6.53732 7 6 7.65246 6 8.5V11.5Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                            <p class="font-[500] pl-2 text-[16px] border-l border-gray-300">5</p>
+
+
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="mr-1">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M5.5 9.90832V7.4753C5.5 6.66051 6.16057 6 6.99513 6C7.82969 6 8.5 6.66051 8.5 7.4753V8.13266C8.5 8.40139 8.27687 8.61923 8.00162 8.61923C7.72638 8.61923 7.50324 8.40139 7.50324 8.13266V7.4753C7.50324 7.19796 7.2792 6.97314 6.99513 6.97314C6.71106 6.97314 6.49676 7.19796 6.49676 7.4753V9.90832H12.5C12.5 9.36869 12.9477 8.93124 13.5 8.93124H16.5C17.0523 8.93124 17.5 9.36869 17.5 9.90832H19.5C20.0523 9.90832 20.5 10.3458 20.5 10.8854V13.3281C20.5 15.1507 19.0407 16.6403 17.2014 16.7423L17.6351 17.166C17.8303 17.3568 17.8303 17.6661 17.6351 17.8569C17.4398 18.0477 17.1232 18.0477 16.9279 17.8569L15.7929 16.7479H8.48861L7.35355 17.8569C7.15829 18.0477 6.84171 18.0477 6.64645 17.8569C6.45118 17.6661 6.45118 17.3568 6.64645 17.166L7.0744 16.7479H7C5.067 16.7479 3.5 15.2168 3.5 13.3281V10.8854C3.5 10.3458 3.94772 9.90832 4.5 9.90832H5.5ZM13.5 9.90832V10.8854H16.5V9.90832H13.5ZM12.5 10.8854H4.5V13.3281C4.5 14.6772 5.61929 15.7708 7 15.7708H17C18.3807 15.7708 19.5 14.6772 19.5 13.3281V10.8854H17.5V13.8166C17.5 14.3563 17.0523 14.7937 16.5 14.7937H13.5C12.9477 14.7937 12.5 14.3563 12.5 13.8166V10.8854ZM13.5 10.8854V13.8166H16.5V12.8396H14.7092C14.4331 12.8396 14.2092 12.6208 14.2092 12.351C14.2092 12.0812 14.4331 11.8625 14.7092 11.8625H16.5V10.8854H13.5Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                            <p class="font-[500] pl-2 text-[16px] border-l border-gray-300">2</p>
+
+
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="mr-1">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6 19.2563L7.14783 18.1236C7.34385 17.9292 7.66043 17.9304 7.85493 18.1263C8.04943 18.3222 8.04819 18.6386 7.85217 18.833L5.85217 20.8084C5.65723 21.0017 5.34277 21.0017 5.14783 20.8084L3.14783 18.833C2.95181 18.6386 2.95057 18.3222 3.14507 18.1263C3.33957 17.9304 3.65615 17.9292 3.85217 18.1236L5 19.2563V9.6821L3.85217 10.8148C3.65615 11.0092 3.33957 11.008 3.14507 10.8121C2.95057 10.6162 2.95181 10.2998 3.14783 10.1054L5.14783 8.13006C5.34277 7.93677 5.65723 7.93677 5.85217 8.13006L7.85217 10.1054C8.04819 10.2998 8.04943 10.6162 7.85493 10.8121C7.66043 11.008 7.34385 11.0092 7.14783 10.8148L6 9.6821V19.2563ZM9.70978 5.99806L10.8433 7.14514C11.0378 7.34104 11.0365 7.65741 10.8405 7.85179C10.6445 8.04616 10.3279 8.04492 10.1334 7.84902L8.15674 5.85032C7.96332 5.65551 7.96332 5.34125 8.15674 5.14644L10.1334 3.14773C10.3279 2.95184 10.6445 2.9506 10.8405 3.14497C11.0365 3.33935 11.0378 3.65572 10.8433 3.85162L9.70978 4.9987H19.2902L18.1567 3.85162C17.9622 3.65572 17.9635 3.33935 18.1595 3.14497C18.3555 2.9506 18.6721 2.95184 18.8666 3.14773L20.8433 5.14644C21.0367 5.34125 21.0367 5.65551 20.8433 5.85032L18.8666 7.84902C18.6721 8.04492 18.3555 8.04616 18.1595 7.85179C17.9635 7.65741 17.9622 7.34104 18.1567 7.14514L19.2902 5.99806H9.70978ZM21 19.0013C21 20.1052 20.1046 21 19 21H11C9.89543 21 9 20.1052 9 19.0013V11.0065C9 9.90263 9.89543 9.00778 11 9.00778H19C20.1046 9.00778 21 9.90263 21 11.0065V13.0052H20V11.0065C20 10.4546 19.5523 10.0071 19 10.0071H11C10.4477 10.0071 10 10.4546 10 11.0065V19.0013C10 19.5532 10.4477 20.0006 11 20.0006H19C19.5523 20.0006 20 19.5532 20 19.0013H21ZM21 17.0026H20V15.0039H21V17.0026Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                            <p class="font-[500] text-[16px]">2 <span>م<sup>2</sup></span></p>
                         </div>
-                        <h6 class="text-indigo-600 font-manrope font-bold text-2xl leading-9 text-right">EGY 2,200,000
+                        <h6 class="mt-3 sm:mt-0 text-sky-500 font-bold text-2xl leading-9 text-right">EGY 2,200,000
                         </h6>
                     </div>
                 </div>
-            </div>
-            <div
-                class="rounded-3xl border-2 border-gray-200 p-4 lg:p-8 grid grid-cols-12 mb-8 max-lg:max-w-lg max-lg:mx-auto gap-y-4">
-                <div class="col-span-12 lg:col-span-2 img box">
-                    <img src="https://pagedone.io/asset/uploads/1701162839.png" alt="speaker image"
-                        class="max-lg:w-full lg:w-[180px] rounded-lg object-cover">
-                </div>
-                <div class="col-span-12 lg:col-span-10 detail w-full lg:pl-3">
-                    <div class="flex items-center justify-between w-full mb-4">
-                        <h5 class="font-manrope font-bold text-2xl leading-9 text-gray-900">Gray round portable
-                            speaker</h5>
-                        <button
-                            class="rounded-full group flex items-center justify-center focus-within:outline-red-500">
-                            <svg width="34" height="34" viewBox="0 0 34 34" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <circle class="fill-red-50 transition-all duration-500 group-hover:fill-red-400"
-                                    cx="17" cy="17" r="17" fill="" />
-                                <path class="stroke-red-500 transition-all duration-500 group-hover:stroke-white"
-                                    d="M14.1673 13.5997V12.5923C14.1673 11.8968 14.7311 11.333 15.4266 11.333H18.5747C19.2702 11.333 19.834 11.8968 19.834 12.5923V13.5997M19.834 13.5997C19.834 13.5997 14.6534 13.5997 11.334 13.5997C6.90804 13.5998 27.0933 13.5998 22.6673 13.5997C21.5608 13.5997 19.834 13.5997 19.834 13.5997ZM12.4673 13.5997H21.534V18.8886C21.534 20.6695 21.534 21.5599 20.9807 22.1131C20.4275 22.6664 19.5371 22.6664 17.7562 22.6664H16.2451C14.4642 22.6664 13.5738 22.6664 13.0206 22.1131C12.4673 21.5599 12.4673 20.6695 12.4673 18.8886V13.5997Z"
-                                    stroke="#EF4444" stroke-width="1.6" stroke-linecap="round" />
-                            </svg>
-                        </button>
-                    </div>
-                    <p class="font-normal text-base leading-7 text-gray-500 mb-6">
-                        Introducing our sleek round white portable speaker, the epitome of style and sound! Elevate your
-                        auditory experience with this compact yet powerful device that delivers crystal-clear audio
-                        wherever you go. <a href="javascript:;" class="text-indigo-600">More....</a>
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-4">
-                            <button
-                                class="group rounded-[50px] border border-gray-200 shadow-sm shadow-transparent p-2.5 flex items-center justify-center bg-white transition-all duration-500 hover:shadow-gray-200 hover:bg-gray-50 hover:border-gray-300 focus-within:outline-gray-300">
-                                <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
-                                    width="18" height="19" viewBox="0 0 18 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 9.5H13.5" stroke="" stroke-width="1.6" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                            <input type="text" id="number"
-                                class="border border-gray-200 rounded-full w-10 aspect-square outline-none text-gray-900 font-semibold text-sm py-1.5 px-3 bg-gray-100  text-center"
-                                placeholder="2">
-                            <button
-                                class="group rounded-[50px] border border-gray-200 shadow-sm shadow-transparent p-2.5 flex items-center justify-center bg-white transition-all duration-500 hover:shadow-gray-200 hover:bg-gray-50 hover:border-gray-300 focus-within:outline-gray-300">
-                                <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
-                                    width="18" height="19" viewBox="0 0 18 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.5H14.25M9 14.75V4.25" stroke="" stroke-width="1.6"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                        </div>
-                        <h6 class="text-indigo-600 font-manrope font-bold text-2xl leading-9 text-right">$220</h6>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="flex flex-col md:flex-row items-center md:items-center justify-between lg:px-6 pb-6 border-b border-gray-200 max-lg:max-w-lg max-lg:mx-auto">
-                <h5
-                    class="text-gray-900 font-manrope font-semibold text-2xl leading-9 w-full max-md:text-center max-md:mb-4">
-                    Subtotal</h5>
+            </a>
 
-                <div class="flex items-center justify-between gap-5 ">
-                    <button
-                        class="rounded-full py-2.5 px-3 bg-indigo-50 text-indigo-600 font-semibold text-xs text-center whitespace-nowrap transition-all duration-500 hover:bg-indigo-100">Promo
-                        Code?</button>
-                    <h6 class="font-manrope font-bold text-3xl lead-10 text-indigo-600">$440</h6>
+            <a href=""
+                class="rounded-3xl border-2 border-gray-200 p-4 lg:p-8 grid grid-cols-12 mb-8 max-md:max-w-lg max-lg:mx-auto gap-y-4 transition duration-200 hover:bg-gray-200">
+                <div class="col-span-12 sm:col-span-2 img box">
+                    <img src="https://pagedone.io/asset/uploads/1701162826.png" alt="speaker image"
+                        class="h-[240px] sm:h-[125px] w-full sm:w-[180px] rounded-lg object-cover">
                 </div>
-            </div>
-            <div class="max-lg:max-w-lg max-lg:mx-auto">
-                <p class="font-normal text-base leading-7 text-gray-500 text-center mb-5 mt-6">Shipping taxes, and
-                    discounts
-                    calculated
-                    at checkout</p>
-                <button
-                    class="rounded-full py-4 px-6 bg-indigo-600 text-white font-semibold text-lg w-full text-center transition-all duration-500 hover:bg-indigo-700 ">Checkout</button>
-            </div>
+                <div class="col-span-12 sm:col-span-10 detail w-full sm:pr-3">
+                    <div class="flex items-center justify-between w-full mb-2">
+                        <h5 class="font-manrope font-bold text-2xl leading-9 text-gray-900">فيلا بعزبة نقيب تطل علي
+                            الترعة</h5>
+                        <form action="kaks" class="mr-3">
+                            <button type="submit"
+                                class="z-[500] rounded-full group flex items-center justify-center focus-within:outline-red-500">
+                                <svg width="34" height="34" viewBox="0 0 34 34" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="fill-red-100 transition-all duration-500 group-hover:fill-red-400"
+                                        cx="17" cy="17" r="17" fill="" />
+                                    <path class="stroke-red-500 transition-all duration-500 group-hover:stroke-white"
+                                        d="M14.1673 13.5997V12.5923C14.1673 11.8968 14.7311 11.333 15.4266 11.333H18.5747C19.2702 11.333 19.834 11.8968 19.834 12.5923V13.5997M19.834 13.5997C19.834 13.5997 14.6534 13.5997 11.334 13.5997C6.90804 13.5998 27.0933 13.5998 22.6673 13.5997C21.5608 13.5997 19.834 13.5997 19.834 13.5997ZM12.4673 13.5997H21.534V18.8886C21.534 20.6695 21.534 21.5599 20.9807 22.1131C20.4275 22.6664 19.5371 22.6664 17.7562 22.6664H16.2451C14.4642 22.6664 13.5738 22.6664 13.0206 22.1131C12.4673 21.5599 12.4673 20.6695 12.4673 18.8886V13.5997Z"
+                                        stroke="#EF4444" stroke-width="1.6" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="flex items-center mt-2">
+                        <i class="fa-solid fa-location-dot text-[16px]"></i>
+                        <p class="mr-1 text-[16px] font-[500]">
+                            <span>مصر</span>
+                            |
+                            <span>قنا الجديدة</span>
+                            |
+                            <span>الوحدة الاولي</span>
+                        </p>
+                    </div>
+                    <div class="sm:flex justify-between items-center">
+                        <div class="flex items-center mt-2">
+
+                            <p class="pl-2 text-[16px] font-[500] border-l border-gray-300">شالية</p>
+
+
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="mr-1">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M17.2929 18H7.70711L6.85355 18.8536C6.65829 19.0488 6.34171 19.0488 6.14645 18.8536C5.95118 18.6583 5.95118 18.3417 6.14645 18.1464L6.29289 18H6C4.89543 18 4 17.1046 4 16V15C4 13.8954 4.89543 13 6 13H7.26756C7.09739 12.7058 7 12.3643 7 12C7 10.8954 7.89543 10 9 10H11C11.5973 10 12.1335 10.2619 12.5 10.6771C12.8665 10.2619 13.4027 10 14 10H16C17.1046 10 18 10.8954 18 12C18 12.3643 17.9026 12.7058 17.7324 13H19C20.1046 13 21 13.8954 21 15V16C21 17.1046 20.1046 18 19 18H18.7071L18.8536 18.1464C19.0488 18.3417 19.0488 18.6583 18.8536 18.8536C18.6583 19.0488 18.3417 19.0488 18.1464 18.8536L17.2929 18ZM19 14H6C5.44772 14 5 14.4477 5 15V16C5 16.5523 5.44772 17 6 17H19C19.5523 17 20 16.5523 20 16V15C20 14.4477 19.5523 14 19 14ZM16 13C16.5523 13 17 12.5523 17 12C17 11.4477 16.5523 11 16 11H14C13.4477 11 13 11.4477 13 12C13 12.5523 13.4477 13 14 13H16ZM9 13H11C11.5523 13 12 12.5523 12 12C12 11.4477 11.5523 11 11 11H9C8.44772 11 8 11.4477 8 12C8 12.5523 8.44772 13 9 13ZM6 11.5C6 11.7761 5.77614 12 5.5 12C5.22386 12 5 11.7761 5 11.5V8.5C5 7.1384 5.9375 6 7.14706 6H17.8529C19.0625 6 20 7.1384 20 8.5V11.5C20 11.7761 19.7761 12 19.5 12C19.2239 12 19 11.7761 19 11.5V8.5C19 7.65246 18.4627 7 17.8529 7H7.14706C6.53732 7 6 7.65246 6 8.5V11.5Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                            <p class="font-[500] pl-2 text-[16px] border-l border-gray-300">5</p>
+
+
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="mr-1">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M5.5 9.90832V7.4753C5.5 6.66051 6.16057 6 6.99513 6C7.82969 6 8.5 6.66051 8.5 7.4753V8.13266C8.5 8.40139 8.27687 8.61923 8.00162 8.61923C7.72638 8.61923 7.50324 8.40139 7.50324 8.13266V7.4753C7.50324 7.19796 7.2792 6.97314 6.99513 6.97314C6.71106 6.97314 6.49676 7.19796 6.49676 7.4753V9.90832H12.5C12.5 9.36869 12.9477 8.93124 13.5 8.93124H16.5C17.0523 8.93124 17.5 9.36869 17.5 9.90832H19.5C20.0523 9.90832 20.5 10.3458 20.5 10.8854V13.3281C20.5 15.1507 19.0407 16.6403 17.2014 16.7423L17.6351 17.166C17.8303 17.3568 17.8303 17.6661 17.6351 17.8569C17.4398 18.0477 17.1232 18.0477 16.9279 17.8569L15.7929 16.7479H8.48861L7.35355 17.8569C7.15829 18.0477 6.84171 18.0477 6.64645 17.8569C6.45118 17.6661 6.45118 17.3568 6.64645 17.166L7.0744 16.7479H7C5.067 16.7479 3.5 15.2168 3.5 13.3281V10.8854C3.5 10.3458 3.94772 9.90832 4.5 9.90832H5.5ZM13.5 9.90832V10.8854H16.5V9.90832H13.5ZM12.5 10.8854H4.5V13.3281C4.5 14.6772 5.61929 15.7708 7 15.7708H17C18.3807 15.7708 19.5 14.6772 19.5 13.3281V10.8854H17.5V13.8166C17.5 14.3563 17.0523 14.7937 16.5 14.7937H13.5C12.9477 14.7937 12.5 14.3563 12.5 13.8166V10.8854ZM13.5 10.8854V13.8166H16.5V12.8396H14.7092C14.4331 12.8396 14.2092 12.6208 14.2092 12.351C14.2092 12.0812 14.4331 11.8625 14.7092 11.8625H16.5V10.8854H13.5Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                            <p class="font-[500] pl-2 text-[16px] border-l border-gray-300">2</p>
+
+
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="mr-1">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6 19.2563L7.14783 18.1236C7.34385 17.9292 7.66043 17.9304 7.85493 18.1263C8.04943 18.3222 8.04819 18.6386 7.85217 18.833L5.85217 20.8084C5.65723 21.0017 5.34277 21.0017 5.14783 20.8084L3.14783 18.833C2.95181 18.6386 2.95057 18.3222 3.14507 18.1263C3.33957 17.9304 3.65615 17.9292 3.85217 18.1236L5 19.2563V9.6821L3.85217 10.8148C3.65615 11.0092 3.33957 11.008 3.14507 10.8121C2.95057 10.6162 2.95181 10.2998 3.14783 10.1054L5.14783 8.13006C5.34277 7.93677 5.65723 7.93677 5.85217 8.13006L7.85217 10.1054C8.04819 10.2998 8.04943 10.6162 7.85493 10.8121C7.66043 11.008 7.34385 11.0092 7.14783 10.8148L6 9.6821V19.2563ZM9.70978 5.99806L10.8433 7.14514C11.0378 7.34104 11.0365 7.65741 10.8405 7.85179C10.6445 8.04616 10.3279 8.04492 10.1334 7.84902L8.15674 5.85032C7.96332 5.65551 7.96332 5.34125 8.15674 5.14644L10.1334 3.14773C10.3279 2.95184 10.6445 2.9506 10.8405 3.14497C11.0365 3.33935 11.0378 3.65572 10.8433 3.85162L9.70978 4.9987H19.2902L18.1567 3.85162C17.9622 3.65572 17.9635 3.33935 18.1595 3.14497C18.3555 2.9506 18.6721 2.95184 18.8666 3.14773L20.8433 5.14644C21.0367 5.34125 21.0367 5.65551 20.8433 5.85032L18.8666 7.84902C18.6721 8.04492 18.3555 8.04616 18.1595 7.85179C17.9635 7.65741 17.9622 7.34104 18.1567 7.14514L19.2902 5.99806H9.70978ZM21 19.0013C21 20.1052 20.1046 21 19 21H11C9.89543 21 9 20.1052 9 19.0013V11.0065C9 9.90263 9.89543 9.00778 11 9.00778H19C20.1046 9.00778 21 9.90263 21 11.0065V13.0052H20V11.0065C20 10.4546 19.5523 10.0071 19 10.0071H11C10.4477 10.0071 10 10.4546 10 11.0065V19.0013C10 19.5532 10.4477 20.0006 11 20.0006H19C19.5523 20.0006 20 19.5532 20 19.0013H21ZM21 17.0026H20V15.0039H21V17.0026Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                            <p class="font-[500] text-[16px]">2 <span>م<sup>2</sup></span></p>
+                        </div>
+                        <h6 class="mt-3 sm:mt-0 text-sky-500 font-bold text-2xl leading-9 text-right">EGY 2,200,000
+                        </h6>
+                    </div>
+                </div>
+            </a>
+
+        </div>
 
         </div>
     </section>

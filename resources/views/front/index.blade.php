@@ -66,9 +66,9 @@
 
                 <!-- First item -->
                 <div class="w-full lg:w-1/3 md:w-1/2 h-[412px] pb-[10px] lg:pb-0 md:pl-[10px]">
-                    <x-front.home.feature-item :srcImg="asset('assets/imgs/feature-1.jpg')" :detiles="true" price="1,500,000 EGP" country="مصر"
-                        governate="قنا" city="نجع حمادي" street="21 نجيب" zipCode="2021" area="2,120" bedroom="4"
-                        bathroom="2" />
+                    <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[0]->slug)" :srcImg="$featuredProperties[0]->propertyImages->first()->image_path ?? null" :detiles="true" :price="$featuredProperties[0]->price ?? null"
+                        :country="$featuredProperties[0]->address->country ?? null" :governate="$featuredProperties[0]->address->governate ?? null" :city="$featuredProperties[0]->address->city ?? null" :street="$featuredProperties[0]->address->street ?? null" :zipCode="$featuredProperties[0]->address->zip_code ?? null"
+                        :area="$featuredProperties[0]->area ?? null" :bedroom="$featuredProperties[0]->bedroom ?? null" :bathroom="$featuredProperties[0]->bathroom ?? null" />
                 </div>
 
                 <!-- Second item -->
@@ -77,19 +77,19 @@
 
                     {{-- item --}}
                     <div class="w-full h-1/2 pb-[10px]">
-                        <x-front.home.feature-item :srcImg="asset('assets/imgs/feature-1.jpg')" />
+                        <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[1]->slug)" :srcImg="$featuredProperties[1]->propertyImages->first()->image_path ?? null" />
                     </div>
 
                     <div class="flex items-center h-1/2 pt-[10px]">
 
                         {{-- item --}}
                         <div class="w-1/2 h-full ml-[10px]">
-                            <x-front.home.feature-item :srcImg="asset('assets/imgs/feature-1.jpg')" />
+                            <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[2]->slug)" :srcImg="$featuredProperties[2]->propertyImages->first()->image_path ?? null" />
                         </div>
 
                         {{-- item --}}
                         <div class="w-1/2 h-full mr-[10px]">
-                            <x-front.home.feature-item :srcImg="asset('assets/imgs/feature-1.jpg')" />
+                            <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[3]->slug)" :srcImg="$featuredProperties[3]->propertyImages->first()->image_path ?? null" />
                         </div>
 
                     </div>
@@ -97,10 +97,10 @@
                 </div>
 
                 <!-- Thrid item -->
-                <div class="w-full lg:w-1/3 md:w-1/2 h-[412px] pt-[10px] lg:pt-0 lg:pr-[10px]">
-                    <x-front.home.feature-item :srcImg="asset('assets/imgs/feature-1.jpg')" :detiles="true" price="1,500,000 EGP" country="مصر"
-                        governate="قنا" city="نجع حمادي" street="21 نجيب" zipCode="2021" area="2,120" bedroom="4"
-                        bathroom="2" />
+                <div class="w-full lg:w-1/3 md:w-1/2 h-[412px] pb-[10px] lg:pb-0 md:pl-[10px]">
+                    <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[4]->slug)" :srcImg="$featuredProperties[4]->propertyImages->first()->image_path ?? null" :detiles="true"
+                        :price="$featuredProperties[4]->price ?? null" :country="$featuredProperties[4]->address->country ?? null" :governate="$featuredProperties[4]->address->governate ?? null" :city="$featuredProperties[4]->address->city ?? null" :street="$featuredProperties[4]->address->street ?? null"
+                        :zipCode="$featuredProperties[4]->address->zip_code ?? null" :area="$featuredProperties[4]->area ?? null" :bedroom="$featuredProperties[4]->bedroom ?? null" :bathroom="$featuredProperties[4]->bathroom ?? null" />
                 </div>
             </div>
 
@@ -139,103 +139,39 @@
 
                         <div class="overflow-hidden relative h-[978px] md:h-[652px] lg:h-[326px] rounded-lg 2xl:h-96">
 
-                            <div class="h-[96%] md:h-[95%] lg:h-[90%] hidden duration-700 ease-in-out"
-                                data-carousel-item>
-                                <div class="flex flex-wrap w-full h-full">
-                                    {{-- item --}}
-                                    <div
-                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
-                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
-                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
-                                    </div>
+                            @foreach ($latestProperties->chunk(3) as $chunk)
+                                <div class="h-[96%] md:h-[95%] lg:h-[90%] hidden duration-700 ease-in-out"
+                                    data-carousel-item>
+                                    <div class="flex flex-wrap w-full h-full">
+                                        @foreach ($chunk as $latestProperty)
+                                            {{-- items --}}
+                                            <div
+                                                class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[20px]">
+                                                <x-front.home.latest-item :srcItem="route('front.property-detiles', $latestProperty->slug)" :srcImg="$latestProperty->propertyImages->first()->image_path ?? null"
+                                                    :name="$latestProperty->title" :country="optional($latestProperty->address)->country ??
+                                                        'Country N/A'" :governate="optional($latestProperty->address)->governate ??
+                                                        'Governate N/A'"
+                                                    :city="optional($latestProperty->address)->city ?? 'City N/A'" :price="$latestProperty->price" :type="$latestProperty->type"
+                                                    :area="$latestProperty->area" :bedroom="$latestProperty->bedroom" :bathroom="$latestProperty->bathroom" />
+                                            </div>
+                                        @endforeach
 
-                                    {{-- item --}}
-                                    <div
-                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] md:pt-0 pt pb-[10px] lg:pb-0 md:pr-[10px] md:pr-0 lg:px-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
-                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
-                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
-
-                                    </div>
-                                    {{-- item --}}
-                                    <div
-                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] lg:pt-0 lg:pr-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
-                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
-                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
 
-                            <div class="h-[96%] md:h-[95%] lg:h-[90%] hidden duration-700 ease-in-out"
-                                data-carousel-item>
-                                <div class="flex flex-wrap w-full h-full">
-                                    {{-- item --}}
-                                    <div
-                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
-                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
-                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
-                                    </div>
-
-                                    {{-- item --}}
-                                    <div
-                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] md:pt-0 pt pb-[10px] lg:pb-0 md:pr-[10px] md:pr-0 lg:px-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
-                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
-                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
-
-                                    </div>
-                                    {{-- item --}}
-                                    <div
-                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] lg:pt-0 lg:pr-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
-                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
-                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="h-[96%] md:h-[95%] lg:h-[90%] hidden duration-700 ease-in-out"
-                                data-carousel-item>
-                                <div class="flex flex-wrap w-full h-full">
-                                    {{-- item --}}
-                                    <div
-                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pb-[10px] lg:pb-0 md:pl-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
-                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
-                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
-                                    </div>
-
-                                    {{-- item --}}
-                                    <div
-                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] md:pt-0 pt pb-[10px] lg:pb-0 md:pr-[10px] md:pr-0 lg:px-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
-                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
-                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
-
-                                    </div>
-                                    {{-- item --}}
-                                    <div
-                                        class="w-full lg:w-1/3 md:w-1/2 lg:h-full md:h-1/2 h-1/3 pt-[10px] lg:pt-0 lg:pr-[10px]">
-                                        <x-front.home.latest-item :srcImg="asset('assets/imgs/latest-1.jpg')" name="فيلا المهندس محمد"
-                                            country="مصر" governate="قنا" city="نجع حمادي" price="EGY 2,200,000"
-                                            type="فيلا" area="2.120" bedroom="5" bathroom="2" />
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="flex absolute bottom-0 left-1/2 z-30 -translate-x-1/2">
-                            <button type="button"
-                                class="btn-slider w-20 h-1 rounded-full ml-3 transition duration-200"
-                                aria-current="false" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-                            <button type="button"
-                                class="btn-slider w-20 h-1 rounded-full ml-3 transition duration-200"
-                                aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                            <button type="button" class="btn-slider w-20 h-1 rounded-full transition duration-200"
-                                aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                            @foreach ($latestProperties->chunk(3) as $index => $chunk)
+                                <button type="button"
+                                    class="btn-slider w-20 h-1 rounded-full ml-3 transition duration-200 
+                                            bg-gray-300 hover:bg-gray-400 active:bg-gray-500 
+                                            {{ $index === 0 ? 'bg-blue-500' : 'bg-gray-300' }}"
+                                    aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                    aria-label="Slide {{ $index + 1 }}" data-carousel-slide-to="{{ $index }}">
+                                </button>
+                            @endforeach
                         </div>
 
                     </div>
