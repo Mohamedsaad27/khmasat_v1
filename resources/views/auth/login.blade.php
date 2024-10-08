@@ -34,7 +34,7 @@
                 <div class="w-full max-w-sm min-w-[200px] mt-3">
                     <label class="font-[500]" for="">كلمة السر</label>
                     <div class="relative">
-                        <input name="password"
+                        <input name="password" type="password"
                             class="auth__password w-full mt-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-200 ease focus:outline-none focus:border-slate-600 hover:border-slate-600 shadow-sm focus:shadow"
                             placeholder="ادخل كلمة السر هنا ...">
                         <span class="password__icon">
