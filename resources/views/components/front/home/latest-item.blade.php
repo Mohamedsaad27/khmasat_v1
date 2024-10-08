@@ -4,7 +4,7 @@
     'name',
     'price',
     'country',
-    'governate',
+    'governorate',
     'city',
     'type',
     'area',
@@ -35,7 +35,7 @@
                 <p class="text-[15px] mr-1">
                     <span>{{ $country }}</span>
                     |
-                    <span>{{ $governate }}</span>
+                    <span>{{ $governorate }}</span>
                     |
                     <span>{{ $city }}</span>
                 </p>

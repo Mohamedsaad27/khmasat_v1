@@ -8,7 +8,7 @@
     <title>{{ $title }}</title>
 
     {{-- include style front side --}}
-    <link rel="stylesheet" href="{{ asset('assets/css/front/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/front/style.css?v=1.1') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
 
     {{-- include cdn tailwind --}}
@@ -88,6 +88,15 @@
                             <p class="login mr-2 font-bold group-hover:text-sky-500">تسجيل الدخول</p>
                         </a>
                     @endguest
+
+                    @if (Auth::check() && Auth::user()->role != 'user')
+                        <a href="{{ route('admin.dashboard') }}" class="flex items-center group">
+                            <div class="user-icon flex justify-center items-center w-[30px] h-[30px] mr-4">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <p class="login mr-2 font-bold group-hover:text-sky-500">Hi, Admin</p>
+                        </a>
+                    @endif
 
                     @auth
                         @if (Auth::user()->role === 'user')

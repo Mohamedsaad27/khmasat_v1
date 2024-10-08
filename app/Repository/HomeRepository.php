@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Models\Address;
 use App\Models\Category;
 use App\Models\Property;
+use App\Models\PropertyType;
 use Illuminate\Http\Request;
 use App\Interfaces\HomeInterface;
 
@@ -25,25 +27,37 @@ class HomeRepository implements HomeInterface
 
         $categories = Category::all();
 
-        return view('front.index', compact('latestProperties', 'featuredProperties', 'categories'));
+        $propertyTypes = PropertyType::all();
+
+        $addresses = Address::all();
+
+        return view('front.index', compact('latestProperties', 'featuredProperties', 'categories', 'propertyTypes', 'addresses'));
 
     }
 
     public function search(Request $request)
     {
-        $properties = Property::query()->with('propertyType', 'address')
-            ->where('title', 'like', '%' . $request->search . '%')
-            ->whereHas('address', function ($query) use ($request) {
-                $query->where('city', 'like', '%' . $request->search . '%')
-                    ->orWhere('governate', 'like', '%' . $request->search . '%')
-                    ->orWhere('country', 'like', '%' . $request->search . '%');
+        $properties = Property::query()->with(['propertyType', 'address', 'propertyImages'])
+            ->when($request->searchText, function ($query) use ($request) {
+                $query->whereHas('address', function ($q) use ($request) {
+                    $q->where('city', 'like', '%' . $request->searchText . '%')
+                        ->orWhere('governorate', 'like', '%' . $request->searchText . '%')
+                        ->orWhere('country', 'like', '%' . $request->searchText . '%');
+                });
             })
-            ->whereHas('propertyType', function ($query) use ($request) {
-                $query->where('type', 'like', '%' . $request->search . '%');
+            ->when($request->get('property-type'), function ($query) use ($request) {
+                $query->whereHas('propertyType', function ($q) use ($request) {
+                    $q->where('id', $request->get('property-type'));  // Filter by property type
+                });
             })
-            ->orWhere('bathroom', 'like', '%' . $request->search . '%')
+            ->when($request->bedroom, function ($query) use ($request) {
+                $query->where('bedroom', $request->bedroom);  // Filter by number of bedrooms
+            })
             ->get();
-        return response()->json($properties);
+
+        dd($properties, $request);
+        return view('front.properties', compact('properties'));
     }
+
 
 }

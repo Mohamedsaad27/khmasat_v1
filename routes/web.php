@@ -26,6 +26,7 @@ Route::group([
 
     //--------------------------------/* HOME ROUTE */--------------------------------
     Route::get('/', [HomeController::class, 'handleHomePage'])->name('welcome');
+    Route::get('/home-search', [HomeController::class, 'search'])->name('homeSearch');
 
     //--------------------------------/* PROPERTIES ROUTE */---------------------------
     Route::get('/properties', function () {

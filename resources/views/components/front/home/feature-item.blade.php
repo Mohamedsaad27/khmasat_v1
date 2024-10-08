@@ -4,7 +4,7 @@
     'detiles' => false,
     'price' => null,
     'country' => null,
-    'governate' => null,
+    'governorate' => null,
     'city' => null,
     'street' => null,
     'zipCode' => null,
@@ -39,12 +39,14 @@
                     </div>
                 </div>
 
-                <p>{{ $country }} | {{ $governate }} | {{ $city }} </p>
+                <p> {{ $country }}
+                    {{ $governorate == null ? '' : "| $governorate" }}
+                    {{ $city == null ? '' : "| $city" }} </p>
 
                 <div class="flex items-center justify-between mt-2">
                     {{-- location --}}
                     <div class="text-[15px] ml-3">
-                        <p>شارع {{ $street }}, <span>{{ $zipCode }}</span> <span>zip</span></p>
+                        <p>{{ $street }}, <span>{{ $zipCode }}</span> <span>zip</span></p>
                     </div>
                     {{-- bedroom , m^2 ,bathroom --}}
                     <div class="flex items-center text-[10px]">

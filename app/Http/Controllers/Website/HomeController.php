@@ -14,9 +14,15 @@ class HomeController extends Controller
     {
         $this->homeRepository = $homeRepository;
     }
-    public function handleHomePage(){
-       return $this->homeRepository->handleHomePage();
+    public function handleHomePage()
+    {
+        return $this->homeRepository->handleHomePage();
     }
-    
-    
+
+    public function search(Request $request)
+    {
+        return $this->homeRepository->search($request);
+    }
+
+
 }
