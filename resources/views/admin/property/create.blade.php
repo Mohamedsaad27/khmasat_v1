@@ -4,6 +4,15 @@
     @endpush
 
     @push('alerts')
+        @if (Session::has('errorCreate'))
+            <script>
+                iziToast.error({
+                    title: "{{ session('errorCreate') }}",
+                    position: 'topRight',
+                });
+            </script>
+        @endif
+
         @error('feature')
             <script>
                 iziToast.error({
@@ -76,7 +85,7 @@
                         class="flex items-center justify-between w-[49%] sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">خصم</p>
                         <label class="relative inline-flex cursor-pointer items-center">
-                            <input id="discount-checkbox" type="checkbox" class="peer sr-only"
+                            <input id="discount-checkbox" type="checkbox" class="peer sr-only" tabindex="1"
                                 @checked(old('price_after_discount')) />
                             <label for="discount-checkbox" class="hidden"></label>
                             <div
@@ -263,9 +272,9 @@
 
                 {{-- benefits --}}
                 @php
-                    $benefitIds = old('benefits', null);
-                    $benefitsNames = []; // Define varabile benefitsNames
-                    if ($benefitIds) {
+                    $benefitIds = (array) old('benefits', []);
+                    $benefitsNames = [];
+                    if (!empty($benefitIds)) {
                         $benefitsNames = \App\Models\Benefit::whereIn('id', $benefitIds)->pluck('name')->toArray();
                     }
                 @endphp

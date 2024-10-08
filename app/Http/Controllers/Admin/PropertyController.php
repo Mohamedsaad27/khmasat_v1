@@ -38,8 +38,6 @@ class PropertyController extends Controller
      */
     public function store(StorePropertyRequest $request)
     {
-      
-
         return $this->propertyRepository->store($request);
     }
 
