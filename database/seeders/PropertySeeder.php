@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Address;
 use App\Models\Property;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +15,9 @@ class PropertySeeder extends Seeder
      */
     public function run()
     {
-        // Create 20 properties
-        Property::factory()->count(10)->create();
+        Property::factory()
+            ->has(Address::factory())
+            ->count(10)
+            ->create();
     }
 }

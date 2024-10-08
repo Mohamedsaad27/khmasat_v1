@@ -14,7 +14,18 @@ class PropertyTypeSeeder extends Seeder
      */
     public function run()
     {
-        // Create 10 property types
-        PropertyType::factory()->count(10)->create();
+        $propertyTypes = [
+            ['name' => 'شقة', 'slug' => 'apartment'],
+            ['name' => 'فيلا', 'slug' => 'villa'],
+            ['name' => 'شاليه', 'slug' => 'chalet'],
+            ['name' => 'مكتب', 'slug' => 'office'],
+            ['name' => 'محل', 'slug' => 'shop'],
+            // Add more property types as needed
+        ];
+
+        foreach ($propertyTypes as $type) {
+            PropertyType::create($type);
+        }
     }
 }
+

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Models\Category;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Interfaces\HomeInterface;
@@ -22,7 +23,9 @@ class HomeRepository implements HomeInterface
             ->take(9)
             ->get();
 
-        return view('front.index', compact('latestProperties', 'featuredProperties'));
+        $categories = Category::all();
+
+        return view('front.index', compact('latestProperties', 'featuredProperties', 'categories'));
 
     }
 

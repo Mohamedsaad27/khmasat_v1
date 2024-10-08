@@ -16,17 +16,14 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            'أراضي',
-            'شقق',
-            'فلل',
-            'استراحات',
-            'منازل'
+            ['name' => 'للبيع', 'slug' => 'for-sale'],
+            ['name' => 'للإيجار', 'slug' => 'for-rent'],
         ];
 
-        foreach ($categories as $categoryName) {
+        foreach ($categories as $category) {
             Category::create([
-                'name' => $categoryName,
-                'slug' => Str::slug($categoryName, '-') // Ensure slug is generated correctly
+                'name' => $category['name'],
+                'slug' => $category['slug']
             ]);
         }
     }
