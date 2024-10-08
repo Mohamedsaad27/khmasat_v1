@@ -56,56 +56,68 @@
     </section>
     {{-- end search section --}}
 
-    {{-- start features section --}}
-    <section class="feature py-[60px] px-6">
-        <div class="container mx-auto">
+    @if ($featuredProperties)
+        {{-- start features section --}}
+        <section class="feature py-[60px] px-6">
+            <div class="container mx-auto">
 
-            <p class="title font-bold text-[30px]">العقارات المميزة</p>
+                <p class="title font-bold text-[30px]">العقارات المميزة</p>
 
-            <div class="flex w-full flex-wrap items-center mt-[40px]">
+                <div class="flex w-full flex-wrap items-center mt-[40px]">
 
-                <!-- First item -->
-                <div class="w-full lg:w-1/3 md:w-1/2 h-[412px] pb-[10px] lg:pb-0 md:pl-[10px]">
-                    <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[0]->slug)" :srcImg="$featuredProperties[0]->propertyImages->first()->image_path ?? null" :detiles="true" :price="$featuredProperties[0]->price ?? null"
-                        :country="$featuredProperties[0]->address->country ?? null" :governate="$featuredProperties[0]->address->governate ?? null" :city="$featuredProperties[0]->address->city ?? null" :street="$featuredProperties[0]->address->street ?? null" :zipCode="$featuredProperties[0]->address->zip_code ?? null"
-                        :area="$featuredProperties[0]->area ?? null" :bedroom="$featuredProperties[0]->bedroom ?? null" :bathroom="$featuredProperties[0]->bathroom ?? null" />
-                </div>
+                    <!-- First item -->
+                    @if ($featuredProperties[0])
+                        <div class="w-full lg:w-1/3 md:w-1/2 h-[412px] pb-[10px] lg:pb-0 md:pl-[10px]">
+                            <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[0]->slug)" :srcImg="$featuredProperties[0]->propertyImages->first()->image_path ?? null" :detiles="true"
+                                :price="$featuredProperties[0]->price ?? null" :country="$featuredProperties[0]->address->country ?? null" :governate="$featuredProperties[0]->address->governate ?? null" :city="$featuredProperties[0]->address->city ?? null"
+                                :street="$featuredProperties[0]->address->street ?? null" :zipCode="$featuredProperties[0]->address->zip_code ?? null" :area="$featuredProperties[0]->area ?? null" :bedroom="$featuredProperties[0]->bedroom ?? null"
+                                :bathroom="$featuredProperties[0]->bathroom ?? null" />
+                        </div>
+                    @endif
 
-                <!-- Second item -->
-                <div
-                    class="w-full h-[412px] lg:w-1/3 md:w-1/2 pt-[10px] md:pt-0 pt pb-[10px] lg:pb-0 md:pr-[10px] md:pr-0 lg:px-[10px]">
-
-                    {{-- item --}}
-                    <div class="w-full h-1/2 pb-[10px]">
-                        <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[1]->slug)" :srcImg="$featuredProperties[1]->propertyImages->first()->image_path ?? null" />
-                    </div>
-
-                    <div class="flex items-center h-1/2 pt-[10px]">
+                    <!-- Second item -->
+                    <div
+                        class="w-full h-[412px] lg:w-1/3 md:w-1/2 pt-[10px] md:pt-0 pt pb-[10px] lg:pb-0 md:pr-[10px] md:pr-0 lg:px-[10px]">
 
                         {{-- item --}}
-                        <div class="w-1/2 h-full ml-[10px]">
-                            <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[2]->slug)" :srcImg="$featuredProperties[2]->propertyImages->first()->image_path ?? null" />
-                        </div>
+                        @if ($featuredProperties[1])
+                            <div class="w-full h-1/2 pb-[10px]">
+                                <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[1]->slug)" :srcImg="$featuredProperties[1]->propertyImages->first()->image_path ?? null" />
+                            </div>
+                        @endif
 
                         {{-- item --}}
-                        <div class="w-1/2 h-full mr-[10px]">
-                            <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[3]->slug)" :srcImg="$featuredProperties[3]->propertyImages->first()->image_path ?? null" />
-                        </div>
+                        @if ($featuredProperties[2])
+                            <div class="flex items-center h-1/2 pt-[10px]">
+                                <div class="flex-grow w-1/2 h-full ml-[10px]">
+                                    <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[2]->slug)" :srcImg="$featuredProperties[2]->propertyImages->first()->image_path ?? null" />
+                                </div>
+
+                                @if ($featuredProperties[3])
+                                    {{-- item --}}
+                                    <div class="w-1/2 h-full mr-[10px]">
+                                        <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[3]->slug)" :srcImg="$featuredProperties[3]->propertyImages->first()->image_path ?? null" />
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
 
                     </div>
 
+                    <!-- Thrid item -->
+                    @if ($featuredProperties[4])
+                        <div class="w-full lg:w-1/3 md:w-1/2 h-[412px] pb-[10px] lg:pb-0 md:pl-[10px]">
+                            <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[4]->slug)" :srcImg="$featuredProperties[4]->propertyImages->first()->image_path ?? null" :detiles="true"
+                                :price="$featuredProperties[4]->price ?? null" :country="$featuredProperties[4]->address->country ?? null" :governate="$featuredProperties[4]->address->governate ?? null" :city="$featuredProperties[4]->address->city ?? null"
+                                :street="$featuredProperties[4]->address->street ?? null" :zipCode="$featuredProperties[4]->address->zip_code ?? null" :area="$featuredProperties[4]->area ?? null" :bedroom="$featuredProperties[4]->bedroom ?? null"
+                                :bathroom="$featuredProperties[4]->bathroom ?? null" />
+                        </div>
+                    @endif
                 </div>
 
-                <!-- Thrid item -->
-                <div class="w-full lg:w-1/3 md:w-1/2 h-[412px] pb-[10px] lg:pb-0 md:pl-[10px]">
-                    <x-front.home.feature-item :srcItem="route('front.property-detiles', $featuredProperties[4]->slug)" :srcImg="$featuredProperties[4]->propertyImages->first()->image_path ?? null" :detiles="true"
-                        :price="$featuredProperties[4]->price ?? null" :country="$featuredProperties[4]->address->country ?? null" :governate="$featuredProperties[4]->address->governate ?? null" :city="$featuredProperties[4]->address->city ?? null" :street="$featuredProperties[4]->address->street ?? null"
-                        :zipCode="$featuredProperties[4]->address->zip_code ?? null" :area="$featuredProperties[4]->area ?? null" :bedroom="$featuredProperties[4]->bedroom ?? null" :bathroom="$featuredProperties[4]->bathroom ?? null" />
-                </div>
             </div>
-
-        </div>
-    </section>
+        </section>
+    @endif
     {{-- end features section --}}
 
     {{-- start latest properties section --}}
@@ -139,7 +151,7 @@
 
                         <div class="overflow-hidden relative h-[978px] md:h-[652px] lg:h-[326px] rounded-lg 2xl:h-96">
 
-                            @foreach ($latestProperties->chunk(3) as $chunk)
+                            @forelse ($latestProperties->chunk(3) as $chunk)
                                 <div class="h-[96%] md:h-[95%] lg:h-[90%] hidden duration-700 ease-in-out"
                                     data-carousel-item>
                                     <div class="flex flex-wrap w-full h-full">
@@ -158,12 +170,13 @@
 
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                            @endforelse
 
                         </div>
 
                         <div class="flex absolute bottom-0 left-1/2 z-30 -translate-x-1/2">
-                            @foreach ($latestProperties->chunk(3) as $index => $chunk)
+                            @forelse ($latestProperties->chunk(3) as $index => $chunk)
                                 <button type="button"
                                     class="btn-slider w-20 h-1 rounded-full ml-3 transition duration-200 
                                             bg-gray-300 hover:bg-gray-400 active:bg-gray-500 
@@ -171,7 +184,8 @@
                                     aria-current="{{ $index === 0 ? 'true' : 'false' }}"
                                     aria-label="Slide {{ $index + 1 }}" data-carousel-slide-to="{{ $index }}">
                                 </button>
-                            @endforeach
+                            @empty
+                            @endforelse
                         </div>
 
                     </div>
