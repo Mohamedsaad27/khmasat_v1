@@ -73,9 +73,10 @@ class PropertyRepository implements PropertyRepositoryInterface
                 }
             }
 
+            $this->handleAddress($property, $request);
+
             DB::commit();
 
-            $this->handleAddress($property, $request);
             return redirect()->route('properties.index')->with('successCreate', 'تم انشاء العقار بنجاح');
         } catch (\Exception $e) {
             DB::rollBack();
