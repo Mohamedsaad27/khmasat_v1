@@ -13,6 +13,9 @@
     {{-- LINK STYLE CHART STYLE --}}
     <link href="{{ asset('assets/css/admin/style.css') }}" rel="stylesheet" />
 
+    {{-- LINK STYLE PRELOADER STYLE --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
+
     {{-- LINK CDN STYLE FLOWBIT --}}
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
 
@@ -29,6 +32,13 @@
 </head>
 
 <body>
+
+    {{-- START PRELOADER --}}
+    <div id="preloader"
+        class="fixed w-full h-full z-[50000] flex items-center justify-center bg-white transition duration-200">
+        <div class="loader"></div>
+    </div>
+    {{-- END PRELOADER --}}
 
     {{-- START NAVBAR --}}
     @include('layouts.admin.partials.navbar')
@@ -64,6 +74,7 @@
     <script src="{{ asset('assets/js/admin/dark-mode.js') }}"></script>
     <script src="{{ asset('assets/js/admin/sidebar.js') }}"></script>
     <script src="{{ asset('assets/js/admin/charts.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js?v=1.1') }}"></script>
     <script>
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia(

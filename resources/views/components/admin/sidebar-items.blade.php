@@ -2,25 +2,31 @@
     <li>
         @if (isset($item['childItems']))
             <button type="button"
-                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-200 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 focus:outline focus:outline-2 focus:outline-white
-                @if (request()->is($item['active'])) text-gray-200 bg-gray-100 dark:bg-gray-700 outline outline-2 outline-white @endif"
+                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-200 rounded-lg group hover:bg-gray-200 dark:text-gray-200 dark:hover:bg-gray-700 focus:outline focus:outline-2 focus:outline-white
+                {{ request()->is($item['active']) ? 'text-gray-200 bg-gray-200 dark:bg-gray-700 outline outline-2 outline-white' : '' }}"
                 aria-controls="dropdown-{{ $item['title'] }}" data-collapse-toggle="dropdown-{{ $item['title'] }}">
             @else
                 <a href="{{ route($item['route']) }}"
-                    class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700
-                @if (request()->is($item['active'])) bg-gray-100 dark:bg-gray-700 outline outline-2 outline-white @endif
+                    class="flex items-center p-2 text-base text-gray-900 transition duration-200 rounded-lg hover:bg-gray-200 group dark:text-gray-200 dark:hover:bg-gray-700
+                {{ request()->is($item['active']) ? 'bg-gray-200 dark:bg-gray-700 outline outline-2 outline-white' : '' }}
                 ">
         @endif
 
-        <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-200 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white
-            @if (request()->is($item['active'])) text-gray-900 dark:text-white @endif"
-            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        {{-- ICON ITEM --}}
+        <div
+            class="text-gray-500 dark:text-gray-400
+            {{ request()->is($item['active']) ? 'text-gray-900 dark:text-white' : '' }}">
             {!! $item['icon'] !!}
-        </svg>
-        <span class="mr-3 @if (isset($item['childItems'])) flex-1 text-right whitespace-nowrap @endif"
+        </div>
+
+        <span
+            class="mr-3 text-gray-500 font-[500] transition duration-200 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white
+                    {{ isset($item['childItems']) ? 'flex-1 text-right whitespace-nowrap' : '' }} 
+                    {{ request()->is($item['active']) ? 'text-gray-900 dark:text-white' : '' }}"
             sidebar-toggle-item>{{ $item['title'] }}</span>
+
         @if (isset($item['childItems']))
-            {{-- Dropdown icon --}}
+            {{-- DROPDOWH ICON --}}
             <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -28,15 +34,14 @@
                     clip-rule="evenodd"></path>
             </svg>
             </button>
-            {{-- Child items --}}
+            {{-- CHILD ITEM --}}
             <ul id="dropdown-{{ $item['title'] }}"
                 class="hidden py-2 space-y-1 pr-11 pl-5 relative after:content-[''] after:absolute after:h-[90%] after:w-px after:bg-gray-200 after:right-[34px] after:top-[5px]">
                 @forelse ($item['childItems'] as $childItem)
                     <li>
-                        {{-- {{dd($childItem )}} --}}
                         <a href="{{ route($childItem['route']) }}"
                             class="flex items-center p-2 text-sm font-[500] text-gray-900 transition duration-200 rounded-lg pr-4 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700
-                            @if (request()->is($childItem['active'])) bg-gray-100 dark:bg-gray-700 @endif ">
+                            {{ request()->is($childItem['active']) ? 'bg-gray-100 dark:bg-gray-700' : '' }}">
                             {{ $childItem['title'] }}
                         </a>
                     </li>
