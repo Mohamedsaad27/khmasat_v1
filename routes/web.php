@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\Website\PropertiesPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\SocialLoginController;
 
@@ -29,9 +30,7 @@ Route::group([
     Route::get('/home-search', [HomeController::class, 'search'])->name('homeSearch');
 
     //--------------------------------/* PROPERTIES ROUTE */---------------------------
-    Route::get('/properties', function () {
-        return view('front.properties');
-    })->name('properties');
+    Route::get('/properties', [PropertiesPageController::class, 'getProperties'])->name('properties');
 
     //--------------------------------/* PROPERTY-DETILES ROUTE */----------------------
     Route::get('/property-detiles/{property}', [PropertyController::class, 'show'])->name('property-detiles');
@@ -72,3 +71,6 @@ Route::get('auth/{provider}/callback', [SocialLoginController::class, 'callback'
 Route::get('/unauthorized', function () {
     return view('unauthorizedPage');
 })->name('unauthorizedPage');
+
+
+Route::get('filter',[PropertiesPageController::class,'filter'])->name('filter');

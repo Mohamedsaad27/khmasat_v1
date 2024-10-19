@@ -42,6 +42,7 @@ class Property extends Model
         'price' => 'decimal:2',
         'furnished' => 'boolean',
     ];
+    protected $hidden = ['created_at','updated_at'];
     public static function boot()
     {
         parent::boot();
@@ -51,6 +52,28 @@ class Property extends Model
         });
     }
 
+    public function scopeFilter($query, $request)
+    {
+        return $query->when($request->query('category_name'), function ($query) use ($request) {
+            $query->WhereHas('category', function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->query('category_name') . '%');
+            });
+        })
+            ->when($request->query('type_name'), function ($query) use ($request) {
+                $query->WhereHas('propertyType', function ($query) use ($request) {
+                    $query->where('type', 'like', '%' . $request->query('type_name') . '%');
+                });
+            })
+            ->when($request->query('status'), function ($query) use ($request) {
+                $query->Where('status', $request->query('status'));
+            })
+            ->when($request->query('bedroom'), function ($query) use ($request) {
+                $query->Where('bedroom', $request->query('bedroom'));
+            })
+            ->when($request->query('bathroom'), function ($query) use ($request) {
+                $query->Where('bathroom', $request->query('bathroom'));
+            });
+    }
 
     /**
      * Get the user that owns the property.
@@ -94,8 +117,8 @@ class Property extends Model
     {
         return $this->hasMany(PropertyImage::class);
     }
-   
-    
+
+
 
     // Override on model binding for give property using slug
     public function getRouteKeyName()

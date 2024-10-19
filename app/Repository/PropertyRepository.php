@@ -188,4 +188,5 @@ class PropertyRepository implements PropertyRepositoryInterface
     {
 
     }
+
 }
