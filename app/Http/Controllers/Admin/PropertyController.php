@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Property\StorePropertyRequest;
+use App\Http\Requests\Property\UpdatePropertyRequest;
 use App\Interfaces\PropertyRepositoryInterface;
 use App\Models\Property;
 use GuzzleHttp\Client;
@@ -37,8 +38,6 @@ class PropertyController extends Controller
      */
     public function store(StorePropertyRequest $request)
     {
-      
-
         return $this->propertyRepository->store($request);
     }
 
@@ -61,9 +60,9 @@ class PropertyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdatePropertyRequest $request, string $slug)
     {
-        //
+        return $this->propertyRepository->update($request, $slug);
     }
 
     /**
@@ -73,4 +72,6 @@ class PropertyController extends Controller
     {
         //
     }
+
+
 }

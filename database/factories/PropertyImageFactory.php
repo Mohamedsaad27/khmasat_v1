@@ -25,6 +25,7 @@ class PropertyImageFactory extends Factory
         return [
             'property_id' => Property::factory(),
             'image_path' => $this->faker->imageUrl(),  // Generate a fake image URL
+            'is_main' => $this->faker->boolean,
         ];
     }
 }

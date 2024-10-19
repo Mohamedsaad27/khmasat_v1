@@ -17,7 +17,8 @@ class PropertyRepository implements PropertyRepositoryInterface
 {
     public function index()
     {
-        return view('admin.property.index');
+        $properties = Property::query()->with('propertyType', 'category', 'benefits', 'propertyImages', 'address')->paginate(10);
+        return view('admin.property.index', compact('properties'));
     }
 
     public function create()
@@ -32,8 +33,14 @@ class PropertyRepository implements PropertyRepositoryInterface
         $validatedData = $request->validated();
         try {
             DB::beginTransaction();
+            if ($validatedData['price_after_discount'] > $validatedData['price']) {
+                return redirect()->back()->with('error', 'يجب أن يكون السعر بعد الخصم أقل من السعر');
+            }
+            if ($validatedData['installment_amount'] > $validatedData['price']) {
+                return redirect()->back()->with('error', 'يجب أن يكون مبلغ التقسيط أقل من السعر');
+            }
             $property = Property::create([
-                'user_id' => 1,
+                'user_id' => Auth::user()->id,
                 'category_id' => $validatedData['category_id'],
                 'type_id' => $validatedData['property_type_id'],
                 'title' => $validatedData['title'],
@@ -45,34 +52,36 @@ class PropertyRepository implements PropertyRepositoryInterface
                 'bedroom' => $validatedData['bedroom'],
                 'bathroom' => $validatedData['bathroom'],
                 'status' => $validatedData['status'],
+                'feature' => $validatedData['feature'] ?? 0,
+                'price_after_discount' => $validatedData['price_after_discount'] ?? null,
             ]);
-            
+
             if (isset($validatedData['benefits'])) {
                 $property->benefits()->sync($validatedData['benefits']);
             }
-            
-               if ($request->hasFile('images')) {
+
+            if ($request->hasFile('images')) {
                 foreach ($validatedData['images'] as $key => $image) {
                     $imageName = time() . ' ' . $image->getClientOriginalName();
-                    $imagePath = 'assets/images/properties/' . $property->id;
-                    $image->move(public_path('assets/images/properties/' . $property->id), $imageName);
+                    $imagePath = 'assets/imgs/properties/' . $property->id;
+                    $image->move(public_path('assets/imgs/properties/' . $property->id), $imageName);
                     $image = $imagePath . '/' . $imageName;
                     $property->propertyImages()->create([
-                        'image_path' => $image, 
+                        'image_path' => $image,
                         'is_main' => $key == 0 ? true : false
                     ]);
                 }
             }
-   
-            DB::commit();
-            
+
             $this->handleAddress($property, $request);
-            
-            return redirect()->route('admin.properties.index')->with('success', 'Property created successfully');
+
+            DB::commit();
+
+            return redirect()->route('properties.index')->with('successCreate', 'تم انشاء العقار بنجاح');
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Failed to create property: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Failed to create property: ' . $e->getMessage());
+            return redirect()->back()->with('errorCreate', 'Failed to create property: ' . $e->getMessage());
         }
     }
     private function handleAddress($property, $request)
@@ -102,20 +111,24 @@ class PropertyRepository implements PropertyRepositoryInterface
             $governorate = $data->address->state ?? null;
             $street = $data->address->road ?? null;
             $city = $data->address->city ?? $data->address->town ?? $data->address->village ?? null;
+            $lat = $data->lat ?? null;
+            $lng = $data->lon ?? null;
 
             $property->address()->create([
                 'country' => $country,
                 'governorate' => $governorate,
                 'city' => $city,
-                'street' => $street
+                'street' => $street,
+                'latitude' => $lat,
+                'longitude' => $lng
             ]);
         }
     }
     public function show(Property $property)
     {
         $property = Property::query()
-         ->with('propertyType','category','benefits','propertyImages','address')
-        ->find($property->id);
+            ->with('propertyType', 'category', 'benefits', 'propertyImages', 'address')
+            ->find($property->id);
         return view('front.property-detiles', compact('property'));
     }
     public function edit(Property $property)
@@ -125,12 +138,55 @@ class PropertyRepository implements PropertyRepositoryInterface
 
         return view('admin.property.edit', compact('property', 'benefits', 'propertyTypes'));
     }
-    public function update(UpdatePropertyRequest $request)
+    public function update(UpdatePropertyRequest $request, string $slug)
     {
+        $validatedData = $request->validated();
+        dd($validatedData);
+        try {
+            DB::beginTransaction();
+            $property = Property::find($slug);
+            $property->update([
+                'title' => $validatedData['title'],
+                'slug' => Str::slug($validatedData['title']),
+                'description' => $validatedData['description'],
+                'price' => $validatedData['price'],
+                'installment_amount' => $validatedData['installment_amount'] ?? null,
+                'area' => $validatedData['area'],
+                'bedroom' => $validatedData['bedroom'],
+                'bathroom' => $validatedData['bathroom'],
+                'status' => $validatedData['status'],
+                'feature' => $validatedData['feature'] ?? 0,
+                'price_after_discount' => $validatedData['price_after_discount'] ?? null,
+            ]);
 
+            if (isset($validatedData['benefits'])) {
+                $property->benefits()->sync($validatedData['benefits']);
+            }
+
+            if ($request->hasFile('images')) {
+                foreach ($validatedData['images'] as $key => $image) {
+                    $imageName = time() . ' ' . $image->getClientOriginalName();
+                    $imagePath = 'assets/imgs/properties/' . $property->id;
+                    $image->move(public_path('assets/imgs/properties/' . $property->id), $imageName);
+                    $image = $imagePath . '/' . $imageName;
+                    $property->propertyImages()->create([
+                        'image_path' => $image,
+                        'is_main' => $key == 0 ? true : false
+                    ]);
+                }
+            }
+
+            DB::commit();
+            return redirect()->route('properties.index')->with('successUpdate', 'تم تحديث العقار بنجاح');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Failed to update property: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Failed to update property: ' . $e->getMessage());
+        }
     }
     public function destroy(Property $property)
     {
 
     }
+
 }

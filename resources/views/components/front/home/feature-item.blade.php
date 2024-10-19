@@ -1,9 +1,10 @@
 @props([
+    'srcItem' => null,
     'srcImg',
     'detiles' => false,
     'price' => null,
     'country' => null,
-    'governate' => null,
+    'governorate' => null,
     'city' => null,
     'street' => null,
     'zipCode' => null,
@@ -12,16 +13,18 @@
     'bathroom' => null,
 ])
 
-<a class="item relative w-full h-full rounded-[10px] overflow-hidden block" href="">
+<a href="{{ $srcItem }}" class="item relative w-full h-full rounded-[10px] overflow-hidden block">
     {{-- background item --}}
     <img src="{{ $srcImg }}" alt="Feature image"
         class="absolute w-full h-full object-cover z-[-1] transition duration-200">
 
     {{-- love --}}
-    <div
-        class="love absolute left-0 flex items-center justify-center bg-white ml-5 mt-3 p-3 w-[30px] h-[30px] rounded-full transform transition-transform duration-200 hover:scale-110">
-        <i class="fa-regular fa-heart text-[15px] transition duration-200"></i>
-    </div>
+    <form action="" class="love absolute left-0">
+        <button
+            class="flex items-center justify-center bg-white ml-5 mt-3 p-3 w-[30px] h-[30px] rounded-full transform transition-transform duration-200 hover:scale-110">
+            <i class="fa-regular fa-heart text-[15px] transition duration-200"></i>
+        </button>
+    </form>
 
     @if ($detiles)
         {{-- details --}}
@@ -36,11 +39,14 @@
                     </div>
                 </div>
 
+                <p> {{ $country }}
+                    {{ $governorate == null ? '' : "| $governorate" }}
+                    {{ $city == null ? '' : "| $city" }} </p>
+
                 <div class="flex items-center justify-between mt-2">
                     {{-- location --}}
-                    <div class="text-[15px]">
-                        <p>{{ $country }} | {{ $governate }} | {{ $city }} </p>
-                        <p>شارع {{ $street }}, <span>{{ $zipCode }}</span> <span>zip</span></p>
+                    <div class="text-[15px] ml-3">
+                        <p>{{ $street }}, <span>{{ $zipCode }}</span> <span>zip</span></p>
                     </div>
                     {{-- bedroom , m^2 ,bathroom --}}
                     <div class="flex items-center text-[10px]">

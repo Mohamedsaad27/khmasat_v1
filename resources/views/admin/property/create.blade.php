@@ -4,6 +4,15 @@
     @endpush
 
     @push('alerts')
+        @if (Session::has('errorCreate'))
+            <script>
+                iziToast.error({
+                    title: "{{ session('errorCreate') }}",
+                    position: 'topRight',
+                });
+            </script>
+        @endif
+
         @error('feature')
             <script>
                 iziToast.error({
@@ -13,17 +22,6 @@
             </script>
         @enderror
     @endpush
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-
-    @endif
 
     <div class="p-5">
 
@@ -83,12 +81,11 @@
                 class="w-full h-fit lg:w-[59%] xl:w-[69%] p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
 
                 <div class="flex flex-wrap items-center justify-between mb-5">
-
                     <div
                         class="flex items-center justify-between w-[49%] sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">خصم</p>
                         <label class="relative inline-flex cursor-pointer items-center">
-                            <input id="discount-checkbox" type="checkbox" class="peer sr-only"
+                            <input id="discount-checkbox" type="checkbox" class="peer sr-only" tabindex="1"
                                 @checked(old('price_after_discount')) />
                             <label for="discount-checkbox" class="hidden"></label>
                             <div
@@ -99,7 +96,6 @@
                     <div
                         class="flex items-center justify-between w-[49%] sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">مميز</p>
-
                         <label class="relative inline-flex cursor-pointer items-center">
                             <input id="feature" name="feature" type="checkbox" class="peer sr-only"
                                 @checked(old('feature')) value="1" />
@@ -108,7 +104,6 @@
                             </div>
                         </label>
                     </div>
-
                     <div
                         class="flex items-center justify-between mt-2 sm:mt-0 w-full sm:w-[32.5%] bg-gray-50 dark:bg-gray-700 rounded border-2 border-gray-300 border-dashed dark:border-gray-600 p-2">
                         <p class="font-medium text-gray-900 dark:text-white">تقسيط</p>
@@ -194,7 +189,7 @@
                         <select id="type" name="property_type_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             @foreach ($propertyTypes as $propertyType)
-                                <option value="{{ $propertyType->id }}">{{ $propertyType->type }}</option>
+                                <option value="{{ $propertyType->id }}">{{ $propertyType->name }}</option>
                             @endforeach
                         </select>
                         @error('property_type_id')
@@ -277,9 +272,11 @@
 
                 {{-- benefits --}}
                 @php
-                    $benefitIds = old('benefits', []);
-
-                    $benefitsNames = \App\Models\Benefit::whereIn('id', $benefitIds)->pluck('name')->toArray();
+                    $benefitIds = (array) old('benefits', []);
+                    $benefitsNames = [];
+                    if (!empty($benefitIds)) {
+                        $benefitsNames = \App\Models\Benefit::whereIn('id', $benefitIds)->pluck('name')->toArray();
+                    }
                 @endphp
 
                 <div class="mb-3">

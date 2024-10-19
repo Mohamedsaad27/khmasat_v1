@@ -2,27 +2,16 @@
 
 return [
     [
-<<<<<<< HEAD
-        'icon' => '<path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>',
-        'title' => "الصفحة الرئسية",
-=======
         'icon' => '<svg class="flex-shrink-0 w-6 h-6 text-inherit transition duration-200 group-hover:text-gray-900 dark:group-hover:text-white
                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path fill="currentColor" d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                         <path fill="currentColor" d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                     </svg>',
-        'title' => "الصفحة الرئيسية",
->>>>>>> 6516645 (✨feat( create benefitPropertyController ))
+        'title' => "الصفحة الرئسية",
         'route' => "admin.dashboard",
-        'active' => "lls"
+        'active' => "admin/dashboard"
     ],
     [
-<<<<<<< HEAD
-        'icon' => '<path
-                    d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z">
-                    </path>',
-=======
         'icon' => '<svg version="1.1" class="flex-shrink-0 w-6 h-6 text-inherit transition duration-200 group-hover:text-gray-900 dark:group-hover:text-white
                         id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 256 173" enable-background="new 0 0 256 173" xml:space="preserve">
                         <path fill="currentColor" d="M128.253,56.864c15.186,0,27.432-12.247,27.432-27.432S143.536,2,128.253,2
@@ -48,38 +37,15 @@ return [
                     </svg>',
         'title' => "انواع العقارات",
         'route' => "admin.dashboard",
-        'active' => "admin/type-properties*",
+        'active' => "lls",
         'childItems' => [
             [
                 'title' => 'إضافة نوع جديد',
                 'route' => 'properties.create',
-                'active' => 'admin/type-properties/create'
-            ],
-            [
-                'title' => 'عرض الانواع',
-                'route' => 'properties.index',
-                'active' => 'admin/type-properties'
-            ]
-        ]
-    ],
-    [
-        'icon' => '<svg class="flex-shrink-0 w-6 h-6 text-inherit transition duration-200 group-hover:text-gray-900 dark:group-hover:text-white"
-                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path
-                        d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z">
-                        </path>
-                    </svg>',
->>>>>>> 6516645 (✨feat( create benefitPropertyController ))
-        'title' => 'العقارات',
-        'active' => 'admin/properties*',
-        'childItems' => [
-            [
-                'title' => 'اضافة عقار جديد',
-                'route' => 'properties.create',
                 'active' => 'admin/properties/create'
             ],
             [
-                'title' => 'العقارات',
+                'title' => 'عرض الانواع',
                 'route' => 'properties.index',
                 'active' => 'admin/properties'
             ]
@@ -92,18 +58,18 @@ return [
                         d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z">
                         </path>
                     </svg>',
-        'title' => 'مميزات العقارات',
-        'active' => 'admin/benefit-properties*',
+        'title' => 'العقارات',
+        'active' => 'admin/properties*',
         'childItems' => [
             [
-                'title' => 'اضافة ميزة جديد',
+                'title' => 'اضافة عقار جديد',
                 'route' => 'properties.create',
-                'active' => 'admin/benefit-properties/create'
+                'active' => 'admin/properties/create'
             ],
             [
-                'title' => 'عرض المميزات',
+                'title' => 'العقارات',
                 'route' => 'properties.index',
-                'active' => 'admin/benefit-properties'
+                'active' => 'admin/properties'
             ]
         ]
     ]

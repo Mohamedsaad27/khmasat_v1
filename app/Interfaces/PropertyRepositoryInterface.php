@@ -14,6 +14,7 @@ interface PropertyRepositoryInterface
     public function store(StorePropertyRequest $request);
     public function show(Property $property);
     public function edit(Property $property);
-    public function update(UpdatePropertyRequest $request);
+    public function update(UpdatePropertyRequest $request ,string $slug);
     public function destroy(Property $property);
+
 }

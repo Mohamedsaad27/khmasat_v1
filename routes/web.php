@@ -1,17 +1,11 @@
 <?php
 
-<<<<<<< HEAD
-=======
-use App\Http\Controllers\Admin\BenefitPropertyController;
-use App\Http\Controllers\Admin\TypePropertyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Admin\PropertyController;
->>>>>>> 6516645 (✨feat( create benefitPropertyController ))
+use App\Http\Controllers\Website\PropertiesPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\SocialLoginController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\PropertyController;
 
 
 require __DIR__ . '/auth.php';
@@ -28,29 +22,15 @@ require __DIR__ . '/auth.php';
 */
 Route::group([
     'middleware',
+    'as' => 'front.'
 ], function () {
 
     //--------------------------------/* HOME ROUTE */--------------------------------
-    Route::get('/', function () {
-        return view('front.index');
-    })->name('front.welcome');
-
-<<<<<<< HEAD
-    //--------------------------------/* PROPERTIES ROUTE */--------------------------------
-    Route::get('/properties', function () {
-        return view('front.properties');
-    })->name('front.properties');
-=======
-    //--------------------------------/* TYPE PROPERTIES ROUTE */--------------------------------
-    Route::resource('type-properties', TypePropertyController::class);
+    Route::get('/', [HomeController::class, 'handleHomePage'])->name('welcome');
+    Route::get('/home-search', [HomeController::class, 'search'])->name('homeSearch');
 
     //--------------------------------/* PROPERTIES ROUTE */---------------------------
-    Route::get('/properties', function () {
-        return view('front.properties');
-    })->name('properties');
-
-    //--------------------------------/* BENEFIT PROPERTIES ROUTE */--------------------------------
-    Route::resource('benefit-properties', BenefitPropertyController::class);
+    Route::get('/properties', [PropertiesPageController::class, 'getProperties'])->name('properties');
 
     //--------------------------------/* PROPERTY-DETILES ROUTE */----------------------
     Route::get('/property-detiles/{property}', [PropertyController::class, 'show'])->name('property-detiles');
@@ -59,14 +39,11 @@ Route::group([
     Route::get('/favorite', function () {
         return view('favorite');
     })->name('favorite');
->>>>>>> 6516645 (✨feat( create benefitPropertyController ))
 
-    //--------------------------------/* PROPERTY-DETILES ROUTE */--------------------------------
-    Route::get('/property-detiles/{property}',[PropertyController::class,'show'])->name('front.property-detiles');
 });
 
 /*
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------
 | ADMIN ROUTES
 |--------------------------------------------------------------------------
 | These routes are reserved for the admin panel. Admins have full access
@@ -76,6 +53,7 @@ Route::group([
 Route::group(
     [
         'prefix' => 'admin',
+        'middleware' => 'admin',
     ],
     function () {
 
@@ -84,9 +62,15 @@ Route::group(
 
         //--------------------------------/* PROPERTY ROUTES */--------------------------------
         Route::resource('/properties', PropertyController::class);
-
     }
 );
 
 Route::get('auth/{provider}/redirect', [SocialLoginController::class, 'redirect'])->name('auth.socialite.redirect');
 Route::get('auth/{provider}/callback', [SocialLoginController::class, 'callback'])->name('auth.socialite.callback');
+
+Route::get('/unauthorized', function () {
+    return view('unauthorizedPage');
+})->name('unauthorizedPage');
+
+
+Route::get('filter',[PropertiesPageController::class,'filter'])->name('filter');

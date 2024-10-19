@@ -14,7 +14,18 @@ class BenefitSeeder extends Seeder
      */
     public function run()
     {
-        // Create 15 benefits
-        Benefit::factory()->count(15)->create();
+        $benefits = [
+            ['name' => 'حمام سباحة', 'slug' => 'swimming-pool'], // Swimming Pool
+            ['name' => 'جيم', 'slug' => 'gym'],                 // Gym
+            ['name' => 'ساونا', 'slug' => 'sauna'],             // Sauna
+            ['name' => 'موقف سيارات', 'slug' => 'parking'],      // Parking
+            ['name' => 'نادي صحي', 'slug' => 'health-club'],     // Health Club
+            // Add more benefits/amenities as needed
+        ];
+
+        foreach ($benefits as $benefit) {
+            Benefit::create($benefit);
+        }
     }
 }
+

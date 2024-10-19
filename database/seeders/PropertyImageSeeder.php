@@ -15,6 +15,6 @@ class PropertyImageSeeder extends Seeder
     public function run()
     {
         // Create 50 property images
-        PropertyImage::factory()->count(50)->create();
+        PropertyImage::factory()->count(10)->create();
     }
 }

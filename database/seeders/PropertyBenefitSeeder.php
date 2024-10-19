@@ -15,6 +15,6 @@ class PropertyBenefitSeeder extends Seeder
     public function run()
     {
         // Create 30 property benefits
-        PropertyBenefit::factory()->count(30)->create();
+        PropertyBenefit::factory()->count(10)->create();
     }
 }
