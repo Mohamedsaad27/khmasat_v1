@@ -1,5 +1,13 @@
 <?php
 
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\Admin\BenefitPropertyController;
+use App\Http\Controllers\Admin\TypePropertyController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\Admin\PropertyController;
+>>>>>>> 6516645 (✨feat( create benefitPropertyController ))
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\SocialLoginController;
 use Illuminate\Support\Facades\Route;
@@ -27,10 +35,31 @@ Route::group([
         return view('front.index');
     })->name('front.welcome');
 
+<<<<<<< HEAD
     //--------------------------------/* PROPERTIES ROUTE */--------------------------------
     Route::get('/properties', function () {
         return view('front.properties');
     })->name('front.properties');
+=======
+    //--------------------------------/* TYPE PROPERTIES ROUTE */--------------------------------
+    Route::resource('type-properties', TypePropertyController::class);
+
+    //--------------------------------/* PROPERTIES ROUTE */---------------------------
+    Route::get('/properties', function () {
+        return view('front.properties');
+    })->name('properties');
+
+    //--------------------------------/* BENEFIT PROPERTIES ROUTE */--------------------------------
+    Route::resource('benefit-properties', BenefitPropertyController::class);
+
+    //--------------------------------/* PROPERTY-DETILES ROUTE */----------------------
+    Route::get('/property-detiles/{property}', [PropertyController::class, 'show'])->name('property-detiles');
+
+    //--------------------------------/* FAVORITE ROUTE */------------------------------
+    Route::get('/favorite', function () {
+        return view('favorite');
+    })->name('favorite');
+>>>>>>> 6516645 (✨feat( create benefitPropertyController ))
 
     //--------------------------------/* PROPERTY-DETILES ROUTE */--------------------------------
     Route::get('/property-detiles/{property}',[PropertyController::class,'show'])->name('front.property-detiles');
