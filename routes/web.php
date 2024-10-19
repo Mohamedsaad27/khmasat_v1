@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\BenefitPropertyController;
+use App\Http\Controllers\Admin\TypePropertyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Admin\PropertyController;
@@ -28,10 +30,16 @@ Route::group([
     Route::get('/', [HomeController::class, 'handleHomePage'])->name('welcome');
     Route::get('/home-search', [HomeController::class, 'search'])->name('homeSearch');
 
+    //--------------------------------/* TYPE PROPERTIES ROUTE */--------------------------------
+    Route::resource('type-properties', TypePropertyController::class);
+
     //--------------------------------/* PROPERTIES ROUTE */---------------------------
     Route::get('/properties', function () {
         return view('front.properties');
     })->name('properties');
+
+    //--------------------------------/* BENEFIT PROPERTIES ROUTE */--------------------------------
+    Route::resource('benefit-properties', BenefitPropertyController::class);
 
     //--------------------------------/* PROPERTY-DETILES ROUTE */----------------------
     Route::get('/property-detiles/{property}', [PropertyController::class, 'show'])->name('property-detiles');
