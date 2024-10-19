@@ -37,17 +37,17 @@ return [
                     </svg>',
         'title' => "انواع العقارات",
         'route' => "admin.dashboard",
-        'active' => "lls",
+        'active' => "admin/categories",
         'childItems' => [
             [
                 'title' => 'إضافة نوع جديد',
-                'route' => 'properties.create',
-                'active' => 'admin/properties/create'
+                'route' => 'categories.create',
+                'active' => 'admin/categories/create'
             ],
             [
                 'title' => 'عرض الانواع',
-                'route' => 'properties.index',
-                'active' => 'admin/properties'
+                'route' => 'categories.index',
+                'active' => 'admin/categories'
             ]
         ]
     ],

@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-
+        return $this->categoryRepository->create();
     }
 
     /**
@@ -51,7 +51,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return $this->categoryRepository->edit($id);
     }
 
     /**
@@ -59,7 +59,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $this->categoryRepository->update($request, $id);
     }
 
     /**
@@ -67,6 +67,6 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return $this->categoryRepository->destroy($id);
     }
 }

@@ -11,22 +11,22 @@ class CategoryRepository
 {
     public function index(){
         $categories = Category::all();
-        return view('categories.index',compact('categories'));
+        return view('admin.category.index',compact('categories'));
     }
     public function create(){
-        return view('categories.create');
+        return view('admin.category.create');
     }
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
         ]);
-        $category = Category::create($validatedData);
-        return view('categories.index',with(['success' => 'Category created successfully']));
+        Category::create($validatedData);
+        return redirect()->route('categories.index')->with(['success' => 'تم إضافة النوع بنجاح']);
     }
     public function edit($id){
         $category = Category::findOrFail($id);
-        return view('categories.edit', compact('category'));
+        return view('admin.category.edit', compact('category'));
     }
     public function update(Request $request,$id){
         $validatedData = $request->validate([
@@ -34,11 +34,12 @@ class CategoryRepository
         ]);
         $category = Category::findOrFail($id);
         $category->update($validatedData);
-        return view('categories.index',with(['success' => 'Category updated successfully']));
+        return redirect()->route('categories.index')->with(['successUpdate' => 'تم تعديل النوع بنجاح']);
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
         $category = Category::findOrFail($id);
         $category->delete();
-        return view('categories.index',with(['success' => 'Category deleted successfully']));
+        return redirect()->route('categories.index')->with('successDelete', 'تم حذف النوع بنجاح');
     }
 }

@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PropertyController;
-use App\Http\Controllers\Website\PropertiesPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\SocialLoginController;
+use App\Http\Controllers\Website\PropertiesPageController;
 
 
 require __DIR__ . '/auth.php';
@@ -62,6 +63,8 @@ Route::group(
 
         //--------------------------------/* PROPERTY ROUTES */--------------------------------
         Route::resource('/properties', PropertyController::class);
+        Route::resource('/categories', CategoryController::class);
+        
     }
 );
 
