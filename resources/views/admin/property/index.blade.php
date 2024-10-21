@@ -69,7 +69,7 @@
                     </div>
                 </form>
             </div>
-            <a href="{{ route('properties.create') }}" 
+            <a href="{{ route('properties.create') }}"
                 class="bg-blue-700 dark:bg-blue-600 dark:focus:ring-blue-800 dark:hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium hover:bg-blue-800 px-5 py-2.5 rounded-lg text-sm text-white transition duration-200">
                 إضافة عقار جديد
             </a>
@@ -103,7 +103,7 @@
                                     <th scope="col" class="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                                         مساحة العقار
                                     </th>
-                                    <th scope="col" class="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    <th scope="col" class="hidden p-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                                         الإجراءات
                                     </th>
                                 </tr>
@@ -143,9 +143,9 @@
                                         class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $property->area }} م<sup>2</sup>
                                     </td>
-                                    <td class="p-4 whitespace-nowrap">
+                                    <td class="hidden p-4 whitespace-nowrap">
                                         <a href="{{ route('properties.edit', ['property' => $property->slug]) }}"
-                                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition duration-200">
+                                            class=" inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition duration-200">
                                             <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
