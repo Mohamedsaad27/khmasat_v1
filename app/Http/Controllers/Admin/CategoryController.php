@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    protected $categoryRepository;
-    public function __construct(CategoryRepository $categoryRepository)
+    protected $webCategoryRepository;
+    protected $apiCategoryRepository;
+    public function __construct()
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->webCategoryRepository = app('WebCategoryRepository');
+        $this->apiCategoryRepository = app('ApiCategoryRepository');
     }
 
     /**
@@ -19,7 +21,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return $this->categoryRepository->index();
+        return $this->apiCategoryRepository->index();
     }
 
     /**
@@ -35,7 +37,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->categoryRepository->store($request);
+        return $this->webCategoryRepository->store($request);
     }
 
     /**

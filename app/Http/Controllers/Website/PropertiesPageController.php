@@ -15,10 +15,14 @@ class PropertiesPageController extends Controller
         $this->propertyRepository = $propertyRepository;
     }
 
+    public function index()
+    {
+        return $this->propertyRepository->index();
+    }
+
     public function getProperties()
     {
-        $properties = $this->propertyRepository->getProperties();
-        return view('front.properties', compact('properties'));
+        return $this->propertyRepository->getProperties();
     }
     public function filter(Request $request)
     {

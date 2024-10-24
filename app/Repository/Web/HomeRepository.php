@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Web;
 
 use App\Models\Address;
 use App\Models\Category;

@@ -7,7 +7,7 @@ return [
                         <path fill="currentColor" d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                         <path fill="currentColor" d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                     </svg>',
-        'title' => "الصفحة الرئسية",
+        'title' => "الصفحة الرئيسية",
         'route' => "admin.dashboard",
         'active' => "admin/dashboard"
     ],
@@ -37,17 +37,17 @@ return [
                     </svg>',
         'title' => "انواع العقارات",
         'route' => "admin.dashboard",
-        'active' => "lls",
+        'active' => "admin/type-properties*",
         'childItems' => [
             [
                 'title' => 'إضافة نوع جديد',
                 'route' => 'properties.create',
-                'active' => 'admin/properties/create'
+                'active' => 'admin/type-properties/create'
             ],
             [
                 'title' => 'عرض الانواع',
                 'route' => 'properties.index',
-                'active' => 'admin/properties'
+                'active' => 'admin/type-properties'
             ]
         ]
     ],

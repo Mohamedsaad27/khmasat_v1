@@ -38,6 +38,8 @@ Route::group([
     Route::get('/properties', function () {
         return view('front.properties');
     })->name('properties');
+    Route::get('/properties', [PropertiesPageController::class, 'index'])->name('properties');
+
 
     //--------------------------------/* BENEFIT PROPERTIES ROUTE */--------------------------------
     Route::resource('benefit-properties', BenefitPropertyController::class);
