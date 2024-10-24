@@ -19,7 +19,7 @@ class PropertiesPageRepository implements PropertiesPageRepositoryInterface
 
     public function getProperties()
     {
-        $properties = Property::query()->with('propertyType', 'category', 'benefits', 'propertyImages', 'address')->latest()->paginate(1);
+        $properties = Property::query()->with('propertyType', 'category', 'benefits', 'propertyImages', 'address')->latest()->paginate(9);
         $addresses = Address::all();
         $categories = Category::all();
 
@@ -30,7 +30,7 @@ class PropertiesPageRepository implements PropertiesPageRepositoryInterface
     public function propertyFilter(Request $request)
     {
         try {
-            $property = Property::with('propertyType', 'category', 'benefits', 'propertyImages', 'address')->filter($request)->paginate(1);
+            $property = Property::with('propertyType', 'category', 'benefits', 'propertyImages', 'address')->filter($request)->paginate(9);
             if ($property->isEmpty()) {
                 return response()->json('لا يوجد عقارات', 404);
             }

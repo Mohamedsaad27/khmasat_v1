@@ -8,7 +8,7 @@ import ReactPaginate from "react-paginate";
 const Properties = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [pageCount, setPageCount] = useState(1);
-    const itemsPerPage = 1;
+    const itemsPerPage = 9;
     const [filter, setFilter] = useState([]);
     const [statusProperty, setStatusProperty] = useState("all");
 
@@ -33,8 +33,6 @@ const Properties = () => {
             setPageCount(Math.ceil(properties.total / itemsPerPage));
         }
     }, [properties, filter]);
-
-    console.log(pageCount);
 
     // Start Filter Category
     const dropdownWrapperCategoryRef = useRef(null);
@@ -136,7 +134,6 @@ const Properties = () => {
             ...prevFilter,
             status: selectedOption, // Add new status to the array
         }));
-        console.log(filter);
 
         // Save the checked option to localStorage
         const searchData = JSON.parse(localStorage.getItem("search")) || {};
@@ -305,8 +302,9 @@ const Properties = () => {
 
                 // Update the displayed text
                 if (buttonTextRoomRef.current) {
-                    buttonTextRoomRef.current.textContent = `${searchData.bedrooms || "عدد الغرف"
-                        } / ${searchData.bathrooms || "عدد الحمامات"}`;
+                    buttonTextRoomRef.current.textContent = `${
+                        searchData.bedrooms || "عدد الغرف"
+                    } / ${searchData.bathrooms || "عدد الحمامات"}`;
                 }
 
                 // Highlight active options
@@ -380,9 +378,9 @@ const Properties = () => {
         return (
             <div
                 id="preloader"
-                class="relative w-full h-full z-[5000] flex items-center justify-center bg-white transition duration-200 opacity-[1] block"
+                className="relative w-full h-full z-[5000] flex items-center justify-center bg-white transition duration-200 opacity-[1] block"
             >
-                <div class="loader"></div>
+                <div className="loader"></div>
             </div>
         );
     }
@@ -560,7 +558,7 @@ const Properties = () => {
                                     id="autocompleteInput"
                                     placeholder="ادخل الموقع"
                                     className="relative pr-8 py-3 text-sm w-full border border-gray-300 rounded-md focus:outline-none focus:border-sky-500 transition duration-200"
-                                    onkeyup="onkeyUp(event)"
+                                    onKeyUp="onkeyUp(event)"
                                 />
                                 <i className="absolute right-0 top-[15px] mr-2 fa-solid fa-location-dot"></i>
                             </div>
@@ -584,10 +582,11 @@ const Properties = () => {
                             />
                             <label
                                 htmlFor="status-property-all"
-                                className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ml-1 ${statusProperty === "all"
+                                className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ml-1 ${
+                                    statusProperty === "all"
                                         ? "active-option"
                                         : ""
-                                    }`}
+                                }`}
                             >
                                 الجميع
                             </label>
@@ -604,10 +603,11 @@ const Properties = () => {
                             />
                             <label
                                 htmlFor="status-property-ready"
-                                className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ml-1 ${statusProperty === "ready"
+                                className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ml-1 ${
+                                    statusProperty === "ready"
                                         ? "active-option"
                                         : ""
-                                    }`}
+                                }`}
                             >
                                 جاهز
                             </label>
@@ -626,10 +626,11 @@ const Properties = () => {
                             />
                             <label
                                 htmlFor="status-property-under-construction"
-                                className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ${statusProperty === "under-construction"
+                                className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ${
+                                    statusProperty === "under-construction"
                                         ? "active-option"
                                         : ""
-                                    }`}
+                                }`}
                             >
                                 قيد الانشاء
                             </label>
@@ -983,6 +984,32 @@ const Properties = () => {
                         <button
                             id="resetAllSearch"
                             className="mt-2 lg:mt-0 md:mr-2 rounded-md border border-sky-500 bg-sky-500 py-2 font-bold text-center cursor-pointer text-white text-sm py-3 px-5 transition duration-200 hover:text-black hover:bg-white hover:border hover:border-sky-500"
+                            onClick={() => {
+                                setFilter([]);
+                                setSelectedOption("تحديد الفئة");
+                                resetSearchCategory();
+                                setSelectedType("تحديد النوع");
+                                setStatusProperty("all");
+                                setSelectedBedrooms("عدد الغرف");
+                                setSelectedBathrooms("عدد الحمامات");
+                                resetSearchType();
+                                buttonTextRoomRef.current.textContent =
+                                    "عدد الغرف / عدد الحمامات";
+                                const bedroomOptions =
+                                    dropdownMenuRef.current.querySelectorAll(
+                                        "#bedroomOptions button"
+                                    );
+                                bedroomOptions.forEach((option) => {
+                                    option.classList.remove("active-option");
+                                });
+                                const bathroomOptions =
+                                    dropdownMenuRef.current.querySelectorAll(
+                                        "#bathroomOptions button"
+                                    );
+                                bathroomOptions.forEach((option) => {
+                                    option.classList.remove("active-option");
+                                });
+                            }}
                         >
                             إعادة ضبط
                         </button>
