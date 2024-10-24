@@ -42,7 +42,7 @@ class Property extends Model
         'price' => 'decimal:2',
         'furnished' => 'boolean',
     ];
-    protected $hidden = ['created_at','updated_at'];
+    protected $hidden = ['created_at', 'updated_at'];
     public static function boot()
     {
         parent::boot();
@@ -61,11 +61,11 @@ class Property extends Model
         })
             ->when($request->query('type_name'), function ($query) use ($request) {
                 $query->WhereHas('propertyType', function ($query) use ($request) {
-                    $query->where('type', 'like', '%' . $request->query('type_name') . '%');
+                    $query->where('name', 'like', '%' . $request->query('type_name') . '%');
                 });
             })
-            ->when($request->query('status'), function ($query) use ($request) {
-                $query->Where('status', $request->query('status'));
+            ->when($request->query('status') && $request->query('status') !== 'all', function ($query) use ($request) {
+                $query->where('status', $request->query('status'));
             })
             ->when($request->query('bedroom'), function ($query) use ($request) {
                 $query->Where('bedroom', $request->query('bedroom'));

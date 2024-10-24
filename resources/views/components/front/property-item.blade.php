@@ -1,81 +1,84 @@
 @props([
     'propertyRoute',
-    'loveRoute',
-    'srcImgs',
+    'loveRoute' => null,
+    'imgs',
     'tag' => null,
     'price',
     'propertyType',
     'bedroom',
-    'bathroom' => null,
-    'area' => null,
-    'country',
-    'governate',
-    'city',
+    'bathroom',
+    'area',
+    'address',
+    'advanceAmount',
 ])
 
 
 <div class="item overflow-hidden relative h-[400px] w-full lg:w-[32%] md:w-[49%] mb-4 border border-gray-300 rounded-lg">
     {{-- link item --}}
-    <a href="{{ route("$propertyRoute") }}" class="link absolute w-full h-full z-[35]">
+    <a href="{{ $propertyRoute }}" class="link absolute w-full h-full z-[35]">
     </a>
 
     {{-- love --}}
-    <a href="{{ route("$loveRoute") }}"
+    <a href="{{ $loveRoute }}"
         class="love z-[200] absolute left-0 flex items-center justify-center bg-white ml-5 mt-3 p-3 w-[30px] h-[30px] rounded-full transform transition-transform duration-200 hover:scale-110 group">
         <i class="fa-regular fa-heart text-[15px] transition duration-200 group-hover:text-red-500"></i>
     </a>
 
     {{-- imgs , love --}}
     <div class="group carousel h-[60%]">
-        <div id="controls-carousel" class="controls-carousel relative w-full h-full group" data-carousel="static" di>
-            <!-- Carousel wrapper -->
-            <div class="carousel-wrapper relative h-full overflow-hidden rounded-tl-lg rounded-tr-lg">
-                <!-- Items -->
-                @forelse($srcImgs as $srcImg)
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img loading="lazy" src="{{ $srcImg }}"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                            alt="...">
-                    </div>
-                @empty
-                    <p>لا يوجد صور</p>
-                @endforelse
+        @if (!$imgs->isEmpty())
+            <div id="controls-carousel" class="controls-carousel relative w-full h-full group" data-carousel="static" di>
+                <!-- Carousel wrapper -->
+                <div class="carousel-wrapper relative h-full overflow-hidden rounded-tl-lg rounded-tr-lg">
+                    <!-- Items -->
+                    @forelse($imgs as $img)
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img loading="lazy" src="{{ $img->image_path }}"
+                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                alt="...">
+                        </div>
+                    @empty
+                    @endforelse
+                </div>
+                <!-- Slider controls -->
+                <button type="button"
+                    class="absolute top-0 right-0 z-[40] items-center justify-center h-full px-4 cursor-pointer group-hover:flex transition-opacity duration-300 ease-in-out sm:opacity-0 group-hover:opacity-100 focus:outline-none"
+                    data-carousel-prev id="prev-button">
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none transition duration-200">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 1 1 5l4 4" />
+                        </svg>
+                        <span class="sr-only">Previous</span>
+                    </span>
+                </button>
+                <button type="button"
+                    class="absolute top-0 end-0 z-[40] flex items-center justify-center h-full px-4 cursor-pointer group-hover:flex transition-opacity duration-300 ease-in-out sm:opacity-0 group-hover:opacity-100 focus:outline-none"
+                    data-carousel-next id="next-button">
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none transition duration-200">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                        <span class="sr-only">Next</span>
+                    </span>
+                </button>
             </div>
-            <!-- Slider controls -->
-            <button type="button"
-                class="absolute top-0 right-0 z-[40] items-center justify-center h-full px-4 cursor-pointer group-hover:flex transition-opacity duration-300 ease-in-out sm:opacity-0 group-hover:opacity-100 focus:outline-none"
-                data-carousel-prev id="prev-button">
-                <span
-                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none transition duration-200">
-                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 1 1 5l4 4" />
-                    </svg>
-                    <span class="sr-only">Previous</span>
-                </span>
-            </button>
-            <button type="button"
-                class="absolute top-0 end-0 z-[40] flex items-center justify-center h-full px-4 cursor-pointer group-hover:flex transition-opacity duration-300 ease-in-out sm:opacity-0 group-hover:opacity-100 focus:outline-none"
-                data-carousel-next id="next-button">
-                <span
-                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none transition duration-200">
-                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 9 4-4-4-4" />
-                    </svg>
-                    <span class="sr-only">Next</span>
-                </span>
-            </button>
-        </div>
-
+        @else
+            <div class="flex items-center justify-center h-full">
+                <p class="font-bold">لا يوجد صور</p>
+            </div>
+        @endif
     </div>
 
     {{-- detils --}}
     <div class="relative p-3 h-[40%]">
         {{-- tag --}}
-        @if ($tag == 'new')
+        @if ($tag)
             <div
                 class="absolute top-[10px] left-[10px] flex item-center justify-center border border-green-500 rounded-md">
                 <p class="text-[12px] px-3 py-1 text-green-500 font-bold">جديد</p>
@@ -97,14 +100,14 @@
             </svg>
             <p class="font-[500] pl-2 text-[16px] border-l border-gray-300">{{ $bedroom }}</p>
 
-            {{-- pathroom --}}
+            {{-- bathroom --}}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                 class="mr-1">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M5.5 9.90832V7.4753C5.5 6.66051 6.16057 6 6.99513 6C7.82969 6 8.5 6.66051 8.5 7.4753V8.13266C8.5 8.40139 8.27687 8.61923 8.00162 8.61923C7.72638 8.61923 7.50324 8.40139 7.50324 8.13266V7.4753C7.50324 7.19796 7.2792 6.97314 6.99513 6.97314C6.71106 6.97314 6.49676 7.19796 6.49676 7.4753V9.90832H12.5C12.5 9.36869 12.9477 8.93124 13.5 8.93124H16.5C17.0523 8.93124 17.5 9.36869 17.5 9.90832H19.5C20.0523 9.90832 20.5 10.3458 20.5 10.8854V13.3281C20.5 15.1507 19.0407 16.6403 17.2014 16.7423L17.6351 17.166C17.8303 17.3568 17.8303 17.6661 17.6351 17.8569C17.4398 18.0477 17.1232 18.0477 16.9279 17.8569L15.7929 16.7479H8.48861L7.35355 17.8569C7.15829 18.0477 6.84171 18.0477 6.64645 17.8569C6.45118 17.6661 6.45118 17.3568 6.64645 17.166L7.0744 16.7479H7C5.067 16.7479 3.5 15.2168 3.5 13.3281V10.8854C3.5 10.3458 3.94772 9.90832 4.5 9.90832H5.5ZM13.5 9.90832V10.8854H16.5V9.90832H13.5ZM12.5 10.8854H4.5V13.3281C4.5 14.6772 5.61929 15.7708 7 15.7708H17C18.3807 15.7708 19.5 14.6772 19.5 13.3281V10.8854H17.5V13.8166C17.5 14.3563 17.0523 14.7937 16.5 14.7937H13.5C12.9477 14.7937 12.5 14.3563 12.5 13.8166V10.8854ZM13.5 10.8854V13.8166H16.5V12.8396H14.7092C14.4331 12.8396 14.2092 12.6208 14.2092 12.351C14.2092 12.0812 14.4331 11.8625 14.7092 11.8625H16.5V10.8854H13.5Z"
                     fill="currentColor"></path>
             </svg>
-            <p class="font-[500] pl-2 text-[16px] border-l border-gray-300">{{ $pathroom }}</p>
+            <p class="font-[500] pl-2 text-[16px] border-l border-gray-300">{{ $bathroom }}</p>
 
             {{-- area --}}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -116,16 +119,20 @@
             <p class="font-[500] text-[16px]">{{ $area }} <span>م<sup>2</sup></span></p>
         </div>
 
-        <div class="flex items-center mt-2">
-            <i class="fa-solid fa-location-dot text-[16px]"></i>
-            <p class="mr-1 text-[16px] font-[500]">
-                <span>{{ $country }}</span>
-                |
-                <span>{{ $governate }}</span>
-                |
-                <span>{{ $city }}</span>
-            </p>
-        </div>
+        @if ($address)
+            <div class="flex items-center mt-2">
+                <i class="fa-solid fa-location-dot text-[16px]"></i>
+                <p class="mr-2 text-[16px] font-medium">
+                    {{ $address->country }}
+                    @if ($address->governorate || $address->city)
+                        <span class="mx-1">|</span>
+                        {{ $address->governorate ?? '' }}
+                        {{ $address->city ? '|' . $address->city : '' }}
+                    @endif
+                </p>
+            </div>
+        @endif
+
 
         {{-- advance amount --}}
         @if ($advanceAmount)

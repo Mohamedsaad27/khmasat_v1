@@ -7,12 +7,18 @@ use Illuminate\Http\Request;
 
 class TypePropertyController extends Controller
 {
+    protected $ApiTypePropertiesRepository;
+
+    public function __construct()
+    {
+        $this->ApiTypePropertiesRepository = app('ApiTypePropertiesRepository');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return $this->ApiTypePropertiesRepository->index();
     }
 
     /**

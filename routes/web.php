@@ -36,7 +36,11 @@ Route::group([
     Route::resource('type-properties', TypePropertyController::class);
 
     //--------------------------------/* PROPERTIES ROUTE */---------------------------
-    Route::get('/properties', [PropertiesPageController::class, 'getProperties'])->name('properties');
+    Route::get('/properties', function () {
+        return view('front.properties');
+    })->name('properties');
+    Route::get('/properties', [PropertiesPageController::class, 'index'])->name('properties');
+
 
     //--------------------------------/* BENEFIT PROPERTIES ROUTE */--------------------------------
     Route::resource('benefit-properties', BenefitPropertyController::class);
@@ -84,4 +88,4 @@ Route::get('/unauthorized', function () {
 })->name('unauthorizedPage');
 
 
-Route::get('filter',[PropertiesPageController::class,'filter'])->name('filter');
+Route::get('filter', [PropertiesPageController::class, 'filter'])->name('filter');
