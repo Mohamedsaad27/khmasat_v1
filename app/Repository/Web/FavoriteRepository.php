@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Web;
 
 use App\Models\Favorite;
 use Illuminate\Http\Request;

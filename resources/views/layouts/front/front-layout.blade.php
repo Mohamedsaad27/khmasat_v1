@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
 
+
     {{-- include style front side --}}
     <link rel="stylesheet" href="{{ asset('assets/css/front/style.css?v=1.1') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
@@ -29,6 +30,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
         rel="stylesheet">
 
+    <script type="module" src="{{ 'http:' . mix('resources/js/app.jsx') }}" defer></script>
     @stack('styles')
 </head>
 

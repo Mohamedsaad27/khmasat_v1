@@ -35,7 +35,7 @@ Route::group([
     Route::resource('type-properties', TypePropertyController::class);
 
     //--------------------------------/* PROPERTIES ROUTE */---------------------------
-    Route::get('/properties', [PropertiesPageController::class, 'getProperties'])->name('properties');
+    Route::get('/properties', [PropertiesPageController::class, 'index'])->name('properties');
 
     //--------------------------------/* BENEFIT PROPERTIES ROUTE */--------------------------------
     Route::resource('benefit-properties', BenefitPropertyController::class);
