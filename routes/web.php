@@ -53,6 +53,10 @@ Route::group([
         return view('favorite');
     })->name('favorite');
 
+    Route::get('/contact-us', function () {
+        return view('front/contact-us');
+    })->name('contact-us');
+
 });
 
 /*
@@ -76,7 +80,7 @@ Route::group(
         //--------------------------------/* PROPERTY ROUTES */--------------------------------
         Route::resource('/properties', PropertyController::class);
         Route::resource('/categories', CategoryController::class);
-        
+
     }
 );
 

@@ -31,6 +31,9 @@
         rel="stylesheet">
 
     <script type="module" src="{{ 'http:' . mix('resources/js/app.jsx') }}" defer></script>
+    <script type="module" src="{{ 'https:' . mix('resources/js/app.jsx') }}" defer></script>
+    <script type="module" src="{{ mix('js/app.jsx') }}" defer></script>
+
     @stack('styles')
 </head>
 
@@ -68,8 +71,9 @@
                         class="{{ $currentRoute == 'front.welcome' ? 'active' : '' }}">الرئيسية</a>
                     <a href="{{ route('front.properties') }}"
                         class="mr-3 {{ $currentRoute == 'front.properties' ? 'active' : '' }}">العقارات</a>
-                    <a href="" class="mr-3 {{ $currentRoute == 'about' ? 'active' : '' }}">من نحن</a>
-                    <a href="" class="mr-3 {{ $currentRoute == 'contact-us' ? 'active' : '' }}">اتصل بنا</a>
+                    <a href="" class="mr-3 {{ $currentRoute == 'contact-us' ? 'active' : '' }}">من نحن</a>
+                    <a href="{{ route('front.contact-us') }}"
+                        class="mr-3 {{ $currentRoute == 'front.contact-us' ? 'active' : '' }}">اتصل بنا</a>
                 </div>
 
                 {{-- user --}}
@@ -216,7 +220,9 @@
                 <div class="w-full lg:w-1/4 md:w-1/2 mb-8">
                     <div class="text-white flex justify-center">
                         <div class="logo">
-                            <a href="{{route('front.welcome')}}"><img src="{{asset('WhatsApp Image 2024-10-20 at 02.02.29_f3d528b6.jpg')}}" class="w-[100px] h-[100px] object-cover" alt="Logo"></a>
+                            <a href="{{ route('front.welcome') }}"><img
+                                    src="{{ asset('WhatsApp Image 2024-10-20 at 02.02.29_f3d528b6.jpg') }}"
+                                    class="w-[100px] h-[100px] object-cover" alt="Logo"></a>
                         </div>
                     </div>
                 </div>
@@ -312,7 +318,7 @@
                                 </div>
                             </a>
 
-                           
+
                         </div>
                     </div>
                 </div>
