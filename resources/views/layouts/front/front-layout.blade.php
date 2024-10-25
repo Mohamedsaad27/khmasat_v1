@@ -31,8 +31,11 @@
         rel="stylesheet">
 
     <script type="module" src="{{ 'http:' . mix('resources/js/app.jsx') }}" defer></script>
+    <script src="{{ 'http:' . mix('resources/js/app.jsx') }}" defer></script>
     <script type="module" src="{{ 'https:' . mix('resources/js/app.jsx') }}" defer></script>
     <script type="module" src="{{ mix('js/app.jsx') }}" defer></script>
+    @vite('resources/js/app.jsx')
+
 
     @stack('styles')
 </head>
