@@ -4,10 +4,10 @@
     <div class="flex text-gray-700 my-4" aria-label="Breadcrumb">
         <div class="container mx-auto">
             <ol
-                class="px-5 py-3 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                class="px-5 py-3 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse border border-gray-200 rounded-lg bg-gray-50">
                 <li class="inline-flex items-center">
                     <a href="{{ route('front.welcome') }}"
-                        class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                        class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
                         <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 20 20">
                             <path
@@ -22,7 +22,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 9 4-4-4-4" />
                         </svg>
-                        <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">اتصل بنا</span>
+                        <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2">اتصل بنا</span>
                     </div>
                 </li>
             </ol>
@@ -30,22 +30,22 @@
     </div>
     {{-- End Breadcrumb --}}
 
-    <section class="bg-white dark:bg-gray-900">
+    <section class="bg-white">
         <div class="container py-8 mx-auto">
             <div>
-                <p class="font-medium text-blue-500 dark:text-blue-400">تواصل معنا</p>
+                <p class="font-medium text-blue-500">تواصل معنا</p>
 
-                <h1 class="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">تحدث مع فريقنا الودود
+                <h1 class="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl">تحدث مع فريقنا الودود
                 </h1>
 
-                <p class="mt-3 text-gray-500 dark:text-gray-400">يسعدنا أن نسمع منك. يرجى ملء هذا النموذج أو مراسلتنا
+                <p class="mt-3 text-gray-500">يسعدنا أن نسمع منك. يرجى ملء هذا النموذج أو مراسلتنا
                     عبر البريد الإلكتروني.</p>
             </div>
 
             <div class="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-2">
                 <div class="grid grid-cols-1 gap-x-12 gap-y-8 md:grid-cols-2">
                     <div>
-                        <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
+                        <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -53,14 +53,14 @@
                             </svg>
                         </span>
 
-                        <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Email</h2>
-                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">فريقنا الودود موجود هنا لمساعدتك.
+                        <h2 class="mt-4 text-base font-medium text-gray-800">Email</h2>
+                        <p class="mt-2 text-sm text-gray-500">فريقنا الودود موجود هنا لمساعدتك.
                         </p>
-                        <a href="" class="mt-2 text-sm text-blue-500 dark:text-blue-400">hello@merakiui.com</a>
+                        <a href="" class="mt-2 text-sm text-blue-500">hello@merakiui.com</a>
                     </div>
 
                     <div>
-                        <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
+                        <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -70,14 +70,14 @@
                             </svg>
                         </span>
 
-                        <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Office</h2>
-                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">مرحباً بكم في مقر مكتبنا الرئيسي.</p>
-                        <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">100 Smith Street Collingwood VIC 3066
+                        <h2 class="mt-4 text-base font-medium text-gray-800">Office</h2>
+                        <p class="mt-2 text-sm text-gray-500">مرحباً بكم في مقر مكتبنا الرئيسي.</p>
+                        <p class="mt-2 text-sm text-blue-500">100 Smith Street Collingwood VIC 3066
                             AU</p>
                     </div>
 
                     <div>
-                        <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
+                        <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -85,19 +85,19 @@
                             </svg>
                         </span>
 
-                        <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Phone</h2>
-                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">من الاحد إلى الجمعة : 8
+                        <h2 class="mt-4 text-base font-medium text-gray-800">Phone</h2>
+                        <p class="mt-2 text-sm text-gray-500">من الاحد إلى الجمعة : 8
                             am حتى 5 pm. </p>
-                        <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">+1 (555) 000-0000</p>
+                        <p class="mt-2 text-sm text-blue-500">+1 (555) 000-0000</p>
                     </div>
 
                     <div>
                         <span
-                            class="flex items-center justify-center w-[44px] h-[44px] p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
+                            class="flex items-center justify-center w-[44px] h-[44px] p-3 text-blue-500 rounded-full bg-blue-100/80">
                             <i class="fa-regular fa-share-from-square text-[16px]"></i>
                         </span>
 
-                        <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Social Media</h2>
+                        <h2 class="mt-4 text-base font-medium text-gray-800">Social Media</h2>
                         <div class="flex items-center mt-5">
                             <a href="https://www.facebook.com/profile.php?id=100091588466241&mibextid=ZbWKwL"
                                 class="w-10 h-10 flex items-center justify-center relative overflow-hidden rounded-full bg-blue-400 group transition-all duration-300 ml-2">
@@ -154,32 +154,32 @@
                     </div>
                 </div>
 
-                <div class="py-6 rounded-lg bg-gray-50 dark:bg-gray-800 md:p-8">
+                <div class="py-6 rounded-lg bg-gray-50 md:p-8">
                     <form>
                         <div class="-mx-2 md:items-center md:flex">
                             <div class="flex-1 px-2">
-                                <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">الاسم الاول</label>
+                                <label class="block mb-2 text-sm text-gray-600 ">الاسم الاول</label>
                                 <input type="text" placeholder="John "
-                                    class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white transition-all duration-200 border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white transition-all duration-200 border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                             </div>
 
                             <div class="flex-1 px-2 mt-4 md:mt-0">
-                                <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">الاسم الثاني</label>
+                                <label class="block mb-2 text-sm text-gray-600 ">الاسم الثاني</label>
                                 <input type="text" placeholder="Doe"
-                                    class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                             </div>
                         </div>
 
                         <div class="mt-4">
-                            <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">البريد الالكتروني</label>
+                            <label class="block mb-2 text-sm text-gray-600 ">البريد الالكتروني</label>
                             <input type="email" placeholder="johndoe@example.com"
-                                class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                         </div>
 
                         <div class="w-full mt-4">
-                            <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">الرسالة</label>
+                            <label class="block mb-2 text-sm text-gray-600 ">الرسالة</label>
                             <textarea
-                                class="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg md:h-56 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                class="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg md:h-56 focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                 placeholder="Message"></textarea>
                         </div>
 
