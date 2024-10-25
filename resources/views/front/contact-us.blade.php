@@ -56,7 +56,7 @@
                         <h2 class="mt-4 text-base font-medium text-gray-800">Email</h2>
                         <p class="mt-2 text-sm text-gray-500">فريقنا الودود موجود هنا لمساعدتك.
                         </p>
-                        <a href="" class="mt-2 text-sm text-blue-500">hello@merakiui.com</a>
+                        <a href="mailto:dev.mohamedsaadphp@gmail.com" class="mt-2 text-sm text-blue-500">dev.mohamedsaadphp@gmail.com</a>
                     </div>
 
                     <div>
@@ -72,8 +72,9 @@
 
                         <h2 class="mt-4 text-base font-medium text-gray-800">Office</h2>
                         <p class="mt-2 text-sm text-gray-500">مرحباً بكم في مقر مكتبنا الرئيسي.</p>
-                        <p class="mt-2 text-sm text-blue-500">100 Smith Street Collingwood VIC 3066
-                            AU</p>
+                        <a href="https://maps.app.goo.gl/Zdp1bGm3GuVrURCq9"
+                            class="mt-2 text-sm text-blue-500">فينيسيا2, Benghazi, Libya
+                        </a>
                     </div>
 
                     <div>
@@ -88,7 +89,7 @@
                         <h2 class="mt-4 text-base font-medium text-gray-800">Phone</h2>
                         <p class="mt-2 text-sm text-gray-500">من الاحد إلى الجمعة : 8
                             am حتى 5 pm. </p>
-                        <p class="mt-2 text-sm text-blue-500">+1 (555) 000-0000</p>
+                        <p class="mt-2 text-sm text-blue-500">+218944711252</p>
                     </div>
 
                     <div>

@@ -49,7 +49,7 @@
             <div class="container mx-auto flex justify-between items-center p-6 md:px-0 xl:px-6">
                 {{-- logo and menu button --}}
                 <div class="flex items-center">
-                    <p class="font-bold text-lg">Logo</p>
+                    <p class="font-bold text-lg">خماسات</p>
 
                     {{-- menu button --}}
                     <button x-on:click="open = true"
@@ -77,12 +77,12 @@
                 {{-- user --}}
                 <div class="flex items-center">
                     {{-- love --}}
-                    <a href=""
+                    {{-- <a href=""
                         class="relative flex items-center justify-center font-bold transition duration-200 hover:text-red-500">
                         <span
                             class="absolute top-[-9px] right-[-10px] text-xs bg-red-500 text-white rounded-full px-1">10</span>
                         <i class="fa-regular fa-heart"></i>
-                    </a>
+                    </a> --}}
 
                     @guest
                         <a href="{{ route('login') }}" class="flex items-center group">
