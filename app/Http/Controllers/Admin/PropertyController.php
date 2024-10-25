@@ -72,6 +72,9 @@ class PropertyController extends Controller
     {
         //
     }
-
+    public function showPropertyInDashboard(Property $property)
+    {
+        return $this->propertyRepository->showPropertyInDashboard($property);
+    }
 
 }

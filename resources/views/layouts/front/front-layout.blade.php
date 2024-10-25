@@ -68,19 +68,19 @@
                         class="{{ $currentRoute == 'front.welcome' ? 'active' : '' }}">الرئيسية</a>
                     <a href="{{ route('front.properties') }}"
                         class="mr-3 {{ $currentRoute == 'front.properties' ? 'active' : '' }}">العقارات</a>
-                    <a href="" class="mr-3 {{ $currentRoute == 'about' ? 'active' : '' }}">من نحن</a>
+                    <a href="{{ route('front.about-us') }}" class="mr-3 {{ $currentRoute == 'about' ? 'active' : '' }}">من نحن</a>
                     <a href="" class="mr-3 {{ $currentRoute == 'contact-us' ? 'active' : '' }}">اتصل بنا</a>
                 </div>
 
                 {{-- user --}}
                 <div class="flex items-center">
                     {{-- love --}}
-                    <a href=""
+                    {{-- <a href=""
                         class="relative flex items-center justify-center font-bold transition duration-200 hover:text-red-500">
                         <span
                             class="absolute top-[-9px] right-[-10px] text-xs bg-red-500 text-white rounded-full px-1">10</span>
                         <i class="fa-regular fa-heart"></i>
-                    </a>
+                    </a> --}}
 
                     @guest
                         <a href="{{ route('login') }}" class="flex items-center group">
@@ -114,7 +114,7 @@
                                 id="dropdown-2">
                                 <ul class="p-2 pt-3 text-center font-[500]" role="none">
                                     <li>
-                                        <a href="#"
+                                        <a href="{{ route('profile.edit') }}"
                                             class="block px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded-md transition duration-200 hover:bg-gray-300 hover:text-sky-500"
                                             role="menuitem">الصفحة الشخصية</a>
                                     </li>

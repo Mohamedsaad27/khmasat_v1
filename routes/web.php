@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\Admin\BenefitPropertyController;
-use App\Http\Controllers\Admin\TypePropertyController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\SocialLoginController;
+use App\Http\Controllers\Admin\TypePropertyController;
+use App\Http\Controllers\Admin\BenefitPropertyController;
 use App\Http\Controllers\Website\PropertiesPageController;
 
 
@@ -53,6 +54,10 @@ Route::group([
         return view('favorite');
     })->name('favorite');
 
+    //--------------------------------/* ABOUT US ROUTE */------------------------------
+    Route::get('/about-us', function () {
+        return view('front.about-us');
+    })->name('about-us');
 });
 
 /*
@@ -75,8 +80,13 @@ Route::group(
 
         //--------------------------------/* PROPERTY ROUTES */--------------------------------
         Route::resource('/properties', PropertyController::class);
+        Route::get('/properties/{property}', [PropertyController::class, 'showPropertyInDashboard'])->name('properties.showPropertyInDashboard');
+        //--------------------------------/* CATEGORY ROUTES */--------------------------------
         Route::resource('/categories', CategoryController::class);
-        
+        Route::get('/categories', [CategoryController::class, 'indexWeb'])->name('categories.indexWeb');
+        //--------------------------------/* BENEFIT ROUTES */--------------------------------
+        Route::resource('/benefits', BenefitPropertyController::class);
+
     }
 );
 
@@ -89,3 +99,9 @@ Route::get('/unauthorized', function () {
 
 
 Route::get('filter', [PropertiesPageController::class, 'filter'])->name('filter');
+Route::prefix('profile')->name('profile.')->group(function () {
+    Route::get('/', [ProfileController::class, 'edit'])->name('edit');
+    Route::put('/', [ProfileController::class, 'update'])->name('update');
+    Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+    Route::put('/update-picture', [ProfileController::class, 'updatePicture'])->name('updatePicture');
+});

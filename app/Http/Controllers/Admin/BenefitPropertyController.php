@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Benefit;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BenefitPropertyController extends Controller
 {
@@ -12,7 +13,8 @@ class BenefitPropertyController extends Controller
      */
     public function index()
     {
-        //
+        $benefits = Benefit::all();
+        return view('admin.benefit.index', compact('benefits'));
     }
 
     /**
@@ -20,7 +22,7 @@ class BenefitPropertyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.benefit.create');
     }
 
     /**
@@ -28,7 +30,11 @@ class BenefitPropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        Benefit::create($data);
+        return redirect()->route('benefits.index')->with('successCreate', 'تم إضافة الميزة بنجاح');
     }
 
     /**
@@ -44,7 +50,8 @@ class BenefitPropertyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $benefit = Benefit::findOrFail($id);
+        return view('admin.benefit.edit', compact('benefit'));
     }
 
     /**
@@ -52,7 +59,12 @@ class BenefitPropertyController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $benefit = Benefit::findOrFail($id);
+        $benefit->update($data);
+        return redirect()->route('benefits.index')->with('successUpdate', 'تم تعديل الميزة بنجاح');
     }
 
     /**
@@ -60,6 +72,8 @@ class BenefitPropertyController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $benefit = Benefit::findOrFail($id);
+        $benefit->delete();
+        return redirect()->route('benefits.index')->with('success', 'تم حذف الميزة بنجاح');
     }
 }

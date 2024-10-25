@@ -189,7 +189,7 @@
                         <select id="type" name="property_type_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             @foreach ($propertyTypes as $propertyType)
-                                <option value="{{ $propertyType->id }}">{{ $propertyType->name }}</option>
+                                <option value="{{ $propertyType->id }}">{{ $propertyType->type }}</option>
                             @endforeach
                         </select>
                         @error('property_type_id')
