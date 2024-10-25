@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BenefitPropertyController;
 use App\Http\Controllers\Admin\TypePropertyController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -53,7 +54,15 @@ Route::group([
         return view('favorite');
     })->name('favorite');
 
+    Route::get('/contact-us', function () {
+        return view('front.contact-us');
+    })->name('contact-us');
+
+    Route::get('/about-us', function () {
+        return view('front.about-us');
+    })->name('about-us');
 });
+//--------------------------------/* ABOUT US ROUTE */------------------------------
 
 /*
 |-------------------------------------------------------------------------
@@ -76,7 +85,9 @@ Route::group(
         //--------------------------------/* PROPERTY ROUTES */--------------------------------
         Route::resource('/properties', PropertyController::class);
         Route::resource('/categories', CategoryController::class);
-
+        Route::get('/categories', [CategoryController::class, 'indexWeb'])->name('categories.indexWeb');
+        //--------------------------------/* BENEFIT ROUTES */--------------------------------
+        Route::resource('/benefits', BenefitPropertyController::class);
     }
 );
 
@@ -89,3 +100,9 @@ Route::get('/unauthorized', function () {
 
 
 Route::get('filter', [PropertiesPageController::class, 'filter'])->name('filter');
+Route::prefix('profile')->name('profile.')->group(function () {
+    Route::get('/', [ProfileController::class, 'edit'])->name('edit');
+    Route::put('/', [ProfileController::class, 'update'])->name('update');
+    Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+    Route::put('/update-picture', [ProfileController::class, 'updatePicture'])->name('updatePicture');
+});
