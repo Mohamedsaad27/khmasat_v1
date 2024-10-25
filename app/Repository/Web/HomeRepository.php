@@ -34,15 +34,16 @@ class HomeRepository implements HomeInterface
         return view('front.index', compact('latestProperties', 'featuredProperties', 'categories', 'propertyTypes', 'addresses'));
 
     }
-
     public function search(Request $request)
     {
-        $properties = Property::query()->with(['propertyType', 'address', 'propertyImages'])
+        $properties = Property::query()
+            ->with(['propertyType', 'address', 'propertyImages'])
             ->when($request->searchText, function ($query) use ($request) {
-                $query->whereHas('address', function ($q) use ($request) {
-                    $q->where('city', 'like', '%' . $request->searchText . '%')
-                        ->orWhere('governorate', 'like', '%' . $request->searchText . '%')
-                        ->orWhere('country', 'like', '%' . $request->searchText . '%');
+                $searchText = $request->searchText;
+                $query->whereHas('address', function ($q) use ($searchText) {
+                    $q->where('country', 'like', '%' . $searchText . '%')
+                      ->orWhere('governorate', 'like', '%' . $searchText . '%')
+                      ->orWhere('city', 'like', '%' . $searchText . '%');
                 });
             })
             ->when($request->get('property-type'), function ($query) use ($request) {
@@ -53,11 +54,12 @@ class HomeRepository implements HomeInterface
             ->when($request->bedroom, function ($query) use ($request) {
                 $query->where('bedroom', $request->bedroom);  // Filter by number of bedrooms
             })
-            ->get();
-
-        dd($properties, $request);
+            ->dd();
+    
         return view('front.properties', compact('properties'));
     }
+    
+
 
 
 }

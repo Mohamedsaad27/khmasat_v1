@@ -53,10 +53,6 @@ Route::group([
         return view('favorite');
     })->name('favorite');
 
-    Route::get('/contact-us', function () {
-        return view('front/contact-us');
-    })->name('contact-us');
-
 });
 
 /*

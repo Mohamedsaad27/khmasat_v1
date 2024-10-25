@@ -14,22 +14,27 @@ class CategoryController extends Controller
     {
         $this->webCategoryRepository = app('WebCategoryRepository');
         $this->apiCategoryRepository = app('ApiCategoryRepository');
+
     }
 
     /**
      * Display a listing of the resource.
      */
+    
     public function index()
     {
         return $this->apiCategoryRepository->index();
     }
-
+    public function indexWeb()
+    {
+        return $this->webCategoryRepository->index();
+    }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return $this->categoryRepository->create();
+        return $this->webCategoryRepository->create();
     }
 
     /**
@@ -53,7 +58,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        return $this->categoryRepository->edit($id);
+        return $this->webCategoryRepository->edit($id);
     }
 
     /**
@@ -61,7 +66,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->categoryRepository->update($request, $id);
+        return $this->webCategoryRepository->update($request, $id);
     }
 
     /**
@@ -69,6 +74,6 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        return $this->categoryRepository->destroy($id);
+        return $this->webCategoryRepository->destroy($id);
     }
 }

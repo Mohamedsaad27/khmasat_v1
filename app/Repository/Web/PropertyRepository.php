@@ -131,6 +131,13 @@ class PropertyRepository implements PropertyRepositoryInterface
             ->find($property->id);
         return view('front.property-detiles', compact('property'));
     }
+    public function showPropertyInDashboard(Property $property)
+    {
+        $property = Property::query()
+            ->with('propertyType', 'category', 'benefits', 'propertyImages', 'address')
+            ->find($property->id);
+        return view('admin.property.show', compact('property'));
+    }
     public function edit(Property $property)
     {
         $benefits = DB::table('benefits')->get();
@@ -141,7 +148,7 @@ class PropertyRepository implements PropertyRepositoryInterface
     public function update(UpdatePropertyRequest $request, string $slug)
     {
         $validatedData = $request->validated();
-        dd($validatedData);
+//        dd($validatedData);
         try {
             DB::beginTransaction();
             $property = Property::find($slug);

@@ -16,5 +16,5 @@ interface PropertyRepositoryInterface
     public function edit(Property $property);
     public function update(UpdatePropertyRequest $request ,string $slug);
     public function destroy(Property $property);
-
+    public function showPropertyInDashboard(Property $property);
 }

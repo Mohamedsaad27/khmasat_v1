@@ -16,7 +16,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        return view('my-profile', [
             'user' => $request->user(),
         ]);
     }
@@ -26,17 +26,33 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
+        $validated = $request->validated();
+        $request->user()->update([
+            'name' => $validated['name'] ?? $request->user()->name,
+            'email' => $validated['email'] ?? $request->user()->email,
+        ]);
         $request->user()->save();
-
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+    /**
+     * Update the user's profile picture.
+     */
+    public function updatePicture(Request $request)
+    {
+        $request->validate([
+            'profile_picture' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+        ]);
+        if ($request->hasFile('profile_picture')) {
+            $image = $request->file('profile_picture');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = ('assets/imgs/profile-pictures/' . $request->user()->id);
+            $image->move(public_path($imagePath), $imageName);
+            $request->user()->profile_picture = $imagePath . '/' . $imageName;
+        }
+        $request->user()->save();
+        return Redirect::route('profile.edit')->with('status', 'profile-picture-updated');
+    }
     /**
      * Delete the user's account.
      */

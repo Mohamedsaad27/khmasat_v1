@@ -103,7 +103,7 @@
                                     <th scope="col" class="p-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                                         مساحة العقار
                                     </th>
-                                    <th scope="col" class="hidden p-4 text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    <th scope="col" class=" p-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                                         الإجراءات
                                     </th>
                                 </tr>
@@ -143,7 +143,7 @@
                                         class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $property->area }} م<sup>2</sup>
                                     </td>
-                                    <td class="hidden p-4 whitespace-nowrap">
+                                    <td class=" p-4 whitespace-nowrap">
                                         <a href="{{ route('properties.edit', ['property' => $property->slug]) }}"
                                             class=" inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition duration-200">
                                             <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"
@@ -157,10 +157,7 @@
                                             </svg>
                                             تعديل
                                         </a>
-                                        <button type="button" id="updateProductButton"
-                                            data-drawer-target="drawer-update-product-default"
-                                            data-drawer-show="drawer-update-product-default"
-                                            aria-controls="drawer-update-product-default" data-drawer-placement="right"
+                                        <a href="{{ route('properties.showPropertyInDashboard', ['property' => $property->slug]) }}"
                                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 transition duration-200">
                                             <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 442.04 442.04"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -180,7 +177,7 @@
                                                 </g>
                                             </svg>
                                             مشاهدة
-                                        </button>
+                                        </a>
                                         <button type="button" id="deleteProductButton"
                                             data-drawer-target="drawer-delete-product-default"
                                             data-drawer-show="drawer-delete-product-default"

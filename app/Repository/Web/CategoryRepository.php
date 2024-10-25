@@ -22,7 +22,7 @@ class CategoryRepository
             'name' => 'required|string|max:255',
         ]);
         Category::create($validatedData);
-        return redirect()->route('categories.index')->with(['success' => 'تم إضافة النوع بنجاح']);
+        return redirect()->route('categories.indexWeb')->with(['successCreate' => 'تم إضافة النوع بنجاح']);
     }
     public function edit($id){
         $category = Category::findOrFail($id);
@@ -34,12 +34,12 @@ class CategoryRepository
         ]);
         $category = Category::findOrFail($id);
         $category->update($validatedData);
-        return redirect()->route('categories.index')->with(['successUpdate' => 'تم تعديل النوع بنجاح']);
+        return redirect()->route('categories.indexWeb')->with(['successUpdate' => 'تم تعديل النوع بنجاح']);
     }
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->route('categories.index')->with('successDelete', 'تم حذف النوع بنجاح');
+        return redirect()->route('categories.indexWeb')->with('successDelete', 'تم حذف النوع بنجاح');
     }
 }
