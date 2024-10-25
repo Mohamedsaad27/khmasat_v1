@@ -1037,7 +1037,7 @@ const Properties = () => {
                             {properties.data.map((property, index) => (
                                 <PropertyCard
                                     key={index}
-                                    propertyRoute={`/property-details/${property.slug}`}
+                                    propertyRoute={`public/property-details/${property.slug}`}
                                     // loveRoute={property.loveRoute}
                                     imgs={property.property_images}
                                     tag={property.tag}
