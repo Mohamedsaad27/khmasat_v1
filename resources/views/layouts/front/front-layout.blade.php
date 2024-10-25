@@ -30,7 +30,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
         rel="stylesheet">
 
-    <script type="module" src="{{ 'http:' . mix('resources/js/app.jsx') }}" defer></script>
+    <script type="module" src="{{ 'http:' . mix('resources/js/app.jsx?v=cache') }}" defer></script>
     @stack('styles')
 </head>
 
@@ -112,11 +112,11 @@
                                 <p class="login mr-2 font-bold">{{ Auth::user()->name }}</p>
                             </button>
                             <!-- Dropdown menu -->
-                            <div class="z-50 w-[175px] hidden my-4 text-base list-none bg-gray-100 divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                            <div class="z-50 w-[175px] hidden my-4 text-base list-none bg-gray-100 divide-y divide-gray-100 rounded shadow"
                                 id="dropdown-2">
                                 <ul class="p-2 pt-3 text-center font-[500]" role="none">
                                     <li>
-                                        <a href="{{ route('profile.edit') }}"
+                                        <a href="{{ route('front.profile.edit') }}"
                                             class="block px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded-md transition duration-200 hover:bg-gray-300 hover:text-sky-500"
                                             role="menuitem">الصفحة الشخصية</a>
                                     </li>
@@ -182,12 +182,12 @@
                                             class="block py-2.5 px-4 flex items-center space-x-2 text-black font-bold rounded mb-1 text-[16px] {{ $currentRoute == 'front.properties' ? 'active' : '' }}">
                                             <i class="fa-solid fa-list ml-3"></i> العقارات
                                         </a>
-                                        <a href=""
-                                            class="block py-2.5 px-4 flex items-center space-x-2 text-black font-bold rounded mb-1 text-[16px] {{ $currentRoute == 'name' ? 'active' : '' }}">
+                                        <a href="{{ route('front.about-us') }}"
+                                            class="block py-2.5 px-4 flex items-center space-x-2 text-black font-bold rounded mb-1 text-[16px] {{ $currentRoute == 'front.about-us' ? 'active' : '' }}">
                                             <i class="fa-solid fa-id-card ml-3"></i> من نحن
                                         </a>
-                                        <a href=""
-                                            class="block py-2.5 px-4 flex items-center space-x-2 text-black font-bold rounded mb-1 text-[16px] {{ $currentRoute == 'name' ? 'active' : '' }}">
+                                        <a href="{{ route('front.contact-us') }}"
+                                            class="block py-2.5 px-4 flex items-center space-x-2 text-black font-bold rounded mb-1 text-[16px] {{ $currentRoute == 'front.contact-us' ? 'active' : '' }}">
                                             <i class="fa-solid fa-phone-flip ml-3"></i> اتصل بنا
                                         </a>
                                     </div>
@@ -218,7 +218,9 @@
                 <div class="w-full lg:w-1/4 md:w-1/2 mb-8">
                     <div class="text-white flex justify-center">
                         <div class="logo">
-                            <a href="{{route('front.welcome')}}"><img src="{{asset('WhatsApp Image 2024-10-20 at 02.02.29_f3d528b6.jpg')}}" class="w-[100px] h-[100px] object-cover" alt="Logo"></a>
+                            <a href="{{ route('front.welcome') }}"><img
+                                    src="{{ asset('WhatsApp Image 2024-10-20 at 02.02.29_f3d528b6.jpg') }}"
+                                    class="w-[100px] h-[100px] object-cover" alt="Logo"></a>
                         </div>
                     </div>
                 </div>

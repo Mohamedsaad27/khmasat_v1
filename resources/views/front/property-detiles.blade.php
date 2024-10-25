@@ -1,33 +1,7 @@
 <x-front-layout class="p-6">
 
     {{-- Start Breadcrumb --}}
-    <div class="flex text-gray-700 my-4 pb-4 border-b" aria-label="Breadcrumb">
-        <div class="container mx-auto">
-            <ol
-                class="px-5 py-3 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                <li class="inline-flex items-center">
-                    <a href="#"
-                        class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                        <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                        </svg>
-                    </a>
-                </li>
-                <li aria-current="page">
-                    <div class="flex items-center">
-                        <svg class="rtl:rotate-180  w-3 h-3 mx-1 text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 9 4-4-4-4" />
-                        </svg>
-                        <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">العقارات</span>
-                    </div>
-                </li>
-            </ol>
-        </div>
-    </div>
+    <x-front.breadcrumb :currentPage="$property->title" />
     {{-- End Breadcrumb --}}
 
     {{-- Start Property Detiles --}}
@@ -39,7 +13,7 @@
                 <div class="w-full md:w-1/2 px-4 mb-8">
                     @if ($property->propertyImages->first())
                         <img src="{{ asset($property->propertyImages->first()->image_path) }}" alt="Product"
-                            class="w-full h-auto rounded-lg shadow-md mb-4" id="mainImage">
+                            class="w-full h-[420px] object-cover rounded-lg shadow-md mb-4" id="mainImage">
                     @endif
                     <div class="flex gap-4 py-4 justify-center overflow-x-auto">
                         @foreach ($property->propertyImages as $propertyImage)
@@ -54,11 +28,12 @@
                 <!-- property Details -->
                 <div class="w-full md:w-1/2 px-4" dir="rtl">
                     {{-- name & price --}}
-                    <h2 class="text-2xl font-bold mb-4">{{ $property->name }}</h2>
+                    <h2 class="text-2xl font-bold mb-4">{{ $property->title }}</h2>
                     <div class="mb-4 flex items-center justify-between border-b pb-5">
                         <div>
                             <span class="text-2xl font-bold mr-2">{{ $property->price }} ج.م</span>
-                            <span class="text-gray-500 line-through">{{ $property->price_after_discount }} ج.م</span>
+                            <span class="text-gray-500 line-through">{{ $property->price_after_discount }}
+                                ج.م</span>
                         </div>
                     </div>
                     {{-- price & contact --}}
@@ -66,7 +41,8 @@
                     <div class="w-full flex items-center justify-between mb-4 pb-4 border-b">
                         <div class="w-full sm:w-fit border rounded p-3">
                             <div class="w-full flex items-center">
-                                <div class="w-1/2 flex flex-col items-center py-2 bg-gray-100 rounded ml-2">
+                                <div
+                                    class="{{ $property->installment_amount ? 'w-1/2' : 'w-full' }} flex flex-col items-center py-2 bg-gray-100 rounded ml-2">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -76,11 +52,13 @@
                                     <p>طريقة الدفع</p>
                                     <div class="font-bold">
                                         <span>نقداً</span>
-                                        <span class="font-normal">او</span>
-                                        <span>تقسيط</span>
+                                        @if ($property->installment_amount)
+                                            <span class="font-normal">او</span>
+                                            <span>تقسيط</span>
+                                        @endif
                                     </div>
                                 </div>
-                                @if ($property->installment_amount > 0)
+                                @if ($property->installment_amount)
                                     <div class="w-1/2 flex flex-col items-center py-2 bg-gray-100 rounded">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +68,7 @@
                                         </svg>
                                         <p>مُقدم</p>
                                         <div class="font-bold">
-                                            <span>500,215 ج.م</span>
+                                            <span>{{ $property->installment_amount }}</span>
                                         </div>
                                     </div>
                                 @endif
@@ -144,8 +122,8 @@
                                     class="relative h-[35px] w-[32%] inline-flex items-center justify-center p-4 px-6 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-cyan-500 rounded shadow-md group">
                                     <span
                                         class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-cyan-500 group-hover:translate-x-0 ease">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                         </svg>
@@ -165,38 +143,11 @@
                     <div class="description max-h-[400px] overflow-scroll pb-1 mb-4 border-b">
                         <p class="text-xl font-bold sticky top-[-1px] bg-white">الوصف</p>
                         {{-- title --}}
-                        <p class="text-lg font-[500] my-2">امتلك شقة 195 م بمقدم مليون و تقسيط حتي 6 سنوات </p>
+                        <p class="text-lg font-[500] my-2">{{ $property->title }}</p>
                         <ul class="list-disc list-inside text-gray-700 mx-2">
-                            <li>هل تبحث عن الرفاهية والراحة في مسكنك الجديد؟ شركة لافيردي للتطوير العقاري بتقدم لك أفضل
-                                العروض في كمبوند لافيردي نيوكابيتال المتميز </li>
-                            <li>لموقع : منطقة الR8 كمبوند لافيردي نيوكابيتال بقلب العاصمة الادارية علي المحور المركزي
-                                مباشرة
-                            </li>
-                            <li>بالقرب من :
-                                - حي السفارات
-                                - مقر الرئاسة
-                                - حي الوزارات
-                                - مركز المؤتمرات
-                            </li>
-                            <li>
-                                المساحة :195 متر
-                            </li>
-                            <li>التصميم الداخلي للوحدة :
-                                3 غرف نوم
-                                2 حمام
-                                ريسيبشن كبير
-                                مطبخ
-                                تيراس</li>
-                            <li>لخدامات المتاحة في الكمبوند :
-                                - نادي رياضي ومجمع خدمات متكامل.
-                                - نادي اجتماعي به:( جيم ، جاكوزي ،حمامات سباحة)
-                                - مبنى طبي
-                                - فندق
-                                - مسجد
-                                - مول للتسوق علي النهر الاخضر مباشرة
-                                - حضانة دولية</li>
-                            <li>اجمالي سعر الوحدة :
-                                8,979,999. ج.م</li>
+                            @foreach (explode("\n", $property->description) as $line)
+                                <li>{{ $line }}</li>
+                            @endforeach
                         </ul>
                     </div>
                     {{-- detiles property --}}
@@ -213,7 +164,7 @@
                                     </svg>
                                     <p class="mr-2 font-[500]">نوع العقار</p>
                                 </div>
-                                <p class="font-bold">شقة</p>
+                                <p class="font-bold">{{ $property->propertyType->name }}</p>
                             </div>
                             <div class="w-full lg:w-[47%] xl:w-[42%] flex items-center justify-between mb-3">
                                 <div class="flex items-center">
@@ -255,9 +206,14 @@
                     </div>
                     {{-- location --}}
                     <div class="">
-                        <p class="text-xl font-bold">الموقع</p>
-                        <div id="map" class="w-full h-[500px]"></div>
+                        <p class="text-xl font-bold mb-4">الموقع</p>
+                        <div id="map" class="w-full h-[500px] rounded-md"></div>
                     </div>
+
+                    <input type="hidden" id="latitude" name="latitude"
+                        value="{{ $property->address->latitude }}">
+                    <input type="hidden" id="longitude" name="longitude"
+                        value="{{ $property->address->longitude }}">
                 </div>
             </div>
         </div>
@@ -270,54 +226,10 @@
                 document.getElementById('mainImage').src = src;
             }
         </script>
-        <script async
+        <script async {{-- integreation with google map --}} <script async
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQHLpdaz5lAAXlWz1vq7oyJEAminaCOds&callback=initMap&libraries=places&v=weekly">
         </script>
-        </script>
-        <script>
-            function initMap() {
-                const map = new google.maps.Map(document.getElementById("map"), {
-                    center: {
-                        lat: -33.866,
-                        lng: 151.196
-                    },
-                    zoom: 15,
-                });
-
-                const request = {
-                    placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
-                    fields: ["name", "formatted_address", "place_id", "geometry"],
-                };
-
-                const infowindow = new google.maps.InfoWindow();
-                const service = new google.maps.places.PlacesService(map);
-
-                service.getDetails(request, (place, status) => {
-                    if (status === google.maps.places.PlacesServiceStatus.OK) {
-                        const marker = new google.maps.Marker({
-                            map,
-                            position: place.geometry.location,
-                        });
-
-                        google.maps.event.addListener(marker, "click", () => {
-                            const content = `
-                        <div>
-                            <h2>${place.name}</h2>
-                            <p>${place.place_id}</p>
-                            <p>${place.formatted_address}</p>
-                        </div>
-                    `;
-                            infowindow.setContent(content);
-                            infowindow.open(map, marker);
-                        });
-                    } else {
-                        console.error('Error fetching place details:', status);
-                    }
-                });
-            }
-
-            window.initMap = initMap;
-        </script>
+        <script src="{{ asset('assets/js/front/google-map.js') }}"></script>
     @endpush
 
 </x-front-layout>

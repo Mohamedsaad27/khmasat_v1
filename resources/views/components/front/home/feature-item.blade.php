@@ -19,12 +19,12 @@
         class="absolute w-full h-full object-cover z-[-1] transition duration-200">
 
     {{-- love --}}
-    <form action="" class="love absolute left-0">
+    {{-- <form action="" class="love absolute left-0">
         <button
             class="flex items-center justify-center bg-white ml-5 mt-3 p-3 w-[30px] h-[30px] rounded-full transform transition-transform duration-200 hover:scale-110">
             <i class="fa-regular fa-heart text-[15px] transition duration-200"></i>
         </button>
-    </form>
+    </form> --}}
 
     @if ($detiles)
         {{-- details --}}

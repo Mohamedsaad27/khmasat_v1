@@ -302,8 +302,9 @@ const Properties = () => {
 
                 // Update the displayed text
                 if (buttonTextRoomRef.current) {
-                    buttonTextRoomRef.current.textContent = `${searchData.bedrooms || "عدد الغرف"
-                        } / ${searchData.bathrooms || "عدد الحمامات"}`;
+                    buttonTextRoomRef.current.textContent = `${
+                        searchData.bedrooms || "عدد الغرف"
+                    } / ${searchData.bathrooms || "عدد الحمامات"}`;
                 }
 
                 // Highlight active options
@@ -581,10 +582,11 @@ const Properties = () => {
                             />
                             <label
                                 htmlFor="status-property-all"
-                                className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ml-1 ${statusProperty === "all"
+                                className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ml-1 ${
+                                    statusProperty === "all"
                                         ? "active-option"
                                         : ""
-                                    }`}
+                                }`}
                             >
                                 الجميع
                             </label>
@@ -601,10 +603,11 @@ const Properties = () => {
                             />
                             <label
                                 htmlFor="status-property-ready"
-                                className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ml-1 ${statusProperty === "ready"
+                                className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ml-1 ${
+                                    statusProperty === "ready"
                                         ? "active-option"
                                         : ""
-                                    }`}
+                                }`}
                             >
                                 جاهز
                             </label>
@@ -623,10 +626,11 @@ const Properties = () => {
                             />
                             <label
                                 htmlFor="status-property-under-construction"
-                                className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ${statusProperty === "under-construction"
+                                className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ${
+                                    statusProperty === "under-construction"
                                         ? "active-option"
                                         : ""
-                                    }`}
+                                }`}
                             >
                                 قيد الانشاء
                             </label>
@@ -1033,8 +1037,8 @@ const Properties = () => {
                             {properties.data.map((property, index) => (
                                 <PropertyCard
                                     key={index}
-                                    propertyRoute={property.route}
-                                    loveRoute={property.loveRoute}
+                                    propertyRoute={`/property-details/${property.slug}`}
+                                    // loveRoute={property.loveRoute}
                                     imgs={property.property_images}
                                     tag={property.tag}
                                     price={property.price}

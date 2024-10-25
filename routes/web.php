@@ -47,7 +47,7 @@ Route::group([
     Route::resource('benefit-properties', BenefitPropertyController::class);
 
     //--------------------------------/* PROPERTY-DETILES ROUTE */----------------------
-    Route::get('/property-detiles/{property}', [PropertyController::class, 'show'])->name('property-detiles');
+    Route::get('/property-details/{property}', [PropertyController::class, 'show'])->name('property-detiles');
 
     //--------------------------------/* FAVORITE ROUTE */------------------------------
     Route::get('/favorite', function () {
@@ -61,6 +61,16 @@ Route::group([
     Route::get('/about-us', function () {
         return view('front.about-us');
     })->name('about-us');
+
+    //--------------------------------/* PROFILE ROUTES */------------------------------
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('edit');
+        Route::put('/', [ProfileController::class, 'update'])->name('update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+        Route::put('/update-picture', [ProfileController::class, 'updatePicture'])->name('updatePicture');
+        Route::put('/change-password', [ProfileController::class, 'changePassword'])->name(name: 'changePassword');
+    });
+
 });
 //--------------------------------/* ABOUT US ROUTE */------------------------------
 
@@ -99,10 +109,4 @@ Route::get('/unauthorized', function () {
 })->name('unauthorizedPage');
 
 
-Route::get('filter', [PropertiesPageController::class, 'filter'])->name('filter');
-Route::prefix('profile')->name('profile.')->group(function () {
-    Route::get('/', [ProfileController::class, 'edit'])->name('edit');
-    Route::put('/', [ProfileController::class, 'update'])->name('update');
-    Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
-    Route::put('/update-picture', [ProfileController::class, 'updatePicture'])->name('updatePicture');
-});
+// Route::get('filter', [PropertiesPageController::class, 'filter'])->name('filter');
