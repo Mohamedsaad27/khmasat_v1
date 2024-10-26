@@ -117,6 +117,13 @@ class Property extends Model
     {
         return $this->hasMany(PropertyImage::class);
     }
+    /**
+     * Get the favorites that owns the property.
+     */
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
 
 
 

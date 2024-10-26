@@ -68,10 +68,11 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Property $property)
     {
-        //
+        return $this->propertyRepository->destroy($property);
     }
+    
     public function showPropertyInDashboard(Property $property)
     {
         return $this->propertyRepository->showPropertyInDashboard($property);

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مرحبًا بك في شركة خمسات للعقارات</title>
+    <title>مرحبًا بك في شركة خماسات للعقارات</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f6f9fc;">
     <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #f6f9fc;">
@@ -13,7 +13,7 @@
                     <!-- Header with Logo -->
                     <tr>
                         <td align="center" style="padding: 40px 0 20px 0;">
-                            <img src="{{asset('WhatsApp Image 2024-10-20 at 02.02.29_f3d528b6.jpg')}}" alt="شركة خمسات للإستثمار العقاري" style="width: 200px; height: auto;">
+                            <img src="{{asset('WhatsApp Image 2024-10-20 at 02.02.29_f3d528b6.jpg')}}" alt="شركة خماسات للإستثمار العقاري" style="width: 200px; height: auto;">
                         </td>
                     </tr>
                     
@@ -28,7 +28,7 @@
                     <tr>
                         <td style="padding: 40px 40px 20px 40px;">
                             <h1 style="margin: 0; color: #1565C0; font-size: 28px; font-weight: bold; text-align: center;">
-                                مرحبًا بك في عائلة خمسات، {{ $user->name }}!
+                                مرحبًا بك في عائلة خماسات {{ $user->name }}!
                             </h1>
                         </td>
                     </tr>
@@ -37,10 +37,10 @@
                     <tr>
                         <td style="padding: 20px 40px;">
                             <p style="color: #424242; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
-                                نحن سعداء جداً بانضمامك إلى شركة خمسات للإستثمار العقاري! نحن نفخر بكوننا شريكك الموثوق في رحلتك العقارية.
+                                نحن سعداء جداً بانضمامك إلى شركة خماسات للإستثمار العقاري! نحن نفخر بكوننا شريكك الموثوق في رحلتك العقارية.
                             </p>
                             <p style="color: #424242; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
-                                مع خمسات، ستحصل على:
+                                مع خماسات ستحصل على:
                             </p>
                             <ul style="color: #424242; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0; padding-right: 20px;">
                                 <li style="margin-bottom: 10px;">خدمة عملاء احترافية على مدار الساعة</li>
@@ -74,7 +74,7 @@
                     <tr>
                         <td style="padding: 40px; background-color: #f8f9fa; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px;">
                             <p style="color: #666666; font-size: 14px; line-height: 1.6; margin: 0; text-align: center;">
-                                شركة خمسات للإستثمار العقاري<br>
+                                شركة خماسات للإستثمار العقاري<br>
                                 بنغازي - فينيسيا 2<br>
                                 <a href="https://khmasat.treasure-academy.com/public/" style="color: #1565C0; text-decoration: none;">www.khmasat.com</a>
                             </p>
