@@ -1,25 +1,6 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تفاصيل العقار</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
-</head>
-<body class="bg-gray-50">
+<x-admin-layout>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Image Gallery Section -->
-        <div class="mb-8 bg-white rounded-xl shadow-lg overflow-hidden">
-            <div class="relative h-[500px]" id="property-gallery">
-                @foreach($property->propertyImages as $image)
-                <div class="h-full">
-                    <img src="{{ $image->image_path }}" alt="صورة العقار" class="w-full h-full object-cover">
-                </div>
-                @endforeach
-            </div>
-        </div>
+        
 
         <!-- Main Content Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -220,5 +201,4 @@
             });
         });
     </script>
-</body>
-</html>
+</x-admin-layout>

@@ -142,13 +142,12 @@ class PropertyRepository implements PropertyRepositoryInterface
     {
         $benefits = DB::table('benefits')->get();
         $propertyTypes = DB::table('property_types')->get();
-
         return view('admin.property.edit', compact('property', 'benefits', 'propertyTypes'));
     }
     public function update(UpdatePropertyRequest $request, string $slug)
     {
         $validatedData = $request->validated();
-//        dd($validatedData);
+        dd($validatedData);
         try {
             DB::beginTransaction();
             $property = Property::find($slug);
@@ -193,7 +192,16 @@ class PropertyRepository implements PropertyRepositoryInterface
     }
     public function destroy(Property $property)
     {
-
+        if ($property->propertyImages) {
+            foreach ($property->propertyImages as $image) {
+                $image->delete();
+            }
+            $property->address()->delete();
+            $property->benefits()->detach();
+            $property->favorites()->delete();
+        }
+        $property->delete();
+        return redirect()->route('properties.index')
+            ->with('successDelete', 'تم حذف العقار بنجاح');
     }
-
 }

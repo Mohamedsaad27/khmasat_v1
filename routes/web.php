@@ -94,6 +94,7 @@ Route::group(
 
         //--------------------------------/* PROPERTY ROUTES */--------------------------------
         Route::resource('/properties', PropertyController::class);
+        Route::get('/properties/{property}', [PropertyController::class, 'showPropertyInDashboard'])->name('properties.showPropertyInDashboard');
         Route::resource('/categories', CategoryController::class);
         Route::get('/categories', [CategoryController::class, 'indexWeb'])->name('categories.indexWeb');
         //--------------------------------/* BENEFIT ROUTES */--------------------------------

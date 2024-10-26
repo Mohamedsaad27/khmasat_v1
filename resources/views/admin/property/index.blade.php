@@ -17,6 +17,14 @@
                 });
             </script>
         @endif
+        @if (Session::has('successDelete'))
+            <script>
+                iziToast.success({
+                    title: "{{ session('successDelete') }}",
+                    position: 'topRight',
+                });
+            </script>
+        @endif
     @endpush
     <div class="p-5">
 
@@ -178,7 +186,12 @@
                                             </svg>
                                             مشاهدة
                                         </a>
-                                        <button type="button" id="deleteProductButton"
+                                        <a href="{{ route('properties.destroy', $property->slug) }}"
+                                            onclick="event.preventDefault(); 
+                                                     if(confirm('هل أنت متأكد من حذف العقار؟')) { 
+                                                       document.getElementById('delete-form-{{ $property->slug }}').submit(); 
+                                                     }"
+                                        type="button" id="deleteProductButton"
                                             data-drawer-target="drawer-delete-product-default"
                                             data-drawer-show="drawer-delete-product-default"
                                             aria-controls="drawer-delete-product-default"
@@ -191,7 +204,11 @@
                                                     clip-rule="evenodd"></path>
                                             </svg>
                                             حذف
-                                        </button>
+                                        </a>
+                                        <form id="delete-form-{{ $property->slug }}" action="{{ route('properties.destroy', $property->slug) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

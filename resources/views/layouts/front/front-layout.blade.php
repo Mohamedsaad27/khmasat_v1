@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
 
-
+    
     {{-- include style front side --}}
     <link rel="stylesheet" href="{{ asset('assets/css/front/style.css?v=1.1') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
@@ -51,7 +51,8 @@
             <div class="container mx-auto flex justify-between items-center p-6 md:px-0 xl:px-6">
                 {{-- logo and menu button --}}
                 <div class="flex items-center">
-                    <p class="font-bold text-lg">خماسات</p>
+                    
+                    <a href="{{ route('front.welcome') }}" class="font-bold text-lg">خماسات</a>
 
                     {{-- menu button --}}
                     <button x-on:click="open = true"
