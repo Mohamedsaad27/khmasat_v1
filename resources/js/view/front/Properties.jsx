@@ -1,12 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropertyCard from "../../components/front/properties/PropertyCard";
-import PropertyCard from "https://khmasat.treasure-academy.com/resources/js/components/front/properties/PropertyCard.jsx?t=1729894294997";
 import PropertiesData from "../../api/property/getAllProperties";
-import PropertiesData from "https://khmasat.treasure-academy.com/resources/js/api/property/getAllProperties.jsx";
 import TypesProperty from "../../api/property/getTypeProperties";
-import TypesProperty from "https://khmasat.treasure-academy.com/resources/js/api/property/getTypeProperties.jsx";
 import CategoriesData from "../../api/category/getAllCategories";
-import CategoriesData from "https://khmasat.treasure-academy.com/resources/js/api/category/getAllCategories.jsx";
 import ReactPaginate from "react-paginate";
 
 const Properties = () => {
@@ -586,8 +582,8 @@ const Properties = () => {
                             <label
                                 htmlFor="status-property-all"
                                 className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ml-1 ${statusProperty === "all"
-                                        ? "active-option"
-                                        : ""
+                                    ? "active-option"
+                                    : ""
                                     }`}
                             >
                                 الجميع
@@ -606,8 +602,8 @@ const Properties = () => {
                             <label
                                 htmlFor="status-property-ready"
                                 className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ml-1 ${statusProperty === "ready"
-                                        ? "active-option"
-                                        : ""
+                                    ? "active-option"
+                                    : ""
                                     }`}
                             >
                                 جاهز
@@ -628,8 +624,8 @@ const Properties = () => {
                             <label
                                 htmlFor="status-property-under-construction"
                                 className={`py-2 px-3 rounded-md cursor-pointer transition duration-200 hover:bg-sky-100 ${statusProperty === "under-construction"
-                                        ? "active-option"
-                                        : ""
+                                    ? "active-option"
+                                    : ""
                                     }`}
                             >
                                 قيد الانشاء
