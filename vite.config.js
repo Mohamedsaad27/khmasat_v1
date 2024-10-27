@@ -22,8 +22,8 @@ export default defineConfig({
         mimeTypes: {
             'application/javascript': ['js', 'jsx'],
         },
-        host: "khmasat.treasure-academy.com",
-        // port: 5173, // or your desired port
-        https: true, // Use true if your site is HTTPS
+        // host: "khmasat.treasure-academy.com",
+        // // port: 5173, // or your desired port
+        // https: true, // Use true if your site is HTTPS
     },
 });
