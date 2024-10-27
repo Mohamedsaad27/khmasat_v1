@@ -11,4 +11,9 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        mimeTypes: {
+            'application/javascript': ['js', 'jsx'],
+        },
+    },
 });

@@ -7,7 +7,7 @@
                 اي بيت هنا</p>
 
             <div class="home-search w-[350px] md:w-auto mt-[20px] lg:mt-[30px] p-5">
-                <form action="{{ route('front.homeSearch') }}" method="GET">
+                <form action="{{ route('front.properties') }}" method="GET">
                     {{-- Category Selection --}}
                     <div class="category flex items-center">
                         @forelse($categories as $index => $category)

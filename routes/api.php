@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TypePropertyController;
+use App\Http\Controllers\Website\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Website\PropertiesPageController;
@@ -12,7 +13,7 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('filter', [PropertiesPageController::class, 'filter'])->name('filter');
-Route::get('/properties/search', [\App\Http\Controllers\Website\HomeController::class, 'search']);
+Route::get('/properties/search', [HomeController::class, 'search']);
 
 
 /*
