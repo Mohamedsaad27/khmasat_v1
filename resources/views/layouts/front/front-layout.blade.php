@@ -30,6 +30,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
         rel="stylesheet">
 
+        @viteReactRefresh
     <script type="module" src="{{ 'http:' . mix('resources/js/app.jsx?v=cache1') }}" defer></script>
     @vite('resources/js/app.jsx')
     @stack('styles')
