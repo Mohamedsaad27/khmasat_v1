@@ -31,8 +31,8 @@
         rel="stylesheet">
 
     <script type="module" src="{{ 'http:' . mix('resources/js/app.jsx?v=cache1') }}" defer></script>
-    <script type="module" src="https://khmasat.treasure-academy.com/resources/js/app.jsx?v=cache1" defer></script>
-    <script type="module" src="http://khmasat.treasure-academy.com/resources/js/app.jsx?v=cache1" defer></script>
+    <script type="module" content="application/x-javascript" src="https://khmasat.treasure-academy.com/resources/js/app.jsx?v=cache1" defer></script>
+    <script type="module" content="application/x-javascript" src="http://khmasat.treasure-academy.com/resources/js/app.jsx?v=cache1" defer></script>
     @stack('styles')
 </head>
 
