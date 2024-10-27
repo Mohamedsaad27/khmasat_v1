@@ -1,7 +1,13 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import react from 'react';
+import 'dotenv/config';
 
 export default defineConfig({
+    build: {
+        minify: process.env.APP_ENV === 'production' ? 'esbuild' : false,
+        cssMinify: process.env.APP_ENV === 'production',
+    },
     plugins: [
         laravel({
             input: [
@@ -10,12 +16,13 @@ export default defineConfig({
             ],
             refresh: true,
         }),
+        react(),
     ],
     server: {
         mimeTypes: {
             'application/javascript': ['js', 'jsx'],
         },
-        host: '127.0.0.1', // Forces Vite to use IPv4
+        host: "127.0.0.1", // Forces Vite to use IPv4
         port: 5173
     },
 });
