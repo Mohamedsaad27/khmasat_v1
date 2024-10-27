@@ -15,5 +15,7 @@ export default defineConfig({
         mimeTypes: {
             'application/javascript': ['js', 'jsx'],
         },
+        host: '127.0.0.1', // Forces Vite to use IPv4
+        port: 5173
     },
 });
