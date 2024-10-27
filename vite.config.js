@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import react from 'react';
+// import react from '@vitejs/plugin-react';
 import 'dotenv/config';
 
 export default defineConfig({
@@ -16,13 +16,13 @@ export default defineConfig({
             ],
             refresh: true,
         }),
-        react(),
+        // react(),
     ],
     server: {
         mimeTypes: {
             'application/javascript': ['js', 'jsx'],
         },
-        host: "178.16.128.227", // Forces Vite to use IPv4
+        host: "127.0.0.1", // Forces Vite to use IPv4
         port: 5173
     },
 });
