@@ -22,7 +22,7 @@ export default defineConfig({
         mimeTypes: {
             'application/javascript': ['js', 'jsx'],
         },
-        host: "127.0.0.1", // Forces Vite to use IPv4
+        host: "178.16.128.227", // Forces Vite to use IPv4
         port: 5173
     },
 });
