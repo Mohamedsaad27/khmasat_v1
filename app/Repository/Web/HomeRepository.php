@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\Category;
 use App\Models\Property;
 use App\Models\PropertyType;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Interfaces\HomeInterface;
 
@@ -34,32 +35,59 @@ class HomeRepository implements HomeInterface
         return view('front.index', compact('latestProperties', 'featuredProperties', 'categories', 'propertyTypes', 'addresses'));
 
     }
+
     public function search(Request $request)
     {
-        $properties = Property::query()
-            ->with(['propertyType', 'address', 'propertyImages'])
-            ->when($request->searchText, function ($query) use ($request) {
-                $searchText = $request->searchText;
-                $query->whereHas('address', function ($q) use ($searchText) {
-                    $q->where('country', 'like', '%' . $searchText . '%')
-                      ->orWhere('governorate', 'like', '%' . $searchText . '%')
-                      ->orWhere('city', 'like', '%' . $searchText . '%');
+        $properties = Property::with(['address', 'category', 'propertyType'])
+            ->filter($request)
+            ->when($request->filled('address'), function (Builder $query) use ($request) {
+                $address = $request->input('address');
+
+                // Split the address string by " - "
+                $addressParts = explode(' - ', $address);
+
+                $query->whereHas('address', function (Builder $query) use ($addressParts) {
+                    // If we have country
+                    if (isset($addressParts[0]) && !empty($addressParts[0])) {
+                        $query->where('country', 'like', '%' . trim($addressParts[0]) . '%');
+                    }
+
+                    // If we have governorate
+                    if (isset($addressParts[1]) && !empty($addressParts[1])) {
+                        $query->where('governorate', 'like', '%' . trim($addressParts[1]) . '%');
+                    }
+
+                    // If we have city
+                    if (isset($addressParts[2]) && !empty($addressParts[2])) {
+                        $query->where('city', 'like', '%' . trim($addressParts[2]) . '%');
+                    }
+                    if (isset($addressParts[0]) && !isset($addressParts[1]) && !isset($addressParts[2])) {
+                        $query->where('country', 'like', '%' . trim($addressParts[0]) . '%');
+                        $query->orWhere('governorate', 'like', '%' . trim($addressParts[0]) . '%');
+                        $query->orWhere('city', 'like', '%' . trim($addressParts[0]) . '%');
+                    }
                 });
             })
-            ->when($request->get('property-type'), function ($query) use ($request) {
-                $query->whereHas('propertyType', function ($q) use ($request) {
-                    $q->where('id', $request->get('property-type'));  // Filter by property type
+            ->when($request->filled('category'), function (Builder $query) use ($request) {
+                $query->whereHas('category', function (Builder $query) use ($request) {
+                    $query->where('name', 'like', '%' . trim($request->input('category')) . '%');
                 });
             })
-            ->when($request->bedroom, function ($query) use ($request) {
-                $query->where('bedroom', $request->bedroom);  // Filter by number of bedrooms
+            ->when($request->filled('type'), function (Builder $query) use ($request) {
+                $query->whereHas('propertyType', function (Builder $query) use ($request) {
+                    $query->where('type', 'like', '%' . trim($request->input('type')) . '%');
+                });
             })
-            ->dd();
-    
-        return view('front.properties', compact('properties'));
+            ->when($request->filled('bedroom'), function (Builder $query) use ($request) {
+                $query->where('bedroom', 'like', '%' . trim($request->input('bedroom')) . '%');
+            })
+            ->latest()
+            ->paginate(12);
+
+        return response()->json([
+            'success' => true,
+            'data' => $properties,
+        ]);
     }
-    
-
-
 
 }

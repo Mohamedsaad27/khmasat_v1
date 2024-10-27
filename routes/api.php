@@ -12,6 +12,7 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('filter', [PropertiesPageController::class, 'filter'])->name('filter');
+Route::get('/properties/search', [\App\Http\Controllers\Website\HomeController::class, 'search']);
 
 
 /*
