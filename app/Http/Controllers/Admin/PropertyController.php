@@ -7,6 +7,7 @@ use App\Http\Requests\Property\StorePropertyRequest;
 use App\Http\Requests\Property\UpdatePropertyRequest;
 use App\Interfaces\PropertyRepositoryInterface;
 use App\Models\Property;
+use App\Models\PropertyImage;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
@@ -60,9 +61,9 @@ class PropertyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePropertyRequest $request, string $slug)
+    public function update(UpdatePropertyRequest $request, Property $property)
     {
-        return $this->propertyRepository->update($request, $slug);
+        return $this->propertyRepository->update($request, $property);
     }
 
     /**
@@ -72,10 +73,15 @@ class PropertyController extends Controller
     {
         return $this->propertyRepository->destroy($property);
     }
-    
+
     public function showPropertyInDashboard(Property $property)
     {
         return $this->propertyRepository->showPropertyInDashboard($property);
+    }
+
+    public function deleteImage(PropertyImage $image)
+    {
+        return $this->propertyRepository->deleteImage($image);
     }
 
 }

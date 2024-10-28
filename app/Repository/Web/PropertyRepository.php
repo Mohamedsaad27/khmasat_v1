@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Interfaces\PropertyRepositoryInterface;
 use App\Http\Requests\Property\StorePropertyRequest;
 use App\Http\Requests\Property\UpdatePropertyRequest;
+use App\Models\PropertyImage;
 
 class PropertyRepository implements PropertyRepositoryInterface
 {
@@ -142,27 +143,29 @@ class PropertyRepository implements PropertyRepositoryInterface
     {
         $benefits = DB::table('benefits')->get();
         $propertyTypes = DB::table('property_types')->get();
-        return view('admin.property.edit', compact('property', 'benefits', 'propertyTypes'));
+        $categories = DB::table('categories')->get();
+
+        return view('admin.property.edit', compact('property', 'benefits', 'propertyTypes', 'categories'));
     }
-    public function update(UpdatePropertyRequest $request, string $slug)
+    public function update(UpdatePropertyRequest $request, Property $property)
     {
         $validatedData = $request->validated();
-        dd($validatedData);
         try {
             DB::beginTransaction();
-            $property = Property::find($slug);
             $property->update([
+                'category_id' => $validatedData['category_id'],
+                'type_id' => $validatedData['property_type_id'],
                 'title' => $validatedData['title'],
                 'slug' => Str::slug($validatedData['title']),
                 'description' => $validatedData['description'],
                 'price' => $validatedData['price'],
-                'installment_amount' => $validatedData['installment_amount'] ?? null,
+                'installment_amount' => $validatedData['installment_amount'],
                 'area' => $validatedData['area'],
                 'bedroom' => $validatedData['bedroom'],
                 'bathroom' => $validatedData['bathroom'],
                 'status' => $validatedData['status'],
                 'feature' => $validatedData['feature'] ?? 0,
-                'price_after_discount' => $validatedData['price_after_discount'] ?? null,
+                'price_after_discount' => $validatedData['price_after_discount'],
             ]);
 
             if (isset($validatedData['benefits'])) {
@@ -186,8 +189,8 @@ class PropertyRepository implements PropertyRepositoryInterface
             return redirect()->route('properties.index')->with('successUpdate', 'تم تحديث العقار بنجاح');
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Failed to update property: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Failed to update property: ' . $e->getMessage());
+            Log::error('حدث خطأ أثناء تحديث العقار: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'حدث خطأ أثناء تحديث العقار: ' . $e->getMessage());
         }
     }
     public function destroy(Property $property)
@@ -203,5 +206,14 @@ class PropertyRepository implements PropertyRepositoryInterface
         $property->delete();
         return redirect()->route('properties.index')
             ->with('successDelete', 'تم حذف العقار بنجاح');
+    }
+    public function deleteImage(PropertyImage $image)
+    {
+        try {
+            $image->delete();
+            return response()->json(['success' => true, 'message' => 'تم مسح الصورة بنجاح']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
     }
 }

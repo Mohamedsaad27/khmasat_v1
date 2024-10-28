@@ -188,9 +188,11 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">النوع</label>
                         <select id="type" name="property_type_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            @foreach ($propertyTypes as $propertyType)
-                                <option value="{{ $propertyType->id }}">{{ $propertyType->type }}</option>
-                            @endforeach
+                            @forelse ($propertyTypes as $propertyType)
+                                <option value="{{ $propertyType->id }}">{{ $propertyType->name }}</option>
+                            @empty
+                                <option value="">لا يوجد نوع</option>
+                            @endforelse
                         </select>
                         @error('property_type_id')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>

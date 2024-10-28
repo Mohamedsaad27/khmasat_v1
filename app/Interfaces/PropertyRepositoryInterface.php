@@ -6,6 +6,7 @@ use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Http\Requests\Property\StorePropertyRequest;
 use App\Http\Requests\Property\UpdatePropertyRequest;
+use App\Models\PropertyImage;
 
 interface PropertyRepositoryInterface
 {
@@ -14,7 +15,8 @@ interface PropertyRepositoryInterface
     public function store(StorePropertyRequest $request);
     public function show(Property $property);
     public function edit(Property $property);
-    public function update(UpdatePropertyRequest $request ,string $slug);
+    public function update(UpdatePropertyRequest $request, Property $property);
     public function destroy(Property $property);
     public function showPropertyInDashboard(Property $property);
+    public function deleteImage(PropertyImage $image);
 }

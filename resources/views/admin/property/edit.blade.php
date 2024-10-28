@@ -4,6 +4,17 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.31.3/tagify.min.css" />
     @endpush
 
+    @push('alerts')
+        @if (Session::has('error'))
+            <script>
+                iziToast.error({
+                    title: "{{ session('error') }}",
+                    position: 'topRight',
+                });
+            </script>
+        @endif
+    @endpush
+
     <div class="p-5">
 
         {{-- START Breadcrumb --}}
@@ -54,10 +65,21 @@
         </div>
         {{-- END Breadcrumb --}}
 
+        @if ($errors->any())
+            <div class="mb-3">
+                <p class="text-red-500 text-center font-[500] text-sm mb-2">
+                    @foreach ($errors->all() as $error)
+                        {{ $error }}
+                    @endforeach
+                </p>
+            </div>
+        @endif
+
         <form class="flex flex-wrap justify-between" action="{{ route('properties.update', $property->slug) }}"
             method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+
             <div
                 class="w-full h-fit lg:w-[59%] xl:w-[69%] p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
 
@@ -80,7 +102,7 @@
                         <p class="font-medium text-gray-900 dark:text-white">مميز</p>
                         <label class="relative inline-flex cursor-pointer items-center">
                             <input id="feature" name="feature" type="checkbox" class="peer sr-only"
-                                @checked(old('feature', $property->feature == true)) />
+                                @checked(old('feature', $property->feature == true)) value="1" />
                             <label for="feature" class="hidden"></label>
                             <div
                                 class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-500 peer-checked:after:translate-x-full peer-focus:ring-green-500">
@@ -108,6 +130,9 @@
                     <input type="text" name="title" id="title"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
                         placeholder="ادخل عنوان للعقار" required value="{{ old('title', $property->title) }}" />
+                    @error('title')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="price-parent flex items-center justify-between mb-3">
@@ -117,6 +142,9 @@
                         <input type="number" name="price" id="price"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
                             placeholder="ادخل سعر للعقار" required value="{{ old('price', $property->price) }}" />
+                        @error('price')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="discount-amount-parent w-[49%]">
@@ -126,6 +154,9 @@
                             value="{{ old('price_after_discount', $property->price_after_discount) }}"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
                             placeholder="ادخل السعر بعد الخصم " />
+                        @error('price_after_discount')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 
@@ -137,6 +168,9 @@
                             value="{{ old('installment_amount', $property->installment_amount) }}"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
                             placeholder="ادخل المقدم " />
+                        @error('installment_amount')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 
@@ -147,6 +181,9 @@
                     <textarea id="message" rows="3" name="description"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="اكتب وصف العقار هنا...">{{ old('description', $property->description) }}</textarea>
+                    @error('description')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-3 flex items-center justify-between">
@@ -154,59 +191,81 @@
                     <div class="w-[49%]">
                         <label for="type"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">النوع</label>
-                        <select id="type" name="type_id"
+                        <select id="type" name="property_type_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            @foreach ($propertyTypes as $propertyType)
-                                <option value="{{ $propertyType->id }}" @selected($property->type_id == $propertyType->id)>
-                                    {{ $propertyType->type }}</option>
-                            @endforeach
+                            @forelse ($propertyTypes as $propertyType)
+                                <option value="{{ $propertyType->id }}" @selected(old('property_type_id', $property->propertyType->id) == $propertyType->id)>
+                                    {{ $propertyType->name }}</option>
+                            @empty
+                                <option value="">لا يوجد نوع</option>
+                            @endforelse
                         </select>
+                        @error('property_type_id')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
                     </div>
 
-                    {{-- area --}}
+                    {{-- category --}}
+                    <div class="w-[49%]">
+                        <label for="category"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">الفئة</label>
+                        <select id="category" name="category_id"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('category_id')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="mb-3 flex items-center justify-between">
+
                     <div class="w-[49%]">
                         <label for="area"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">المساحة <span
                                 class="text-blue-500">م <sup>2</sup></span></label>
-                        <input type="number" name="area" id="area"
-                            value="{{ old('area', $property->area) }}"
+                        <input type="number" name="area" id="price"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
-                            placeholder="ادخل المساحة بالمتر المربع" required>
+                            placeholder="ادخل المساحة بالمتر المربع" required=""
+                            value="{{ old('area', $property->area) }}">
                     </div>
-                </div>
 
-                <div class="mb-3 flex items-center justify-between">
-                    {{-- bedroom --}}
+
                     <div class="w-[49%]">
                         <label for="bedroom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">عدد
                             الغرف</label>
                         <input type="number" name="bedroom" id="bedroom"
-                            value="{{ old('bedroom', $property->bedroom) }}"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
-                            placeholder="ادخل عدد الغرف" required>
+                            placeholder="ادخل عدد الغرف" required=""
+                            value="{{ old('bedroom', $property->bedroom) }}">
                     </div>
+                </div>
 
-                    {{-- bathroom --}}
+                <div class="mb-3 flex items-center justify-between">
+
                     <div class="w-[49%]">
                         <label for="bathroom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">عدد
                             الحمامات</label>
                         <input type="number" name="bathroom" id="bathroom"
-                            value="{{ old('bathroom', $property->bathroom) }}"
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200"
-                            placeholder="ادخل عدد الحمامات" required>
+                            placeholder="ادخل عدد الحمامات" required=""
+                            value="{{ old('bathroom', $property->bathroom) }}">
                     </div>
-                </div>
 
-                {{-- status --}}
-                <div class="mb-3">
-                    <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">حالة
-                        العقار</label>
-                    <select id="status" name="status"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="available" @selected(old('status', $property->status == 'available'))>متاح</option>
-                        <option value="sold" @selected(old('status', $property->status == 'sold'))>تم البيع</option>
-                        <option value="rented" @selected(old('status', $property->status == 'rented'))>تم التأجير</option>
-                    </select>
+
+                    <div class="w-[49%]">
+                        <label for="status"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">حالة
+                            العقار</label>
+                        <select id="status" name="status"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="available" @selected(old('status', $property->status) == 'available')>متاح</option>
+                            <option value="sold" @selected(old('status', $property->status) == 'sold')>تم البيع</option>
+                            <option value="rented" @selected(old('status', $property->status) == 'rented')>تم التأجير</option>
+                        </select>
+                    </div>
                 </div>
 
                 {{-- benefits --}}
@@ -218,6 +277,9 @@
                         class='tagify--custom-dropdown shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 transition duration-200'
                         placeholder='ادخل مميزات العقار'
                         value='{{ implode(',', $property->benefits->pluck('name')->toArray()) }}'>
+                    @error('benefits')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Hidden input container for benefit IDs -->
@@ -227,7 +289,9 @@
             <div class="w-full h-fit lg:w-[39%] xl:w-[29%] mb-4">
                 <div
                     class="w-full p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-
+                    @error('images')
+                        <p class="text-red-500 text-center font-[500] text-sm mb-2">{{ $message }}</p>
+                    @enderror
                     <div class="flex flex-col items-center justify-center w-full">
                         <label for="fileInput"
                             class="flex flex-col items-center justify-center w-full h-[176px] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
@@ -253,33 +317,31 @@
                             @forelse($property->propertyImages as $image)
                                 <div
                                     class="file-item flex items-center justify-between mt-[10px] dark:bg-gray-700 bg-gray-200 p-2 rounded w-full">
-                                    <div class="w-auto flex items-center">
+                                    <div class="w-full flex items-center">
                                         <div class="w-[50px] h-[50px] ml-[10px]">
                                             <img src="{{ $image->image_path }}"
                                                 alt="{{ basename($image->image_path) }}"
                                                 class="w-full h-full object-cover rounded">
                                         </div>
-                                        <div class="truncate" style="width: calc(100% - 60px);">
+                                        <div class="flex items-center justify-between truncate"
+                                            style="width: calc(100% - 60px);">
                                             <span
-                                                class="text-gray-500 dark:text-gray-400 truncate">{{ basename($image->image_path) }}</span>
+                                                class="block text-gray-500 dark:text-gray-400 truncate w-[70%]">{{ basename($image->image_path) }}</span>
+
+                                            {{-- delete photo --}}
+                                            <div class="w-fit">
+                                                <button type="button" data-image-id="{{ $image->id }}"
+                                                    class="delete-image-btn inline-flex items-center p-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 dark:focus:ring-red-900 transition duration-200">
+                                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+
                                         </div>
-                                    </div>
-                                    <div class="w-fit">
-                                        <form action="">
-                                            <button type="button" id="deleteProductButton"
-                                                data-drawer-target="drawer-delete-product-default"
-                                                data-drawer-show="drawer-delete-product-default"
-                                                aria-controls="drawer-delete-product-default"
-                                                data-drawer-placement="right"
-                                                class="inline-flex items-center p-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900 transition duration-200">
-                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                        clip-rule="evenodd"></path>
-                                                </svg>
-                                            </button>
-                                        </form>
                                     </div>
                                 </div>
                             @empty
@@ -295,13 +357,18 @@
                 <div
                     class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 py-4 px-6 dark:bg-gray-800">
                     <p class="font-medium text-gray-900 dark:text-white text-center mb-3"> حدد عنوان العقار</p>
+                    @if ($errors->has('latitude') || $errors->has('longitude'))
+                        <p class="text-red-500 text-center font-[500] text-sm mb-2">
+                            {{ $errors->first('latitude') ?: $errors->first('longitude') }}
+                        </p>
+                    @endif
                     <div id="map" class="w-full h-[400px] rounded"></div>
                 </div>
             </div>
 
             <div class="w-full">
-                <button
-                    class="bg-blue-700 dark:bg-blue-600 dark:focus:ring-blue-800 dark:hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium hover:bg-blue-800 px-5 py-2.5 rounded-lg text-sm text-white transition duration-200 ">إضافة
+                <button type="submit"
+                    class="bg-blue-700 dark:bg-blue-600 dark:focus:ring-blue-800 dark:hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium hover:bg-blue-800 px-5 py-2.5 rounded-lg text-sm text-white transition duration-200 ">تعديل
                     العقار</button>
             </div>
 
@@ -374,6 +441,49 @@
 
         {{-- link script this page --}}
         <script src="{{ asset('assets/js/admin/property/script.js') }}"></script>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.delete-image-btn').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        const imageId = this.dataset.imageId;
+                        if (confirm('Are you sure you want to delete this image?')) {
+                            fetch(`/admin/property-images/${imageId}`, {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'X-CSRF-TOKEN': document.querySelector(
+                                            'meta[name="csrf-token"]').content,
+                                        'Accept': 'application/json',
+                                    }
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        this.closest('.file-item').remove();
+                                        iziToast.success({
+                                            title: data.message,
+                                            position: 'topRight'
+                                        });
+                                    } else {
+                                        iziToast.error({
+                                            title: data.message,
+                                            position: 'topRight'
+                                        });
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    iziToast.error({
+                                        title: 'An error occurred while deleting the image',
+                                        position: 'topRight'
+                                    });
+                                });
+                        }
+                    });
+                });
+            });
+        </script>
     @endpush
 
 </x-admin-layout>

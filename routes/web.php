@@ -41,6 +41,7 @@ Route::group([
         return view('front.properties');
     })->name('properties');
     Route::get('/properties', [PropertiesPageController::class, 'index'])->name('properties');
+    Route::delete('/property-images/{image}', [PropertyController::class, 'deleteImage'])->name('property-images.destroy');
 
 
     //--------------------------------/* BENEFIT PROPERTIES ROUTE */--------------------------------
