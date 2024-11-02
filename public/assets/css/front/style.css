@@ -186,8 +186,8 @@ section.search .home-search .main-search .submit-search:hover {
 
 /* end latest properties section */
 
-/* 
-**  PROPERTIES PAGE 
+/*
+**  PROPERTIES PAGE
 */
 
 /* start search filter section */
@@ -213,8 +213,8 @@ section.search .home-search .main-search .submit-search:hover {
 
 /* end properties section */
 
-/* 
-**  PEOPERTY-DETILES PAGE 
+/*
+**  PEOPERTY-DETILES PAGE
 */
 
 .property-detiles .description::-webkit-scrollbar {
@@ -228,4 +228,18 @@ section.search .home-search .main-search .submit-search:hover {
 
 .property-detiles .description::-webkit-scrollbar-thumb {
     background-color: var(--main-color);
+}
+
+@keyframes textGradient {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.gradient-text-hover:hover {
+    background: linear-gradient(45deg, #2563eb, #1d4ed8, #2563eb);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGradient 3s linear infinite;
 }

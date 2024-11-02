@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
 
-    
+
     {{-- include style front side --}}
     <link rel="stylesheet" href="{{ asset('assets/css/front/style.css?v=1.1') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}">
@@ -51,9 +51,16 @@
             <div class="container mx-auto flex justify-between items-center p-6 md:px-0 xl:px-6">
                 {{-- logo and menu button --}}
                 <div class="flex items-center">
-                    
-                    <a href="{{ route('front.welcome') }}" class="font-bold text-lg">خماسات</a>
 
+                    <a href="{{ route('front.welcome') }}" class="group relative font-bold text-lg text-blue-600 hover:text-blue-800 transition-colors duration-300 px-2 py-1">
+    <span class="relative inline-block">
+        خماسات
+        <!-- Animated underline -->
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+    </span>
+                        <!-- Optional subtle dot decoration -->
+                        <span class="absolute -top-1 -right-1 w-1 h-1 bg-blue-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a>
                     {{-- menu button --}}
                     <button x-on:click="open = true"
                         class="block md:hidden mr-4 text-gray-800 focus:outline-none transition duration-200 hover:text-[#36b6ff]">
